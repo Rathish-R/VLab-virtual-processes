@@ -1,0 +1,142 @@
+<div class="body bg-light" style=" border:1px ;border-radius: 20px; max-width: 80%;">
+    <nav class="navbar navbar-expand-lg bg-light">
+
+        <ul class="navbar-nav">
+            <li>
+                <a class="nav-link"><button class="btn" (click)="onClickTheory()">Theory</button></a>
+            </li>
+            <li>
+                <a class="nav-link"><button class="btn" (click)="onClickFormula()">Formulaes &
+                        Parameters</button></a>
+            </li>
+            <li>
+                <a class="nav-link"><button class="btn" (click)="onClickSimulation()">Simulation</button></a>
+            </li>
+        </ul>
+
+    </nav>
+    <div>
+        <div *ngIf="isTheoryOn" style="margin:50px ;">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+        <div *ngIf="isSimulationOn" style="margin:20px">
+            <div class="row">
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form formGroup="inputValues">
+                        <div class="row mb-3">
+                            <!-- <div class="col">
+                                <label for="dBulbInlet">T<sub>DB(inlet)</sub> in <sup>o</sup>C</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="dBulbInlet" class="form-control" id="dBulbInlet"
+                                    style="width:100px">
+
+                            </div>
+                            <div class="col">
+                                <label for="wBulbInlet">T<sub>WB(inlet)</sub> in <sup>o</sup>C</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="wBulbInlet" class="form-control" id="wBulbInlet"
+                                    style="width:100px">
+
+                            </div>
+
+
+                            <div class="col">
+                                <label for="dBuOutInlet">T<sub>DB(Outlet)</sub> in <sup>o</sup>C</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="dBulbOutlet" class="form-control" id="dBulbOutlet"
+                                    style="width:100px">
+
+                            </div>
+                            <div class="col">
+                                <label for="wBulbInlet">T<sub>WB(Outlet)</sub> in <sup>o</sup>C</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="wBulbOutlet" class="form-control" id="wBulbOutslet"
+                                    style="width:100px">
+
+                            </div> -->
+                            <div class="col">
+                                <label for="aHumidityIn">Y1<sub> (inlet)</sub></label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="aHumidityIn" class="form-control" id="aHumidityIn"
+                                    style="width:100px">
+
+                            </div>
+                            <div class="col">
+                                <label for="aHumidityOut">Y2<sub>(outlet)</sub> in <sup>o</sup>C</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="aHumidityOut" class="form-control" id="aHumidityOut"
+                                    style="width:100px">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="height1">H<sub>1</sub></label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="height1" class="form-control" id="height1"
+                                    style="width:100px">
+                            </div>
+                            <div class="col">
+                                <label for="height1">H<sub>2</sub></label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="height2" class="form-control" id="height2"
+                                    style="width:100px">
+                            </div>
+                            <div class="col">
+                                <label for="timeTaken">timeTaken</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="timeTaken" class="form-control" id="timeTaken"
+                                    style="width:100px">
+                            </div>
+                            <div class="col">
+                                <label for="Fweight">Final weight</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="Fweight" class="form-control" id="Fweight"
+                                    style="width:100px">
+                            </div>
+                            <div class="col">
+                                <label for="Iweight">Initial weight</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" formControlName="Iweight" class="form-control" id="Iweight"
+                                    style="width:100px">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                            <button class="btn" (click)=" getMoisture()">submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

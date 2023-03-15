@@ -1,0 +1,52 @@
+li{
+    list-style-type: none;
+
+}
+.heading{
+    font-size: 20px;
+    margin: 20px 0px;
+    font-weight: 500;
+}
+.Mass-Transfer-page{
+    padding: 10px;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+
+    }
+}
+
+
+.btn-toggle{
+    margin: 10px 0;
+    max-width: 200px;
+}
+.btn-lab{
+    width: 150px;
+    margin: 10px 15px 0 -10px;
+    padding: 10px;
+    background-color: rgba(144, 144, 144, 0.819);    color: rgba(255, 255, 255, 0.96);
+}
+li{
+    list-style-type: none;
+}
+a .btn-lab:hover{
+    box-shadow: 3px 3px 5px rgb(74, 74, 74);
+transform: scale(1.1,1.1);
+}
+
+.btn-lab.selected{
+    background-color: rgb(49, 49, 49);
+    box-shadow: 3px 3px 5px rgb(49, 49, 49);
+    transform: scale(1.1,1.1);
+}
+.Theory{
+    font-size: large;
+    font-family: sans-serif;
+
+}
+
+
+
+

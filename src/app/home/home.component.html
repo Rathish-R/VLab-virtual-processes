@@ -1,0 +1,100 @@
+<div class="container-fluid bg-dark " style="padding: 20px 100px ;text-align:center; height: 100px;font-size: xx-large;color:rgba(255, 255, 255, 0.806)">
+    <span>Virtual Process Equipments</span>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+    <div>
+        <ul class="navbar-nav " style="float:left">
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#" (click)="initialize()">
+                    <i class="bi bi-house-door"></i> Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Laboratories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="labs">
+                    <li>
+                        <button class="btn" (click)="onClickFm()">Fluid
+                            Mechanics</button>
+                    </li>
+                    <li>
+                        <button class="btn" (click)="onClickHt()">Heat
+                            Transfer</button>
+
+                    </li>
+                    <li>
+                        <button class="btn" (click)="onClickMo()">Mechanical Operations</button>
+
+                    </li>
+                    <li>
+                        <button class="btn" (click)="onClickMt()">Mass Transfer</button>
+
+                    </li>
+                    <li>
+                        <button class="btn" (click)="onClickCre()">Chemical Reaction Engineering</button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<div *ngIf="isFmOn">
+    <app-fluid-mechanics></app-fluid-mechanics>
+</div>
+<div *ngIf="isCREOn">
+    <app-chemical-rection-engineering></app-chemical-rection-engineering>
+</div>
+<div *ngIf="isMtOn">
+    <app-mass-transfer></app-mass-transfer>
+</div>
+<div *ngIf="isHtOn">
+    <app-heat-transfer></app-heat-transfer>
+</div>
+<div class="container-sm" *ngIf="isHomeOn===true" style="margin: 10%;padding:0 5%;">
+    <div class="row">
+
+        <div class="col-4"><a><button class="btn btn-choice" (click)="isFmOn=true">Fluid Mechanics</button></a></div>
+        <div class="col-4"><a><button class="btn btn-choice" (click)="isHtOn=true"> Heat Transfer</button></a></div>
+        <div class="col-4"><a><button class="btn btn-choice" (click)="isMtOn=true">Mass Transfer</button></a></div>
+    </div>
+    <div class="row">
+        <div class="col-4"><a><button class="btn btn-choice" (click)="isMoOn=true">Mechanical Operations </button></a>
+        </div>
+        <div class="col-4" style="padding-top: 20px;text-align: center;font-size: xx-large;">Process Equipments</div>
+        <div class="col-4"><a><button class="btn btn-choice" (click)="isCREOn=true">Chemical Reaction
+                    Engineering</button></a></div>
+
+    </div>
+    <div *ngIf="isAboutOn"
+        style="margin: 0 10% ; text-align: center;height:100%;
+ background-color: rgb(244, 249, 253); padding: 50px; border-radius: 20px;box-shadow: 10px 10px 20px;font-size: large;">
+        <span style=" font-size: xx-large;font-weight: 600;">About the Page </span>
+        <h5>
+
+        </h5>
+        <hr>
+        <p>
+            Virtual processes in chemical engineering can be used to perform a variety of calculations and simulations
+            to
+            model the behaviour of chemical processes and systems.
+            For example, users can perform calculations related to reaction kinetics,
+            thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions and
+            processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer to
+            understand the movement of materials and heat in a system.
+            Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
+            different conditions, such as variations in temperature, pressure, and composition, allowing users to gain a
+            deeper understanding of how these factors affect the performance
+            of a chemical system. By providing a flexible and interactive platform for these types of calculations and
+            simulations, virtual process equipments can help to advance the field of chemical engineering and provide
+            valuable insights into the behaviour of chemical systems.
+        </p>
+    </div>
+
+</div>
+<!-- <div *ngIf="isHtOn">
+    <app-heat-transfer></app-heat-transfer>
+</div> -->
