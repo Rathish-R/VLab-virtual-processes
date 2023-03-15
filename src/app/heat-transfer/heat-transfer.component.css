@@ -1,15 +1,4 @@
-@media (max-width: 768px) {
-    .sidebar {
-        display: none;
 
-    }
-}
-@media (max-width: 768px) {
-    .parts {
-        display: none;
-
-    }
-}
 
 
 .btn-toggle{
@@ -17,7 +6,8 @@
     max-width: 200px;
 }
 .btn-lab{
-    width: 150px;
+    width: 80%;
+    height:50px;
     margin: 10px 15px 0 -10px;
     padding: 10px;
     background-color: rgba(144, 144, 144, 0.819);   
@@ -85,4 +75,8 @@ a .btn-goto:hover{
 }
 table{
     table-layout: 1px;
+}
+.Theory{
+font-size: large;
+font-family:Arial, Helvetica, sans-serif;
 }
