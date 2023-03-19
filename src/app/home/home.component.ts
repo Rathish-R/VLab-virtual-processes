@@ -7,7 +7,7 @@ import { Labs } from '../Labs';
 })
 export class HomeComponent {
   labs: string[] = Labs;
-
+  selected!: string
   isFmOn !: boolean;
   isHtOn!: boolean;
   isMtOn!: boolean;
@@ -24,7 +24,7 @@ export class HomeComponent {
     this.isMtOn = false;
     this.isMoOn = false;
     this.isCREOn = false;
-
+    this.isHomeOn = true;
     this.isAboutOn = false
   }
 
@@ -38,33 +38,29 @@ export class HomeComponent {
     this.isAboutOn = true;
   }
   onClickFm() {
-    this.isHomeOn = false;
     this.initialize();
+    this.isHomeOn = false;
 
     this.isFmOn = true;
   }
   onClickHt() {
-    this.isHomeOn = false;
     this.initialize();
     this.isHomeOn = false;
     this.isHtOn = true;
   }
   onClickMt() {
-    this.isHomeOn = false;
     this.initialize();
     this.isHomeOn = false;
     this.isMtOn = true;
   }
   onClickCre() {
-    this.isHomeOn = false;
     this.initialize();
     this.isHomeOn = false;
     this.isCREOn = true;
   }
   onClickMo() {
-    this.isHomeOn = false;
     this.initialize();
-
+    this.isHomeOn = false;
     this.isMoOn = true;
   }
 

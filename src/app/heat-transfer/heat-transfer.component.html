@@ -1,16 +1,5 @@
 <div class="Fm-page">
     <div class="row">
-        <div class="col-1">
-
-
-
-            <!-- <button class="btn btn-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#Labs"
-                    aria-expanded="false" (click)="this.isClickLabOn=onClickLabs(isClickLabOn)"
-                    [class.selected]="isClickLabOn">
-                    <h5><span *ngIf="!isClickLabOn">{{selected}} <i class="bi bi-chevron-down"></i></span>
-                        <span *ngIf="isClickLabOn">Hide Laboratory <i class="bi bi-chevron-up"></i></span>
-                    </h5>
-                </button> -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
                 <div class="offcanvas-header">
                     <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
@@ -21,35 +10,33 @@
 
                     <ul class="labs">
                         <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
-                                    [class.selected]="eq==this.selected">{{eq}}</button></a></li>
+                                    [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
                     </ul>
                 </div>
             </div>
-            <div *ngIf="isClickLabOn " id="Labs">
-            </div>
-        </div>
-
-        <div class="col overflow-auto" style="margin:2%;">
+        <div class="col" style="padding:2%;">
             <div class="container-fluid">
 
-                <nav class="navbar navbar-expand-lg">
+                
                     <div class="row">
                         <div class="col-3">
-                            <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas"
+                            <button class="btn btn-outline-dark btn-Lab" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
                         </div>
                         <div class="col-9">
                             <div class="row">
+                                <nav class="navbar  nav-tabs navbar-expand-lg">
                                 <div class="col">
+                                    
                                     <a>
-                                        <button class="part" [class.selected]="isTheoryOn"
+                                        <button class="part" [class.selected]="selectedOperation=='Theory'"
                                             (click)="onClickTheory()">Theory
                                         </button>
                                     </a>
                                 </div>
                                 <div class="col">
                                     <a>
-                                        <button class="part" (click)="onClickFormula()" [class.selected]="isFormulaOn">
+                                        <button class="part" (click)="onClickFormula()" [class.selected]="selectedOperation=='Formulae'">
                                             Formulae
                                         </button>
                                     </a>
@@ -57,7 +44,7 @@
                                 <div class="col">
                                     <a>
                                         <button class="part" (click)="onClickSimulation() "
-                                            [class.selected]="isSimulationOn">
+                                            [class.selected]="selectedOperation=='Simulation'">
                                             Simulation
                                         </button>
                                     </a>
@@ -65,288 +52,17 @@
                                 <div class="col">
                                     <a>
                                         <button class="part" (click)="onClickResult();"
-                                            [class.selected]="isResultOn">Result
+                                            [class.selected]="selectedOperation=='Result'">Result
                                         </button>
                                     </a>
                                 </div>
+                            </nav>
                             </div>
                         </div>
                     </div>
-                </nav>
-            </div>
-            <div *ngIf="isTheoryOn" style="margin:0 10%">
-                <div *ngIf="selected=='Shell and Tube Heat Exchanger'">
-                    <br>
-                    <h2>Objectives</h2>
-                    <br>
-                    <br>
-                    <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
-                        Exchanger </p><br>
-                    <p class="Theory">
-
-                        A shell and tube heat exchanger is a type of heat exchanging device constructed using a
-                        large cylindrical enclosure, or shell,
-                        that has bundles of perfectly spaced tubing compacted in its interior.
-                        Heat exchanging is the transfer of heat from one substance or medium to a similar
-                        substance
-                        or medium. Shell and tube heat exchangers
-                        are the most common form of heat exchanger design.
-                        It is used in desulphurisation process in petroleum industry
-                        <br>
-                        <br>
-                        <br>
-                    </p>
-                </div>
-                <div *ngIf="selected=='Straight Pipes'" style="background-color:white">
-                    <div id="Straight Pipes" style="margin: 30px;">
-                        <div>
-                            <p class="Theory">
-                                <br>
-                                <br>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div *ngIf="selected=='Helical Coil'">
-                    <div id="Helical Coil" style="margin: 30px;padding:10px">
-                        <div>
-                            <h4>Objectives</h4>
-                            <p> To determine the coefficient of Friction factor over range of reynolds Number</p><br>
-                            <br>
-                            <p class="Theory">
-
-                                When pipeline resistance. it liquid flows through a subjected to frictional frictional
-                                resistance depends on the roughness of the inner surface of the pipes The love of energy
-                                between
-                                specified meanin of pipe the is observed. wefficient for of friction discharge is
-                                calculated
-                            </p>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div *ngIf="isFormulaOn">
-                <div *ngIf="selected=='Shell and Tube Heat Exchanger'">
-
-                </div>
-            </div>
-            <div *ngIf="isSimulationOn">
-                <div style="margin:5% 20%;">
-                    <form [formGroup]="inputValues" (ngSubmit)="onSubmit()">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Property</th>
-                                    <th>Value</th>
-                                    <th>Units</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> Hot Fluid mass Flowrate </td>
-
-                                    <td><input type="number" formControlName="Hflowrate"></td>
-                                    <td>Kg/sec</td>
-                                </tr>
-                                <tr>
-                                    <td>Cold Fluid mass Flowrate</td>
-
-                                    <td><input type="number" formControlName="Cflowrate"></td>
-                                    <td>Kg/sec</td>
-                                </tr>
-                                <tr>
-
-                                    <td>HotFluid Inlet temperature</td>
-                                    <td><input type="number" formControlName="Thi"></td>
-                                    <td>&deg;C</td>
-                                </tr>
-                                <tr>
-                                    <td>HotFluid Outlet temperature</td>
-
-                                    <td><input type="number" formControlName="Tho"></td>
-                                    <td>&deg;C</td>
-                                </tr>
-                                <tr>
-                                    <td>Cold fluid inlet temperature</td>
-
-                                    <td><input type="number" formControlName="Tci"></td>
-                                    <td>&deg;C</td>
-                                </tr>
-                                <tr>
-
-                                    <td>Cold fluid Outlet temperature</td>
-                                    <td><input type="number" formControlName="Tco"></td>
-                                    <td>&deg;C</td>
-                                </tr>
-                                <tr>
-
-                                    <td>Shell side Fluid</td>
-                                    <td>
-                                        <select formControlName="ShellFluid">
-                                            <option value="Hot Fluid">Hot Fluid</option>
-                                            <option value="Cold">Cold</option>
-                                        </select>
-                                    </td>
-                                    <td> NA </td>
-                                </tr>
-                                <tr>
-
-                                    <td>Tube's Outside diameter</td>
-                                    <td>
-                                        <input type="number" formControlName="TubeDiaO">
-                                    </td>
-                                    <td> NA </td>
-                                </tr>
-                                <tr>
-
-                                    <td>Tube's Inside diameter</td>
-                                    <td>
-                                        <input type="number" formControlName="TubeDiaI">
-                                    </td>
-                                    <td> NA </td>
-                                </tr>
-                                <tr>
-                                    <td>Number of Passes</td>
-                                    <td><input type="number" formControlName="Passes"></td>
-                                    <td> NA </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn btn-success" type="submit">Submit</button>
-                        <div *ngIf="inputValues.invalid && inputValues.dirty" style="color: red">All fields are
-                            required.</div>
-                        <div *ngIf="inputValues.valid" style="color: rgb(4, 255, 0)">Ready to calculate</div>
-                    </form>
-                </div>
-            </div>
-            <div *ngIf="isResultOn" style="margin:5% 20%;">
-                <div *ngIf="isCalculated">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Property</th>
-                                <th>Value</th>
-                                <th>Units</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> LMTD </td>
-
-                                <td>{{this.lmtd}}</td>
-                                <td>&deg;C / K</td>
-                            </tr>
-                            <tr>
-                                <td> Heat Duty Q (shell) </td>
-
-                                <td>{{this.QShellSide}}</td>
-                                <td>W</td>
-                            </tr>
-                            <tr>
-                                <td> Heat Transfer Area </td>
-
-                                <td>{{this.HtArea}}</td>
-                                <td>m<sup>2</sup></td>
-                            </tr>
-                            <tr>
-                                <td> Number of Tubes </td>
-
-                                <td>{{this.Tubes}}</td>
-                                <td> NA </td>
-                            </tr>
-                            <tr>
-                                <td> Bundle Diameter </td>
-
-                                <td>{{this.BundleDia}}</td>
-                                <td> m </td>
-                            </tr>
-                            <tr>
-                                <td> Shell Diameter </td>
-
-                                <td>{{this.ShellDia}}</td>
-                                <td> m </td>
-                            </tr>
-                            <tr>
-                                <td> Tubes Per Pass </td>
-
-                                <td>{{TubesPerPass}}</td>
-                                <td> m </td>
-                            </tr>
-                            <tr>
-                                <td>Total Flow area</td>
-
-                                <td>{{FlowAreaOfTubes}}</td>
-                                <td> m<sup>2</sup> </td>
-                            </tr>
-                            <tr>
-                                <td>Velocity(Tube side fluid)</td>
-
-                                <td>{{VelocityTubeSide}}</td>
-                                <td> m/s </td>
-                            </tr>
-                            <tr>
-                                <td>Reynolds number</td>
-
-                                <td>{{NReTs}}</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td>Pandtl Number</td>
-
-                                <td>{{NPrTs}}</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td>Tube Side HeatTransfer Coefficient</td>
-
-                                <td>{{HtubeSide}}</td>
-                                <td>W/m<sup>2</sup>&deg;C </td>
-                            </tr>
-                            <tr>
-                                <td>Baffle Spacing</td>
-
-                                <td>{{BaffleSpace}}</td>
-                                <td> m </td>
-                            </tr>
-                            <tr>
-                                <td>Velocity(Tube side fluid)</td>
-
-                                <td>{{VelocityTubeSide}}</td>
-                                <td> m/s </td>
-                            </tr>
-                            <tr>
-                                <td>Tube Side HeatTransfer Coefficient</td>
-
-                                <td>{{HShellSide}}</td>
-                                <td> W/m<sup>2</sup>&deg;C </td>
-                            </tr>
-                            <tr>
-                                <td>Overall HeatTransfer Coefficient</td>
-
-                                <td>{{1/OverallHTCoeff}}</td>
-                                <td> W/m<sup>2</sup>&deg;C </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div *ngIf="!isCalculated">
-                    <div class="alert-warning" style="padding:20px">
-                        <h3>Cannot generate results</h3>
-                        <h6>Simulate to get results</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="position-fixed bottom-0 end-0">
-
-                <a id="GoTO" href="#Theory"><button class="btn btn-goto" style="border-radius:100%;"><i
-                            class="bi bi-chevron-up"
-                            style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
+                
+                <app-shell-and-tube [selected]="selected" [selectedOperation]="selectedOperation"></app-shell-and-tube>
             </div>
         </div>
-        
     </div>
 </div>
