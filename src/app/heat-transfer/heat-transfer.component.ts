@@ -32,6 +32,9 @@ export class HeatTransferComponent {
   onClickResult() {
  this.selectedOperation="Result";
   }
+  onClickVExp(){
+    this.selectedOperation="Virtual Experiment";
+  }
 
   // isFormulaOn: boolean = false;
   // isSimulationOn: boolean = false;

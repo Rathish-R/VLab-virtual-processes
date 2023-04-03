@@ -1,16 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ShellAndTube } from './ShellAndTube';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { Water } from '../water';
+import { Component, Input } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Methanol } from '../methanol';
-
+import { ShellAndTube } from '../shell-and-tube/ShellAndTube';
+import { Water } from '../water';
 
 @Component({
-  selector: 'app-shell-and-tube',
-  templateUrl: './shell-and-tube.component.html',
-  styleUrls: ['./shell-and-tube.component.css']
+  selector: 'app-helical-coil-hex',
+  templateUrl: './helical-coil-hex.component.html',
+  styleUrls: ['./helical-coil-hex.component.css']
 })
-export class ShellAndTubeComponent {
+export class HelicalCoilHExComponent {
   isClickLabOn!: boolean;
   equipments!: string[];
   ResultObt!: boolean;
@@ -210,10 +209,10 @@ export class ShellAndTubeComponent {
       this.s.PDropTs = (this.s.PDropTs * 14.69) / 101325;
       this.s.PDropSs = (this.s.PDropSs * 14.69) / 101325;
       debugger;
-      var ActualArea=Math.PI*5 *this.s.ShellDia/2;
-      this.s.QFound= this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
-      this.s.Tho =Number(this.ip.value.Thi) -  (this.s.QShellSide/ (this.s.SFR*this.s.SFCp) );
-      this.s.Tco =Number(this.ip.value.Tci) - ( this.s.QShellSide/ (this.s.TFR*this.s.TFCp) );
+      var ActualArea=Math.PI*Math.pow(this.s.ShellDia/2 , 2);
+      this.s.QFound= this.s.OverallHTCoeff * this.s.HtArea * this.s.lmtd;
+      this.s.Tho =Number(this.ip.value.Thi) -  (this.s.QFound/ (this.s.SFR*this.s.SFCp) );
+      this.s.Tco =Number(this.ip.value.Tci) - ( this.s.QFound/ (this.s.TFR*this.s.TFCp) );
 
       this.roundOff();
       this.s.isCalculated = true;

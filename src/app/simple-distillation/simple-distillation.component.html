@@ -1,0 +1,250 @@
+<div *ngIf="selectedOperation=='Theory'" style="margin:0 10%">
+
+    <br>
+    <h2>Objective</h2>
+    <p class="Theory"> To Carry out experimental study for different systems using simple distillation setup and verify
+        Raleigh's equation
+        for the given system by analytical method </p><br>
+    <h2>Theory </h2>
+    <p class="Theory">
+
+        The simplest form of butch still consists of a heated vessel (pot or boiler), a condenser. and one or more
+        receiving tanks. No trays or packing are provided. Feed is charged into the vessel and brought to boiling.
+        Vapors are condensed and collected in a receiver No reflux is returned. The rate of vaporization is sometimes
+        controlled to prevent "bumping the charge and to avoid overloading the condenser,
+        but other controls are minimal.
+        This process is often referred to as Rayleigh distillation.
+        <br>
+        If we represent the moles of vapor by V, moles of liquid in the pot by L. the mole fraction of the more volatile
+        component in this liquid by x, and the mole fraction of the same component in the vapor by y, a material balance
+        yields
+        <br>
+        <br>
+        <!-- <img class="rounded mx-auto d-block"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7dpcUJeCMN45s-F6gyaJCoilDpAr01gpUgEVMHOSiTA&usqp=CAU&ec=48600113"
+            style="width:fit-content;height: fit-content;"> -->
+    </p>
+
+</div>
+<div *ngIf="selectedOperation=='Formulae'" style="margin:0 5%">
+
+    <div class="formulae" style="margin-top: 5%;font-size: large;letter-spacing: 2.5;">
+        <div class="row">
+            <div class="col-8">
+                <h4 style="font-weight: 600;"> Overall energy balance :</h4>
+                <p>
+                    Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
+                    C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                    <br>
+
+                    Q = UA ΔT<sub>LMTD</sub>
+                </p>
+                <h4 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h4>
+                <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
+                    +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
+                    + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+                <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient</h5>
+                <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>i</sub>)
+
+                </p>
+                <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient</h5>
+                <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>e</sub>)
+
+                </p>
+
+            </div>
+            <div class="col-4">
+                <p>
+                    <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
+                    <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
+                    <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
+                    <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
+                    <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
+                    <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
+                    <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
+                    <b>A</b> - Heat Transfer Area <br>
+                    <b>U</b> - Overall Side Heat transfer Coefficient <br>
+                    <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
+                    <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
+                    <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
+                    <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
+                    <b>N<sub>Re</sub></b> - Reynold's Number<br>
+                    <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="selectedOperation=='Simulation'">
+
+    <div style="margin:5% 20%;">
+        <form [formGroup]="iP">
+            <div class="row mb-5">
+                <div class=col>
+                    <label for="EmptyW">Empty Bottle's weight (gm) :</label>
+                    <input type="number" formControlName="bottleW">
+                </div>
+                <div class=col>
+                    <label for="EmptyW">Component A (ml):</label>
+                    <input type="number" formControlName="compA">
+                </div>
+                <div class=col>
+                    <label for="EmptyW">Component B (ml):</label>
+                    <input type="number" formControlName="compB">
+                </div>
+
+            </div>
+              <button class="btn btn-success" type="submit" (click)="Calculate()">Submit</button>
+            <div *ngIf="iP.invalid && iP.dirty" style="color: red">All fields are
+                required.</div>
+            <div *ngIf="iP.valid" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+        
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Weight of</th>
+                        <th>Feed (gm)</th>
+                        <th>Distillate (gm)</th>
+                        <th>Residue (gm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>Empty bottle</td>
+                        <td>
+                            {{bottleW}}
+                        </td>
+                        <td> {{bottleW}} </td>
+                        <td> {{bottleW}} </td>
+                    </tr>
+                    <tr>
+
+                        <td>Bottle and sample</td>
+                        <td>
+                            <input type="number" formControlName="feedBSW">
+                        </td>
+                        <td><input type="number" formControlName="distBSW"></td>
+                        <td><input type="number" formControlName="residBSW"></td>
+                    </tr>
+                    <tr>
+                        <td>Bottle and sample</td>
+                        <td>
+                            {{feedBSW-bottleW}}
+                        </td>
+                        <td>
+                            {{distBSW-bottleW}}
+                        </td>
+                        <td>
+                            {{residBSW-bottleW}}
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Volume of the sample</td>
+                        <td>
+                            10
+                        </td>
+                        <td>
+                            10
+                        </td>
+                        <td>
+                            10
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Density of the sample</td>
+                        <td>
+                            {{feedDens}}
+                        </td>
+                        <td>
+                            {{distDens}}
+                        </td>
+                        <td>
+                            {{residDens}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Density of the sample</td>
+                        <td>
+                            {{feedDens}}
+                        </td>
+                        <td>
+                            {{distDens}}
+                        </td>
+                        <td>
+                            {{residDens}}
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <!-- <button class="btn btn-success" type="submit">Submit</button>
+            <div *ngIf="inputValues.invalid && inputValues.dirty" style="color: red">All fields are
+                required.</div>
+            <div *ngIf="inputValues.valid" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+         -->
+        </form>
+    </div>
+</div>
+<div *ngIf="selectedOperation=='Result'" style="margin:5% 20%;">
+    <div *ngIf="isCalculated">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr><th> </th>
+                    <th>Feed</th>
+                    <th>Distillate</th>
+                    <th>Residue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Volume Collected </td>
+                    <td> {{compA+compB}}</td>
+                    <td><input type="number" formControlName="distV"></td>
+                    <td><input type="number" formControlName="residV"></td>
+
+                </tr>
+                <tr>
+                    <td>Density</td>
+                    <td>{{feedDens}}</td>
+                    <td>{{distDens}}</td>
+                    <td>{{residDens}}</td>
+
+                </tr>
+                <tr>
+                    <td>Mole Fraction of A </td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+
+                </tr>
+                <tr>
+                    <td>Average molecular weight</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!isCalculated">
+        <div class="alert-warning" style="padding:20px">
+            <h3>Cannot generate results</h3>
+            <h6>Simulate to get results</h6>
+        </div>
+    </div>
+</div>
+<div class="position-fixed bottom-0 end-0">
+
+    <a id="GoTO" href="#Theory"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"
+                style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
+</div>
+
+<div class="modal"></div>

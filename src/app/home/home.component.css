@@ -1,8 +1,13 @@
 li{
     list-style-type: none;
 }
-.nav-style a{
-    /* color: rgba(255, 255, 255, 0.823); */
+/* .nav-style a{
+    color: rgba(255, 255, 255, 0.823);
+} */
+.nav-bar-style{
+    /* position: -webkit-sticky; */
+  position: sticky;
+  top: 0;
 }
  .Ht,.Fm{
     color:black;

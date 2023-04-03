@@ -6,32 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./mass-transfer.component.css']
 })
 export class MassTransferComponent {
-  selected:string="Semi Batch Reactor";
-  isClickLabOn:boolean=true;
-  equipments:string[]=[
-    "Shell and Tube Heat Exchanger","Double Pipe Heat Exchanger","Jacketed Vessel"
-  ];
-  selectedOperation :string="Theory";
-
-  isTheoryOn: boolean = false;
-  isFormulaOn: boolean = false;
-  isSimulationOn: boolean = false;
-  
-  onClickLabs(isLab : boolean){
-  return (isLab)? false:true;
+  selected: string = "Shell and Tube Heat Exchanger";
+  equipments!: string[];
+  selectedOperation!: string;
+  ResultObt!: boolean;
+  isTheoryOn!: boolean;
+  ngOnInit() {
+    this.selected = "Simple Distillation";
+    this.equipments = [
+      "Simple Distillation", "Packed Column distillation", "Steam distillation","Rotary dryer",
+      "Tray dryer","Leaching Studies","Solid-Air Diffusivity measurement","Liquid-Liquid Extraction","Cooling Tower"
+    ];
+    this.selectedOperation = "Theory";
   }
+  
   onClickTheory() {
-    this.isTheoryOn = true;
-    this.isFormulaOn = false;
-    this.isSimulationOn = false;
+    this.selectedOperation="Theory";
   }
   onClickFormula() {
-    this.isFormulaOn = true;
-    this.isTheoryOn = false;
+    this.selectedOperation="Formulae";
   }
   onClickSimulation() {
-    this.isTheoryOn = false;
-    this.isFormulaOn = false;
-    this.isSimulationOn = true;
+    this.selectedOperation="Simulation";
+  }
+  onClickResult() {
+ this.selectedOperation="Result";
   }
 }

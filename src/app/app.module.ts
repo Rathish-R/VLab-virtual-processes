@@ -13,6 +13,8 @@ import { SemiBatchComponent } from './semi-batch/semi-batch.component';
 import { MechanicalOperationsComponent } from './mechanical-operations/mechanical-operations.component';
 import { HeatTransferComponent } from './heat-transfer/heat-transfer.component';
 import { ShellAndTubeComponent } from './shell-and-tube/shell-and-tube.component';
+import { SimpleDistillationComponent } from './simple-distillation/simple-distillation.component';
+import { HelicalCoilHExComponent } from './helical-coil-hex/helical-coil-hex.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ShellAndTubeComponent } from './shell-and-tube/shell-and-tube.component
     ChemicalRectionEngineeringComponent,
     MechanicalOperationsComponent,
     HeatTransferComponent,
-    ShellAndTubeComponent
+    ShellAndTubeComponent,
+    SimpleDistillationComponent,
+    HelicalCoilHExComponent
   ],
   imports: [
     BrowserModule,
