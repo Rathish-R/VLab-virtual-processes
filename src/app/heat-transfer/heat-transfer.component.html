@@ -1,33 +1,33 @@
 <div class="Fm-page">
     <div class="row">
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
-                <div class="offcanvas-header">
-                    <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-
-                    <ul class="labs">
-                        <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
-                                    [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
-                    </ul>
-                </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
             </div>
+            <div class="offcanvas-body">
+
+                <ul class="labs">
+                    <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
+                                [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="col" style="padding:2%;">
             <div class="container-fluid">
 
-                
-                    <div class="row">
-                        <div class="col-3">
-                            <button class="btn btn-outline-dark btn-Lab" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
-                        </div>
-                        <div class="col-9">
-                            <div class="row">
-                                <nav class="navbar  nav-tabs navbar-expand-lg">
+
+                <div class="row">
+                    <div class="col-3">
+                        <button class="btn btn-outline-dark btn-LabSelected" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <nav class="navbar  nav-tabs navbar-expand-lg">
                                 <div class="col">
-                                    
+
                                     <a>
                                         <button class="part" [class.selected]="selectedOperation=='Theory'"
                                             (click)="onClickTheory()">Theory
@@ -36,7 +36,8 @@
                                 </div>
                                 <div class="col">
                                     <a>
-                                        <button class="part" (click)="onClickFormula()" [class.selected]="selectedOperation=='Formulae'">
+                                        <button class="part" (click)="onClickFormula()"
+                                            [class.selected]="selectedOperation=='Formulae'">
                                             Formulae
                                         </button>
                                     </a>
@@ -59,17 +60,26 @@
                                 <div class="col">
                                     <a>
                                         <button class="part" (click)="onClickVExp();"
-                                            [class.selected]="selectedOperation=='Virtual Experiment'">Virtual Experiment
+                                            [class.selected]="selectedOperation=='Virtual Experiment'">Virtual
+                                            Experiment
                                         </button>
                                     </a>
                                 </div>
                             </nav>
-                            </div>
                         </div>
                     </div>
-                
-                <app-shell-and-tube [selected]="selected" [selectedOperation]="selectedOperation"></app-shell-and-tube>
+                </div>
+                <div *ngIf="selected=='Shell and Tube Heat Exchanger'">
+                    <app-shell-and-tube [selected]="selected"
+                        [selectedOperation]="selectedOperation"></app-shell-and-tube>
+                </div>
+                <div *ngIf="selected=='Helical  Coil Heat Exchanger'">
+                    <app-helical-coil-hex [selected]="selected"
+                        [selectedOperation]="selectedOperation"></app-helical-coil-hex>
+                </div>
+
             </div>
+
         </div>
     </div>
 </div>

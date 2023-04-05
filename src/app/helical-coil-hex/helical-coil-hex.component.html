@@ -7,7 +7,7 @@
     <h2>Theory </h2>
     <p class="Theory">
 
-        A shell and tube heat exchanger is a type of heat exchanging device constructed using a
+        A Helical coil heat exchanger is a type of heat exchanging device constructed using a
         large cylindrical enclosure, or shell,
         that has bundles of perfectly spaced tubing compacted in its interior.
         Heat exchanging is the transfer of heat from one substance or medium to a similar
@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
 
-                        <td> Mass Flowrate (Oil)</td>
+                        <td> Mass Flowrate (Vegetable oil)</td>
 
                         <td><input type="number" formControlName="OilFlowRate"></td>
                         <td>
@@ -150,24 +150,24 @@
                         <td><input type="number" formControlName="Thi"></td>
                         <td>&deg;C</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>HotFluid Outlet temperature</td>
 
                         <td><input type="number" formControlName="Tho"></td>
                         <td>&deg;C</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td>Cold fluid inlet temperature</td>
 
                         <td><input type="number" formControlName="Tci"></td>
                         <td>&deg;C</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
 
                         <td>Cold fluid Outlet temperature</td>
                         <td><input type="number" formControlName="Tco"></td>
                         <td>&deg;C</td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
 
@@ -186,8 +186,13 @@
                         <td> NA </td>
                     </tr>
                     <tr>
-                        <td>Number of Passes</td>
-                        <td><input type="number" formControlName="Passes"></td>
+                        <td>Tube's Inner diameter</td>
+                        <td><input type="number" formControlName="TubeDiaI"></td>
+                        <td> NA </td>
+                    </tr>
+                    <tr>
+                        <td>Tube's Outer diameter</td>
+                        <td><input type="number" formControlName="TubeDiaO"></td>
                         <td> NA </td>
                     </tr>
                 </tbody>
@@ -200,7 +205,7 @@
     </div>
 </div>
 <div *ngIf="selectedOperation=='Result'" style="margin:5% 20%;">
-    <div *ngIf="s.isCalculated">
+    <div *ngIf="h.isCalculated">
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -211,105 +216,117 @@
             </thead>
             <tbody>
                 <tr>
-                    <td> LMTD </td>
+                    <td> Inside Diameter of helix: </td>
 
-                    <td>{{this.s.lmtd}}</td>
-                    <td>&deg;C </td>
+                    <td>{{this.h.HelixDi}}</td>
+                    <td>m </td>
                 </tr>
                 <tr>
-                    <td> Heat Duty Q (shell) </td>
+                    <td> Outside Diameter of helix: </td>
 
-                    <td>{{this.s.QShellSide}}</td>
+                    <td>{{this.h.HelixDo}}</td>
+                    <td>m </td>
+                </tr>
+                <tr>
+                    <td> Pitch of the coil </td>
+
+                    <td>{{this.h.pitch}}</td>
+                    <td>m </td>
+                </tr>
+                <tr>
+                    <td> Length of coil for one turn</td>
+
+                    <td>{{this.h.CoilLengthPerTurn}}</td>
                     <td>W</td>
                 </tr>
                 <tr>
-                    <td> Heat Transfer Area (Shell)</td>
+                    <td> Vollume occupied by one turn of coil</td>
 
-                    <td>{{this.s.HtArea}}</td>
+                    <td>{{this.h.HtArea}}</td>
                     <td>m<sup>2</sup></td>
                 </tr>
                 <tr>
-                    <td> Number of Tubes </td>
+                    <td> Volume of Annulus </td>
 
-                    <td>{{this.s.Tubes}}</td>
+                    <td>{{this.h.Va}}</td>
                     <td> NA </td>
                 </tr>
                 <tr>
                     <td> Bundle Diameter </td>
 
-                    <td>{{this.s.BundleDia}}</td>
+                    <td>{{this.h.BundleDia}}</td>
                     <td> m </td>
                 </tr>
                 <tr>
                     <td> Shell Diameter </td>
 
-                    <td>{{this.s.ShellDia}}</td>
+                    <td>{{this.h.ShellDia}}</td>
                     <td> m </td>
                 </tr>
                 <tr>
                     <td> Tubes Per Pass </td>
 
-                    <td>{{this.s.TubesPerPass}}</td>
+                    <td>{{this.h.TubesPerPass}}</td>
                     <td> m </td>
                 </tr>
                 <tr>
                     <td>Total Flow area(Tubes)</td>
 
-                    <td>{{this.s.FlowAreaOfTubes}}</td>
+                    <td>{{this.h.FlowAreaOfTubes}}</td>
                     <td> m<sup>2</sup> </td>
                 </tr>
                 <tr>
                     <td>Velocity(Tube side fluid)</td>
 
-                    <td>{{this.s.VelocityTubeSide}}</td>
+                    <td>{{this.h.VelocityTubeSide}}</td>
                     <td> m/s </td>
                 </tr>
                 <tr>
                     <td>Baffle Spacing</td>
 
-                    <td>{{this.s.BaffleSpace}}</td>
+                    <td>{{this.h.BaffleSpace}}</td>
                     <td> m </td>
                 </tr>
                 <tr>
                     <td>Velocity(Shell side fluid)</td>
 
-                    <td>{{this.s.VelocityShellSide}}</td>
+                    <td>{{this.h.VelocityShellSide}}</td>
                     <td> m/s </td>
                 </tr>
                 <tr>
                     <td>Shell Side HeatTransfer Coefficient</td>
 
-                    <td>{{this.s.HtubeSide}}</td>
+                    <td>{{this.h.HtubeSide}}</td>
                     <td>W/m<sup>2</sup>&deg;C </td>
                 </tr>
                 <tr>
                     <td>Tube Side HeatTransfer Coefficient</td>
 
-                    <td>{{this.s.HShellSide}}</td>
+                    <td>{{this.h.HShellSide}}</td>
                     <td> W/m<sup>2</sup>&deg;C </td>
                 </tr>
                 <tr>
                     <td>Overall HeatTransfer Coefficient</td>
 
-                    <td>{{this.s.OverallHTCoeff}}</td>
+                    <td>{{this.h.OverallHTCoeff}}</td>
                     <td> W/m<sup>2</sup>&deg;C </td>
                 </tr>
                 <tr>
                     <td>Tube side Pressure Drop</td>
 
-                    <td>{{this.s.PDropTs}}</td>
+                    <td>{{this.h.PDropTs}}</td>
                     <td>Psi</td>
                 </tr>
                 <tr>
                     <td>Shell side Pressure Drop</td>
 
-                    <td>{{this.s.PDropSs}}</td>
+                    <td>{{this.h.PDropSs}}</td>
                     <td>Psi</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div *ngIf="!this.s.isCalculated">
+    <div *ngIf="!this.h.isCalculated">
         <div class="alert-warning" style="padding:20px">
             <h3>Cannot generate results</h3>
             <h6>Simulate to get results</h6>
@@ -330,30 +347,30 @@
             <tr>
                 <td> Obtained Overall Heat Temperature Coefficient - U</td>
 
-                <td>{{this.s.OverallHTCoeff}}</td>
+                <td>{{this.h.OverallHTCoeff}}</td>
                 <td>W/m<sup>2</sup> &deg;C</td>
             </tr>
             <tr>
                 <td> Obtained Heat Duty - Q</td>
 
-                <td>{{this.s.QFound}}</td>
+                <td>{{this.h.QFound}}</td>
                 <td>W</td>
             </tr> <tr>
                 <td> Hot Fluid Outlet temperature - THo</td>
 
-                <td>{{this.s.Tho}}</td>
+                <td>{{this.h.Tho}}</td>
                 <td> &deg;C</td>
             </tr> <tr>
                 <td> Cold Fluid Outlet temperature - TCo</td>
 
-                <td>{{this.s.Tco}}</td>
+                <td>{{this.h.Tco}}</td>
                 <td> &deg;C</td>
             </tr>
         </tbody>
     </table>
     <div class="image" >
-        <div class="Tco">{{this.s.Tco}}</div>
-        <div class="Tho">{{this.s.Tho}}</div>
+        <div class="Tco">{{this.h.Tco}}</div>
+        <div class="Tho">{{this.h.Tho}}</div>
 
         <img class="rounded mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmtgZ2Yby7Hvb4G4IfsV-iZazNnIBC0F1wOH301Q5jgVXtCWVWP9jBcyc1s8AXt_IbJLojx3e0q-A&usqp=CAU&ec=48600113"
         alt="Shell And TUbe Heat Exchanger" style="height:70%;width:70%">

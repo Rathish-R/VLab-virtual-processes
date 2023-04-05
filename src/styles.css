@@ -6,22 +6,44 @@
     margin: 10px 0;
     max-width: 200px;
 }
-.btn-Lab{
-    
-    min-height:70px;
+.btn-lab{
+    width: 80%;
+    margin: 5px;
     padding: 10px;
-     font-size: medium;
+    background-color: rgba(144, 144, 144, 0.819);    color: rgba(255, 255, 255, 0.96);
 }
+.btn-LabSelected{
+    width: 80%;
+    min-height :80px;
+    border: none;
+    background-color: rgb(49, 49, 49);
+    margin: 10px 15px 0 -10px;
+    padding: 10px;
+       color: rgba(255, 255, 255, 0.96);
+}
+.btn-LabSelected:hover{
+    width: 80%;
+    min-height :80px;
+    border: none;
+    background-color:rgba(165, 165, 165, 0.854);
+    margin: 10px 15px 0 -10px;
+    padding: 10px;
+       color: rgba(42, 42, 42, 0.96);
+}
+
 li{
     list-style-type: none;
 }
 a .btn-lab:hover{
+    
     box-shadow: 3px 3px 5px rgb(74, 74, 74);
+    
 transform: scale(1.1,1.1);
 }
 
 .btn-lab.selected{
     background-color: rgb(49, 49, 49);
+    color:rgba(255, 255, 255, 0.854);
     box-shadow: 3px 3px 5px rgb(49, 49, 49);
     transform: scale(1.1,1.1);
 }

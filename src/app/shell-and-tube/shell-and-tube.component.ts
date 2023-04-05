@@ -162,37 +162,37 @@ export class ShellAndTubeComponent {
   ShellSideCalc(): void {
     console.log("calculating");
     this.initialization();
+    const Di = Number(this.ip.value.TubeDiaI);
+    const Do = Number(this.ip.value.TubeDiaO);
+    const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
+    var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
+    delT = Number(delT.toFixed(3))//oC
+    this.s.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.s.SFCp; // W
+    this.s.HtArea = (this.s.QShellSide) / (U * this.getLmtd()); //m2 
+
+    //surface Area of one tube
+    var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
+    this.s.Tubes = Math.round(this.s.HtArea / sATUbe);
+    if (this.ip.value.Passes == '2') {
+      var k1 = 0.249;
+      var n1 = 2.207;
+      this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
+
+    }
+    debugger;
+    this.s.ShellDia = this.s.BundleDia + 0.068;
+    this.s.TubesPerPass = ((this.s.Tubes) / Number(this.ip.value.Passes));
+    this.s.FlowAreaOfTubes = this.s.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
+    this.s.VelocityTubeSide = this.s.TFR / (this.s.FlowAreaOfTubes * this.s.TFDensity);
+    this.s.NReTs = (this.s.TFDensity * this.s.VelocityTubeSide * Di) / this.s.TFVisc;
+
+    this.s.NPrTs = Number(this.s.TFCp * this.s.TFVisc) / this.s.TFCond;
+    this.s.HtubeSide = this.s.Jh * this.s.NReTs * Math.pow(this.s.NPrTs, 0.33) * (this.s.TFCond / Di);
+   
     var rectifier = 1;
     while (!this.s.isFeasible) {
       console.log("rectifier" + rectifier);
-
-      const Di = Number(this.ip.value.TubeDiaI);
-      const Do = Number(this.ip.value.TubeDiaO);
-      const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
-      var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
-      delT = Number(delT.toFixed(3))//oC
-      this.s.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.s.SFCp; // W
-      this.s.HtArea = (this.s.QShellSide) / (U * this.getLmtd()); //m2 
-
-      //surface Area of one tube
-      var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
-      this.s.Tubes = Math.round(this.s.HtArea / sATUbe);
-
-      if (this.ip.value.Passes == '2') {
-        var k1 = 0.249;
-        var n1 = 2.207;
-        this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
-
-      }
-      debugger;
-      this.s.ShellDia = this.s.BundleDia + 0.068;
-      this.s.TubesPerPass = ((this.s.Tubes) / Number(this.ip.value.Passes));
-      this.s.FlowAreaOfTubes = this.s.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
-      this.s.VelocityTubeSide = this.s.TFR / (this.s.FlowAreaOfTubes * this.s.TFDensity);
-      this.s.NReTs = (this.s.TFDensity * this.s.VelocityTubeSide * Di) / this.s.TFVisc;
-
-      this.s.NPrTs = Number(this.s.TFCp * this.s.TFVisc) / this.s.TFCond;
-      this.s.HtubeSide = this.s.Jh * this.s.NReTs * Math.pow(this.s.NPrTs, 0.33) * (this.s.TFCond / Di);
+    
       this.s.BaffleSpace = (this.s.ShellDia / 5) * rectifier;
       this.s.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
       this.s.AreaShell = this.s.ShellDia * this.s.BaffleSpace * ((this.s.pitch) - Do) / this.s.pitch
