@@ -34,7 +34,7 @@
             <div class="offcanvas-body">
                 <div *ngIf="isTreeOn"> <app-home-tree></app-home-tree></div>
                 <div *ngIf="ismenuOn"><ul class="labs">
-                    <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
+                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq"
                                 [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
                 </ul>
                 </div>
