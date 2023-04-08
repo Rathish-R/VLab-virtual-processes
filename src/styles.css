@@ -1,16 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-
+.nav-link{
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+}
 .btn-toggle{
     margin: 10px 0;
     max-width: 200px;
+}
+.Header{
+    
+    font-weight: 400;
+        letter-spacing: 1.5;
 }
 .btn-lab{
     width: 80%;
     margin: 5px;
     padding: 10px;
     background-color: rgba(144, 144, 144, 0.819);    color: rgba(255, 255, 255, 0.96);
+}
+.selectedOp{
+
+font-weight: 300;
+
 }
 .btn-LabSelected{
     width: 80%;
@@ -101,3 +115,7 @@ table{
 font-size: large;
 font-family:Arial, Helvetica, sans-serif;
 }
+html, body 
+{ height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

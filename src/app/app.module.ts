@@ -15,6 +15,18 @@ import { HeatTransferComponent } from './heat-transfer/heat-transfer.component';
 import { ShellAndTubeComponent } from './shell-and-tube/shell-and-tube.component';
 import { SimpleDistillationComponent } from './simple-distillation/simple-distillation.component';
 import { HelicalCoilHExComponent } from './helical-coil-hex/helical-coil-hex.component';
+import { OpenPanEvaporatorComponent } from './open-pan-evaporator/open-pan-evaporator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import{MaterialModule} from './material/material.module';
+import { HomeTreeComponent } from './home-tree/home-tree.component';
+import { MatTreeModule } from '@angular/material/tree'
 
 @NgModule({
   declarations: [
@@ -28,13 +40,25 @@ import { HelicalCoilHExComponent } from './helical-coil-hex/helical-coil-hex.com
     HeatTransferComponent,
     ShellAndTubeComponent,
     SimpleDistillationComponent,
-    HelicalCoilHExComponent
+    HelicalCoilHExComponent,
+    OpenPanEvaporatorComponent,
+    SideNavComponent,
+    HomeTreeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MaterialModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

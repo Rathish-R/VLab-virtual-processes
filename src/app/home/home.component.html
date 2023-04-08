@@ -1,8 +1,39 @@
-<div class="container-fluid bg-dark "
-    style="padding: 20px;text-align:center;width: 100%; height: 100px;font-size: xx-large;color:rgba(255, 255, 255, 0.806)">
-    <span>Virtual Process Equipments</span>
+
+<div  style="position:sticky;top: 0;z-index: 1;">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" data-bs-toggle="offcanvas"
+        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>  Virtual Process Equipments</span>
+        <span class="example-spacer" style=" flex: 1 1 auto;"></span>
+        <button mat-button (click)="initialize()" routerLink="/Home">
+            Home
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+        </button>
+        <!-- <button mat-button color="primary">
+    <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    Laboratories
+</a><mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+
+</button> -->
+    </mat-toolbar>
+
 </div>
-<nav class="navbar navbar-expand-lg nav-fill navbar-dark bg-dark text-white nav-bar-style">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
+    <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Menu</h2>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <app-home-tree></app-home-tree>
+    </div>
+</div>
+
+<!-- <nav class="navbar navbar-expand-lg nav-fill navbar-dark bg-dark text-white">
     <div>
 
         <ul class="navbar-nav " style="float:left">
@@ -45,7 +76,7 @@
 
 
     </div>
-</nav>
+</nav> -->
 <div *ngIf="isFmOn">
     <app-fluid-mechanics></app-fluid-mechanics>
 </div>
@@ -58,55 +89,121 @@
 <div *ngIf="isHtOn">
     <app-heat-transfer></app-heat-transfer>
 </div>
-<div class="container" *ngIf="isHomeOn && !isFmOn&& !isHtOn && !isMtOn &&!isMoOn && !isCREOn "style="margin:5%;width: 90%;">
+<div class="container" *ngIf="isHomeOn && !isFmOn&& !isHtOn && !isMtOn &&!isMoOn && !isCREOn "
+    style="margin:2% 5%;width: 90%;">
     <div class="row">
 
-        <div class="col-4"><a><button class="btn btn-FM" (click)="isFmOn=true">Fluid Mechanics</button></a></div>
-        <div class="col-4"><a><button class="btn btn-HT" (click)="isHtOn=true"> Heat Transfer</button></a></div>
-        <div class="col-4"><a><button class="btn btn-MT" (click)="isMtOn=true">Mass Transfer</button></a></div>
+        <div class="col-4"><button  mat-raised-button
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+            class="btn btn-FM" (click)="isFmOn=true" routerLink="/FluidMechanics">Fluid Mechanics</button></div>
+        <div class="col-4"><button  mat-raised-button
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+           
+            class="btn btn-HT" (click)="isHtOn=true" routerLink="/HeatTransfer"> Heat Transfer</button></div>
+        <div class="col-4"><button mat-raised-button
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+           
+            class="btn btn-MT" (click)="isMtOn=true" routerLink="/MassTransfer">Mass Transfer</button></div>
     </div>
     <div class="row">
-        <div class="col-4"><a><button class="btn btn-MO" (click)="isMoOn=true">Mechanical Operations </button></a>
+        <div class="col-4"><button mat-raised-button matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+            class="btn btn-MO" (click)="isMoOn=true" routerLink="/MechanicalOperations">Mechanical Operations </button>
         </div>
-        <div class="col-4"><button class="btn btn-Static" style="text-align: center;font-size: large;">Process
+        <div class="col-4"><button mat-flat-button color="primary"
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+        
+            class="btn btn-Static" style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
-        <div class="col-4"><a><button class="btn btn-CRE" (click)="isCREOn=true">Chemical Reaction
-                    Engineering</button></a></div>
+        <div class="col-4"><button mat-raised-button
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleDisabled]="false"
+            [matRippleUnbounded]="false"
+            
+            class="btn btn-CRE" (click)="isCREOn=true" routerLink="/ChemicalReactionEngineering">Chemical Reaction
+                    Engineering</button></div>
 
     </div>
-    <div
-    style="margin: 5% 10% ; text-align: center;height:100%;
+    <mat-card  style="margin: 2% 5% ; text-align: center;height:100%;
+    background-color: rgb(250, 250, 250); padding: 50px; border-radius: 20px;box-shadow: 1px 1px 20px;font-size: large;">
+        <mat-card-header
+           >
+            <mat-card-title>
+                <h2>About the Page</h2> </mat-card-title>
+            </mat-card-header>
+            <hr>
+            <mat-card-content>
+                <p>
+                    Virtual processes in chemical engineering can be used to perform a variety of calculations and
+                    simulations
+                    to
+                    model the behaviour of chemical processes and systems.
+                    For example, users can perform calculations related to reaction kinetics,
+                    thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
+                    and
+                    processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
+                    to
+                    understand the movement of materials and heat in a system.
+                    Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
+                    different conditions, such as variations in temperature, pressure, and composition, allowing users to
+                    gain a
+                    deeper understanding of how these factors affect the performance
+                    of a chemical system. By providing a flexible and interactive platform for these types of calculations
+                    and
+                    simulations, virtual process equipments can help to advance the field of chemical engineering and
+                    provide
+                    valuable insights into the behaviour of chemical systems.
+                </p>
+            </mat-card-content>
+
+    </mat-card>
+    <!-- <div style="margin: 5% 10% ; text-align: center;height:100%;
 background-color: rgb(244, 249, 253); padding: 50px; border-radius: 20px;box-shadow: 10px 10px 20px;font-size: large;">
-    <span style=" font-size: xx-large;font-weight: 600;">About the Page </span>
-    <hr>
-    <div class="row">
-        <p>
-            Virtual processes in chemical engineering can be used to perform a variety of calculations and
-            simulations
-            to
-            model the behaviour of chemical processes and systems.
-            For example, users can perform calculations related to reaction kinetics,
-            thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
-            and
-            processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
-            to
-            understand the movement of materials and heat in a system.
-            Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
-            different conditions, such as variations in temperature, pressure, and composition, allowing users to
-            gain a
-            deeper understanding of how these factors affect the performance
-            of a chemical system. By providing a flexible and interactive platform for these types of calculations
-            and
-            simulations, virtual process equipments can help to advance the field of chemical engineering and
-            provide
-            valuable insights into the behaviour of chemical systems.
-        </p>
-    </div>
-    <hr>
+        <span style=" font-size: xx-large;font-weight: 600;">About the Page </span>
+        <hr>
+        <div class="row">
+            <p>
+                Virtual processes in chemical engineering can be used to perform a variety of calculations and
+                simulations
+                to
+                model the behaviour of chemical processes and systems.
+                For example, users can perform calculations related to reaction kinetics,
+                thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
+                and
+                processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
+                to
+                understand the movement of materials and heat in a system.
+                Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
+                different conditions, such as variations in temperature, pressure, and composition, allowing users to
+                gain a
+                deeper understanding of how these factors affect the performance
+                of a chemical system. By providing a flexible and interactive platform for these types of calculations
+                and
+                simulations, virtual process equipments can help to advance the field of chemical engineering and
+                provide
+                valuable insights into the behaviour of chemical systems.
+            </p>
+        </div>
+        <hr>
 
-</div>
+    </div> -->
 
- 
+
 
 </div>
 <!-- <div *ngIf="isHtOn">

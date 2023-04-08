@@ -15,6 +15,7 @@ export class HomeComponent {
   isCREOn!: boolean;
   isHomeOn: boolean = true;
   isAboutOn: boolean = false
+  color:string="rgb(216,191,216)";
   constructor() {
     this.initialize();
   }

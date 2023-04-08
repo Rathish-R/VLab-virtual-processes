@@ -13,8 +13,8 @@ li{
     color:black;
  }
 .btn-Static{
-  background-color: rgba(15, 15, 15, 0.865);
-    color: rgba(255, 255, 255, 0.767);
+
+    font-weight: 400;
     border: none;
     padding:5px;
     font-size: larger;
@@ -23,8 +23,8 @@ li{
     margin-bottom:10px;
 }
  .btn-FM,.btn-HT,.btn-MT,.btn-MO,.btn-CRE{
-    background-color: rgba(145, 145, 145, 0.849);
-    color: rgba(255, 255, 255, 0.871);
+    font-weight: 300;
+
     padding:5px;
     border: none;
     font-size: larger;

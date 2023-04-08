@@ -1,0 +1,403 @@
+<div *ngIf="selectedOperation=='Theory'" style="margin:0 10%">
+
+    <br>
+    <h2>Objective</h2>
+    <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
+        Exchanger </p><br>
+    <h2>Theory </h2>
+    <p class="Theory">
+
+        A Helical coil heat exchanger is a type of heat exchanging device constructed using a
+        large cylindrical enclosure, or shell,
+        that has bundles of perfectly spaced tubing compacted in its interior.
+        Heat exchanging is the transfer of heat from one substance or medium to a similar
+        substance
+        or medium. Shell and tube heat exchangers
+        are the most common form of heat exchanger design.
+        It is used in desulphurisation process in petroleum industry
+        <br>
+        <br>
+        <br>
+        <img class="rounded mx-auto d-block"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7dpcUJeCMN45s-F6gyaJCoilDpAr01gpUgEVMHOSiTA&usqp=CAU&ec=48600113"
+            style="width:fit-content;height: fit-content;">
+    </p>
+
+</div>
+<div *ngIf="selectedOperation=='Formulae'" style="margin:0 5%">
+
+    <div class="formulae" style="margin-top: 5%;font-size: large;letter-spacing: 2.5;">
+        <div class="row">
+            <div class="col-8">
+                <h4 style="font-weight: 600;"> Overall energy balance :</h4>
+                <p>
+                    Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
+                    C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                    <br>
+
+                    Q = UA ΔT<sub>LMTD</sub>
+                </p>
+                <h4 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h4>
+                <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
+                    +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
+                    + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+                <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient</h5>
+                <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>i</sub>)
+
+                </p>
+                <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient</h5>
+                <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>e</sub>)
+
+                </p>
+
+            </div>
+            <div class="col-4">
+                <p>
+                    <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
+                    <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
+                    <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
+                    <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
+                    <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
+                    <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
+                    <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
+                    <b>A</b> - Heat Transfer Area <br>
+                    <b>U</b> - Overall Side Heat transfer Coefficient <br>
+                    <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
+                    <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
+                    <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
+                    <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
+                    <b>N<sub>Re</sub></b> - Reynold's Number<br>
+                    <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="selectedOperation=='Simulation'">
+
+    <div style="margin:5% 20%;">
+        <form [formGroup]="ip" (ngSubmit)="onSubmit()">
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>Assumed HT Coefficient U</td>
+                        <td>
+                            <select formControlName="HeatTransferCoeffAssumed">
+                                <option value="300">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                                <option value="600">600</option>
+                            </select>
+                        </td>
+                        <td> W/m<sup>2</sup>&deg;C </td>
+                    </tr>
+                    <tr>
+
+                        <td>Shell side Fluid</td>
+                        <td>
+                            <select formControlName="ShellFluid">
+                                <option value="Methanol">Methanol</option>
+                                <option value="Water">Water</option>
+                            </select>
+                        </td>
+                        <td> NA </td>
+                    </tr>
+                    <tr>
+
+                        <td> Mass Flowrate (Vegetable oil)</td>
+
+                        <td><input type="number" formControlName="OilFlowRate"></td>
+                        <td>
+                            <select formControlName="OilFRUnit">
+                                <option value="Kg/sec">Kg/sec</option>
+                                <option value="Kg/hr">Kg/Hrs</option>
+                                <option value="Kg/min">Kg/min</option>
+                                <option value="l/hr" disabled>l/hr</option>
+                                <option value="l/min" disabled>l/hr</option>
+                                <option value="l/sec" disabled>l/hr</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mass Flowrate (Water)</td>
+
+                        <td><input type="number" formControlName="Waterflowrate"></td>
+                        <td> <select formControlName="WaterFRUnit">
+                                <option value="Kg/sec">Kg/sec</option>
+                                <option value="Kg/hr">Kg/hr</option>
+                                <option value="Kg/min">Kg/min</option>
+                                <option value="l/hr" disabled>l/hr</option>
+                                <option value="l/min" disabled>l/hr</option>
+                                <option value="l/sec" disabled>l/hr</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+
+                        <td>HotFluid Inlet temperature</td>
+                        <td><input type="number" formControlName="Thi"></td>
+                        <td>&deg;C</td>
+                    </tr>
+                    <!-- <tr>
+                        <td>HotFluid Outlet temperature</td>
+
+                        <td><input type="number" formControlName="Tho"></td>
+                        <td>&deg;C</td>
+                    </tr> -->
+                    <tr>
+                        <td>Cold fluid inlet temperature</td>
+
+                        <td><input type="number" formControlName="Tci"></td>
+                        <td>&deg;C</td>
+                    </tr>
+                    <!-- <tr>
+
+                        <td>Cold fluid Outlet temperature</td>
+                        <td><input type="number" formControlName="Tco"></td>
+                        <td>&deg;C</td>
+                    </tr> -->
+
+                    <tr>
+
+                        <td>Tube's Outside diameter</td>
+                        <td>
+                            <input type="number" formControlName="TubeDiaO">
+                        </td>
+                        <td> NA </td>
+                    </tr>
+                    <tr>
+
+                        <td>Tube's Inside diameter</td>
+                        <td>
+                            <input type="number" formControlName="TubeDiaI">
+                        </td>
+                        <td> NA </td>
+                    </tr>
+                    <tr>
+                        <td>Tube's Inner diameter</td>
+                        <td><input type="number" formControlName="TubeDiaI"></td>
+                        <td> NA </td>
+                    </tr>
+                    <tr>
+                        <td>Tube's Outer diameter</td>
+                        <td><input type="number" formControlName="TubeDiaO"></td>
+                        <td> NA </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
+            <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
+                required.</div>
+            <div *ngIf="ip.valid" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+        </form>
+    </div>
+</div>
+<div *ngIf="selectedOperation=='Result'" style="margin:5% 20%;">
+    <div *ngIf="h.isCalculated">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Inside Diameter of helix: </td>
+
+                    <td>{{this.h.HelixDi}}</td>
+                    <td>m </td>
+                </tr>
+                <tr>
+                    <td> Outside Diameter of helix: </td>
+
+                    <td>{{this.h.HelixDo}}</td>
+                    <td>m </td>
+                </tr>
+                <tr>
+                    <td> Pitch of the coil </td>
+
+                    <td>{{this.h.pitch}}</td>
+                    <td>m </td>
+                </tr>
+                <tr>
+                    <td> Length of coil for one turn</td>
+
+                    <td>{{this.h.CoilLengthPerTurn}}</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td> Vollume occupied by one turn of coil</td>
+
+                    <td>{{this.h.HtArea}}</td>
+                    <td>m<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td> Volume of Annulus </td>
+
+                    <td>{{this.h.Va}}</td>
+                    <td> NA </td>
+                </tr>
+                <tr>
+                    <td> Bundle Diameter </td>
+
+                    <td>{{this.h.BundleDia}}</td>
+                    <td> m </td>
+                </tr>
+                <tr>
+                    <td> Shell Diameter </td>
+
+                    <td>{{this.h.ShellDia}}</td>
+                    <td> m </td>
+                </tr>
+                <tr>
+                    <td> Tubes Per Pass </td>
+
+                    <td>{{this.h.TubesPerPass}}</td>
+                    <td> m </td>
+                </tr>
+                <tr>
+                    <td>Total Flow area(Tubes)</td>
+
+                    <td>{{this.h.FlowAreaOfTubes}}</td>
+                    <td> m<sup>2</sup> </td>
+                </tr>
+                <tr>
+                    <td>Velocity(Tube side fluid)</td>
+
+                    <td>{{this.h.VelocityTubeSide}}</td>
+                    <td> m/s </td>
+                </tr>
+                <tr>
+                    <td>Baffle Spacing</td>
+
+                    <td>{{this.h.BaffleSpace}}</td>
+                    <td> m </td>
+                </tr>
+                <tr>
+                    <td>Velocity(Shell side fluid)</td>
+
+                    <td>{{this.h.VelocityShellSide}}</td>
+                    <td> m/s </td>
+                </tr>
+                <tr>
+                    <td>Shell Side HeatTransfer Coefficient</td>
+
+                    <td>{{this.h.HtubeSide}}</td>
+                    <td>W/m<sup>2</sup>&deg;C </td>
+                </tr>
+                <tr>
+                    <td>Tube Side HeatTransfer Coefficient</td>
+
+                    <td>{{this.h.HShellSide}}</td>
+                    <td> W/m<sup>2</sup>&deg;C </td>
+                </tr>
+                <tr>
+                    <td>Overall HeatTransfer Coefficient</td>
+
+                    <td>{{this.h.OverallHTCoeff}}</td>
+                    <td> W/m<sup>2</sup>&deg;C </td>
+                </tr>
+                <tr>
+                    <td>Tube side Pressure Drop</td>
+
+                    <td>{{this.h.PDropTs}}</td>
+                    <td>Psi</td>
+                </tr>
+                <tr>
+                    <td>Shell side Pressure Drop</td>
+
+                    <td>{{this.h.PDropSs}}</td>
+                    <td>Psi</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!this.h.isCalculated">
+        <div class="alert-warning" style="padding:20px">
+            <h3>Cannot generate results</h3>
+            <h6>Simulate to get results</h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="selectedOperation=='Virtual Experiment'" style="margin:5% 20%;">
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+                <th>Units</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> Obtained Overall Heat Temperature Coefficient - U</td>
+
+                <td>{{this.h.OverallHTCoeff}}</td>
+                <td>W/m<sup>2</sup> &deg;C</td>
+            </tr>
+            <tr>
+                <td> Obtained Heat Duty - Q</td>
+
+                <td>{{this.h.QFound}}</td>
+                <td>W</td>
+            </tr> <tr>
+                <td> Hot Fluid Outlet temperature - THo</td>
+
+                <td>{{this.h.Tho}}</td>
+                <td> &deg;C</td>
+            </tr> <tr>
+                <td> Cold Fluid Outlet temperature - TCo</td>
+
+                <td>{{this.h.Tco}}</td>
+                <td> &deg;C</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="image" >
+        <div class="Tco">{{this.h.Tco}}</div>
+        <div class="Tho">{{this.h.Tho}}</div>
+
+        <img class="rounded mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmtgZ2Yby7Hvb4G4IfsV-iZazNnIBC0F1wOH301Q5jgVXtCWVWP9jBcyc1s8AXt_IbJLojx3e0q-A&usqp=CAU&ec=48600113"
+        alt="Shell And TUbe Heat Exchanger" style="height:70%;width:70%">
+    </div>
+</div>
+<div class="position-fixed bottom-0 end-0">
+
+    <a id="GoTO" href="#Theory"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"
+                style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf=""></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

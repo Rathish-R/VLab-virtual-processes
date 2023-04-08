@@ -7,7 +7,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./heat-transfer.component.css']
 })
 export class HeatTransferComponent {
+  
   selected: string = "Shell and Tube Heat Exchanger";
+  isTreeOn :boolean =false;
+  ismenuOn : boolean=false;
   equipments!: string[];
   selectedOperation!: string;
   ResultObt!: boolean;

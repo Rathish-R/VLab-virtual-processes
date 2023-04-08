@@ -11,6 +11,8 @@ export class MassTransferComponent {
   selectedOperation!: string;
   ResultObt!: boolean;
   isTheoryOn!: boolean;
+  ismenuOn:boolean=false;
+  isTreeOn:boolean=false;
   ngOnInit() {
     this.selected = "Simple Distillation";
     this.equipments = [

@@ -1,5 +1,30 @@
-<div class="Fm-page">
-    <div class="row">
+
+<div class="ht-page">
+    <div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 2;">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" (click)="isTreeOn=true;ismenuOn=false" aria-label="Example icon-button with menu icon" data-bs-toggle="offcanvas"
+            data-bs-target="#Labs" >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Virtual Process Equipments</span>
+            <span class="example-spacer" style=" flex: 1 1 auto;"></span>
+            <button mat-button  routerLink="/Home">
+                Home
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            </button>
+        </mat-toolbar>
+    
+    </div>
+    <mat-toolbar  color="primary" style="position:sticky;top: 0;">
+        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
+        <span class="example-spacer" style=" flex: 1 1 auto;"></span>
+        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>
+          
+    </mat-toolbar>
+    <!-- <app-side-nav [List]="equipments" [parent]="parent"></app-side-nav> -->
+    <div class="row" style="z-index: -1;">
         <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
             <div class="offcanvas-header">
                 <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
@@ -7,68 +32,18 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-
-                <ul class="labs">
+                <div *ngIf="isTreeOn"> <app-home-tree></app-home-tree></div>
+                <div *ngIf="ismenuOn"><ul class="labs">
                     <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
                                 [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
                 </ul>
+                </div>
             </div>
         </div>
-        <div class="col" style="padding:2%;">
+      
+          
+         <div class="col" style="padding:2%;">
             <div class="container-fluid">
-
-
-                <div class="row">
-                    <div class="col-3">
-                        <button class="btn btn-outline-dark btn-LabSelected" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
-                    </div>
-                    <div class="col-9">
-                        <div class="row">
-                            <nav class="navbar  nav-tabs navbar-expand-lg">
-                                <div class="col">
-
-                                    <a>
-                                        <button class="part" [class.selected]="selectedOperation=='Theory'"
-                                            (click)="onClickTheory()">Theory
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a>
-                                        <button class="part" (click)="onClickFormula()"
-                                            [class.selected]="selectedOperation=='Formulae'">
-                                            Formulae
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a>
-                                        <button class="part" (click)="onClickSimulation() "
-                                            [class.selected]="selectedOperation=='Simulation'">
-                                            Simulation
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a>
-                                        <button class="part" (click)="onClickResult();"
-                                            [class.selected]="selectedOperation=='Result'">Result
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a>
-                                        <button class="part" (click)="onClickVExp();"
-                                            [class.selected]="selectedOperation=='Virtual Experiment'">Virtual
-                                            Experiment
-                                        </button>
-                                    </a>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
                 <div *ngIf="selected=='Shell and Tube Heat Exchanger'">
                     <app-shell-and-tube [selected]="selected"
                         [selectedOperation]="selectedOperation"></app-shell-and-tube>
@@ -77,9 +52,14 @@
                     <app-helical-coil-hex [selected]="selected"
                         [selectedOperation]="selectedOperation"></app-helical-coil-hex>
                 </div>
+                <div class="position-fixed bottom-0 end-0">
 
+                    <a id="GoTO" href="#Fm-page"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"
+                                style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
+                </div>
+                
             </div>
 
-        </div>
+        </div> 
     </div>
-</div>
+</div> 
