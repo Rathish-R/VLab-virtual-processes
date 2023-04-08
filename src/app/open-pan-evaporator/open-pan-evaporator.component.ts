@@ -84,6 +84,8 @@ export class OpenPanEvaporatorComponent {
     var Solteamount = this.o.mass1*this.o.ConcDs/100;
     var Solventamount = this.o.mass2*(100- this.o.ConcDs)/100;
     var TBPElevation =this.o.BPEleConst * Solteamount;
+    var BoilPFeed = 100 +TBPElevation;
+    
 
     var methanol: Methanol = new Methanol(Number(this.ip.value.Thi));
     var water: Water = new Water(Number(this.ip.value.Tci));
