@@ -117,21 +117,21 @@
                     <tr>
                         <td> Mass of Solute (sugar)</td>
 
-                        <td><input type="number" formControlName="OilFlowRate"></td>
+                        <td><input type="number" formControlName="MassSlt"></td>
                         <td>
                             Kg
                         </td>
                     </tr>
                     <tr>
                         <td> Mass of Solvent (Water)</td>
-                        <td><input type="number" formControlName="Waterflowrate"></td>
+                        <td><input type="number" formControlName="MassSlvnt"></td>
                         <td>Kg</td>
                     </tr>
                     <tr>
 
-                        <td>HotFluid Inlet temperature</td>
-                        <td><input type="number" formControlName="Thi"></td>
-                        <td>&deg;C</td>
+                        <td>Desired Concentration of sugar by weight</td>
+                        <td><input type="number" formControlName="ConcDs"></td>
+                        <td>%</td>
                     </tr>
                     <!-- <tr>
                         <td>HotFluid Outlet temperature</td>
@@ -139,19 +139,19 @@
                         <td><input type="number" formControlName="Tho"></td>
                         <td>&deg;C</td>
                     </tr> -->
-                    <tr>
+                    <!-- <tr>
                         <td>Cold fluid inlet temperature</td>
 
                         <td><input type="number" formControlName="Tci"></td>
                         <td>&deg;C</td>
-                    </tr>
+                    </tr> -->
                     <!-- <tr>
 
                         <td>Cold fluid Outlet temperature</td>
                         <td><input type="number" formControlName="Tco"></td>
                         <td>&deg;C</td>
                     </tr> -->
-
+<!-- 
                     <tr>
 
                         <td>Tube's Outside diameter</td>
@@ -167,8 +167,8 @@
                             <input type="number" formControlName="TubeDiaI">
                         </td>
                         <td> NA </td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>Tube's Inner diameter</td>
                         <td><input type="number" formControlName="TubeDiaI"></td>
                         <td> NA </td>
@@ -177,7 +177,7 @@
                         <td>Tube's Outer diameter</td>
                         <td><input type="number" formControlName="TubeDiaO"></td>
                         <td> NA </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
             <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
