@@ -15,6 +15,7 @@ export class OpenPanEvaporatorComponent {
   equipments!: string[];
   ResultObt!: boolean;
   isTheoryOn!: boolean;
+  
   o:OpenPanEv = new OpenPanEv();
   // s: ShellAndTube = new ShellAndTube();
   h:HelicalCoilHEx=new HelicalCoilHEx();
@@ -59,8 +60,11 @@ export class OpenPanEvaporatorComponent {
 
 
   }
-
+  
   ip = new FormGroup({
+    MassSlt : new FormControl(1000, Validators.required),
+    MassSlvnt: new FormControl(1000, Validators.required),
+    ConcDs: new FormControl(60, Validators.required),
     HeatTransferCoeffAssumed: new FormControl(500, Validators.required),
     OilFlowRate: new FormControl(27.7, Validators.required),
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
@@ -80,51 +84,20 @@ export class OpenPanEvaporatorComponent {
 
   initialization() {
     debugger;
-    this.h.isFeasible=false;
+    this.o.mass1=Number(this.ip.value.MassSlt);
+    this.o.mass2=Number(this.ip.value.MassSlvnt);
+    this.o.ConcDs=Number(this.ip.value.ConcDs);
     var Solteamount = this.o.mass1*this.o.ConcDs/100;
     var Solventamount = this.o.mass2*(100- this.o.ConcDs)/100;
     var TBPElevation =this.o.BPEleConst * Solteamount;
-    var BoilPFeed = 100 +TBPElevation;
-    
-
+    this.o.BPFeed = 100 +TBPElevation;
+    var EvapTemp = 150 - this.o.BPFeed ;
+    this.o.HDutyWater =Solventamount * 3.17 *EvapTemp
+    this.o.HDutySugar =Solventamount * 1.5 *EvapTemp
+    this.o.HeatDuty =this.o.HDutySugar +  this.o.HDutyWater;
+    //req  heat  duty
     var methanol: Methanol = new Methanol(Number(this.ip.value.Thi));
     var water: Water = new Water(Number(this.ip.value.Tci));
-    if (this.ip.value.ShellFluid == "Methanol") {
-      this.h.SFDensity = methanol.density;
-      this.h.TFDensity = water.density;
-      this.h.SFCond = methanol.k;
-      this.h.TFCond = water.k;
-      this.h.TFCp = water.cp;
-      this.h.SFCp = methanol.cp;
-      this.h.SFVisc = methanol.viscosity;
-      this.h.TFVisc = water.viscosity;
-      if (this.ip.value.OilFRUnit == "Kg/sec") {
-        this.h.SFR = Number(this.ip.value.OilFlowRate);
-        // this.TFR=Number(this.inputValues.value.Waterflowrate);
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/min") {
-        this.h.SFR = Number(this.ip.value.OilFlowRate) / 60;
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        this.h.SFR = Number(this.ip.value.OilFlowRate) / (60 * 60);
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) /( 60 * 60);
-      }
-      if (this.ip.value.WaterFRUnit == "Kg/sec") {
-        this.h.TFR = Number(this.ip.value.Waterflowrate);
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/min") {
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) / 60;
-        this.h.TFR = Number(this.ip.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) /(60 * 60) ;
-        this.h.TFR = Number(this.ip.value.Waterflowrate) / (60 * 60);
-      }
-
-    }
     // flowrates
 
 

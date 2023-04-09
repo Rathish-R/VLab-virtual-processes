@@ -8,11 +8,18 @@ ConcDs ! : number; // desired concentration
     HTCoeff ! : number;
     BPEleConst!:number; // boiling point elevation constant
     Cpmix !:number;
+    BPFeed ! : number;
     LatHeatWater ! : number //latent heat of vapourisation water
     LatHeatSteam !:number //latent heat of vapourisation steam
     EVRate_A ! : number // Evaporation rate allowable
     LiqDethEv ! : number ;// liquid depth in evap
-     
+     HeatDuty ! : number;
+     HDutyWater !:number;
+     HDutySugar ! : number;
+
+
+
+
     SFDensity!: number; //kg/m3
     TFDensity!: number; //kg/m3
     SFVisc!: number; //N/sm2
