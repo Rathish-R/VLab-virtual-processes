@@ -10,13 +10,6 @@
             Home
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         </button>
-        <!-- <button mat-button color="primary">
-    <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
-    aria-expanded="false">
-    Laboratories
-</a><mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
-
-</button> -->
     </mat-toolbar>
 
 </div>
@@ -111,27 +104,21 @@
     style="margin:2% 5%;width: 90%;">
     <div class="row">
 
-        <div class="col-4"><button mat-raised-button matRipple [matRippleCentered]="false" [matRippleDisabled]="false"
-                [matRippleUnbounded]="false" class="btn btn-FM" (click)="isFmOn=true" routerLink="/FluidMechanics">Fluid
+        <div class="col-4"><button mat-raised-button
+           class="btn btn-FM" (click)="isFmOn=true" routerLink="/FluidMechanics">Fluid
                 Mechanics</button></div>
-        <div class="col-4"><button mat-raised-button matRipple [matRippleCentered]="false" [matRippleDisabled]="false"
-                [matRippleUnbounded]="false" class="btn btn-HT" (click)="isHtOn=true"
-                [routerLink]="'/HeatTransfer'">Heat Transfer</button></div>
-        <div class="col-4"><button mat-raised-button matRipple [matRippleCentered]="false" [matRippleDisabled]="false"
-                [matRippleUnbounded]="false" class="btn btn-MT" (click)="isMtOn=true" routerLink="/MassTransfer">Mass
+        <div class="col-4"><button mat-raised-button  class="btn btn-HT" (click)="isHtOn=true" routerLink="/HeatTransfer">Heat Transfer</button></div>
+        <div class="col-4"><button mat-raised-button  class="btn btn-MT" (click)="isMtOn=true" routerLink="/MassTransfer">Mass
                 Transfer</button></div>
     </div>
     <div class="row">
-        <div class="col-4"><button mat-raised-button matRipple [matRippleCentered]="false" [matRippleDisabled]="false"
-                [matRippleUnbounded]="false" class="btn btn-MO" (click)="isMoOn=true"
+        <div class="col-4"><button mat-raised-button class="btn btn-MO" (click)="isMoOn=true"
                 routerLink="/MechanicalOperations">Mechanical Operations </button>
         </div>
-        <div class="col-4"><button mat-flat-button color="primary" matRipple [matRippleCentered]="false"
-                [matRippleDisabled]="false" [matRippleUnbounded]="false" class="btn btn-Static"
+        <div class="col-4"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
-        <div class="col-4"><button mat-raised-button matRipple [matRippleCentered]="false" [matRippleDisabled]="false"
-                [matRippleUnbounded]="false" class="btn btn-CRE" (click)="isCREOn=true"
+        <div class="col-4"><button mat-raised-button class="btn btn-CRE" (click)="isCREOn=true"
                 routerLink="/ChemicalReactionEngineering">Chemical Reaction
                 Engineering</button></div>
 

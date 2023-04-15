@@ -15,6 +15,10 @@ export class ShellAndTubeComponent {
   equipments!: string[];
   ResultObt!: boolean;
   isTheoryOn!: boolean;
+  log: any = [{
+  }]
+  logs: any[] = [
+  ];
 
   s: ShellAndTube = new ShellAndTube();
   @Input() selected!: string;
@@ -43,7 +47,6 @@ export class ShellAndTubeComponent {
     Tci: new FormControl(25, Validators.required),
     Tco: new FormControl(40, Validators.required),
     Passes: new FormControl('2', Validators.required),
-    // TubeLength: new FormControl('', Validators.required),
     TubeDiaO: new FormControl(0.02, Validators.required), //m
     TubeDiaI: new FormControl(0.016, Validators.required), //m
 
@@ -51,9 +54,9 @@ export class ShellAndTubeComponent {
   });
   methanol: Methanol = new Methanol();
   water: Water = new Water();
-  initialization(th :number , tc :number) {
+  initialization(th: number, tc: number) {
     debugger;
-    this.s.isFeasible=false;
+    this.s.isFeasible = false;
     // var methanol: Methanol = new Methanol();
     this.methanol.getProperties(th);
     // var water: Water = new Water();
@@ -104,7 +107,7 @@ export class ShellAndTubeComponent {
     this.s.TubesPerPass = Number(this.s.TubesPerPass.toFixed(3));
     this.s.HtubeSide = Number(this.s.HtubeSide.toFixed(3));
     this.s.BaffleSpace = Number(this.s.BaffleSpace.toFixed(3));
-    this.s.FlowAreaOfTubes =Number(this.s.FlowAreaOfTubes.toFixed(3));
+    this.s.FlowAreaOfTubes = Number(this.s.FlowAreaOfTubes.toFixed(3));
     this.s.VelocityTubeSide = Number(this.s.VelocityTubeSide.toFixed(3));
     this.s.VelocityShellSide = Number(this.s.VelocityShellSide.toFixed(3));
     this.s.pitch = Number(this.s.pitch.toFixed(3));
@@ -114,13 +117,13 @@ export class ShellAndTubeComponent {
     this.s.PDropSs = Number(this.s.PDropSs.toFixed(3));
     this.s.PDropTs = Number(this.s.PDropTs.toFixed(3));
     this.s.QFound = Number(this.s.QFound.toFixed(3));
-    this.s.Tco= Number(this.s.Tco.toFixed(1));
-    this.s.Tho= Number(this.s.Tho.toFixed(1));
+    this.s.Tco = Number(this.s.Tco.toFixed(1));
+    this.s.Tho = Number(this.s.Tho.toFixed(1));
 
   }
   ShellSideCalc(): void {
     console.log("calculating");
-    this.initialization(Number(this.ip.value.Thi),Number(this.ip.value.Tci));
+    this.initialization(Number(this.ip.value.Thi), Number(this.ip.value.Tci));
     const Di = Number(this.ip.value.TubeDiaI);
     const Do = Number(this.ip.value.TubeDiaO);
     const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
@@ -138,7 +141,7 @@ export class ShellAndTubeComponent {
       this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
 
     }
-    else if (this.ip.value.Passes =='4'){
+    else if (this.ip.value.Passes == '4') {
       var k1 = 0.158;
       var n1 = 2.263;
       this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
@@ -152,11 +155,11 @@ export class ShellAndTubeComponent {
 
     this.s.NPrTs = Number(this.s.TFCp * this.s.TFVisc) / this.s.TFCond;
     this.s.HtubeSide = this.s.Jh * this.s.NReTs * Math.pow(this.s.NPrTs, 0.33) * (this.s.TFCond / Di);
-   
+
     var rectifier = 1;
     while (!this.s.isFeasible) {
       console.log("rectifier" + rectifier);
-    
+
       this.s.BaffleSpace = (this.s.ShellDia / 5) * rectifier;
       this.s.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
       this.s.AreaShell = this.s.ShellDia * this.s.BaffleSpace * ((this.s.pitch) - Do) / this.s.pitch
@@ -168,32 +171,45 @@ export class ShellAndTubeComponent {
       this.s.HShellSide = this.s.Jf * this.s.NReSs * Math.pow(this.s.NPrSs, 0.33) * (this.s.SFCond / Number(De));
 
       this.s.OverallHTCoeff = (1 / this.s.HShellSide) + (1 / 5000) + (Do / (Di * 5000)) + (Do / (Di * this.s.HtubeSide)) + (Do * Math.log(Do / Di) / (2 * 50));
-      this.s.OverallHTCoeff=1/this.s.OverallHTCoeff;
+      this.s.OverallHTCoeff = 1 / this.s.OverallHTCoeff;
       this.s.PDropTs = (this.s.TFDensity * Math.pow(this.s.VelocityTubeSide, 2) * Number(this.ip.value.Passes) / 2) * (8 * this.s.Jf * (5 - 2 * (0.025) / Di) + 2.5);
       this.s.PDropSs = (8 * this.s.Jh * this.s.ShellDia * (5 - 2 * (0.025)) * this.s.TFDensity * Math.pow(this.s.VelocityShellSide, 2)) / (2 * De * this.s.BaffleSpace);
       this.s.PDropTs = (this.s.PDropTs * 14.69) / 101325;
       this.s.PDropSs = (this.s.PDropSs * 14.69) / 101325;
       debugger;
-      var ActualArea=Math.PI*5 *this.s.ShellDia/2;
-      this.s.QFound= this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
-      this.initialization(this.s.lmtd,this.s.lmtd);
-      this.s.Tho =Number(this.ip.value.Thi) -  (this.s.QShellSide/ (this.s.SFR*this.s.SFCp) );
-      this.s.Tco =Number(this.ip.value.Tci) + ( this.s.QShellSide/ (this.s.TFR*this.s.TFCp) );
-
-      this.roundOff();
-     
+      var ActualArea = Math.PI * 5 * this.s.ShellDia / 2;
+      console.log(ActualArea);
+      this.s.QFound = this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
       if (this.s.PDropTs > 10 || this.s.PDropSs > 10) {
         this.s.isFeasible = false;
         rectifier += 0.2;
       }
       else {
         this.s.isFeasible = true;
-        this.selectedOperation = "Result";
       }
-
+      
     }
-    this.s.isCalculated = true;
+    var avg = (Number(this.ip.value.Thi) + Number(this.ip.value.Tci)) / 2;
+    this.initialization(this.s.lmtd, this.s.lmtd);
+    debugger;
+    this.s.Tho = Number(this.ip.value.Thi) - (this.s.QShellSide / (this.s.SFR * this.s.SFCp));
+    this.s.Tco = Number(this.ip.value.Tci) + (this.s.QShellSide / (this.s.TFR * this.s.TFCp));
+
+    this.log['Mh'] = this.ip.value.OilFlowRate;
+    this.log['Mc'] = this.ip.value.Waterflowrate;
+
+    this.log['Thi'] = this.ip.value.Thi;
+    this.log['Tho'] = this.s.Tho;
+    this.log['Tci'] = this.ip.value.Tci;
+    this.log['Tco'] = this.s.Tco;
+    this.logs.push(this.log);
+    this.log = [];
+    this.roundOff();
+    console.log(this.logs);
     console.log(this.s);
+
+   
+    this.s.isCalculated = true;
   }
 
   getLmtd(): number {
