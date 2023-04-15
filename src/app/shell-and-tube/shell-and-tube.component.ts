@@ -177,7 +177,7 @@ export class ShellAndTubeComponent {
       this.s.PDropTs = (this.s.PDropTs * 14.69) / 101325;
       this.s.PDropSs = (this.s.PDropSs * 14.69) / 101325;
       debugger;
-      var ActualArea = Math.PI * 5 * this.s.ShellDia / 2;
+      var ActualArea = Math.PI * 5 *this.s.TubesPerPass*  Number(this.ip.value.TubeDiaI)/2;
       console.log(ActualArea);
       this.s.QFound = this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
       if (this.s.PDropTs > 10 || this.s.PDropSs > 10) {
@@ -190,10 +190,10 @@ export class ShellAndTubeComponent {
       
     }
     var avg = (Number(this.ip.value.Thi) + Number(this.ip.value.Tci)) / 2;
-    this.initialization(this.s.lmtd, this.s.lmtd);
+    this.initialization(avg,avg);
     debugger;
-    this.s.Tho = Number(this.ip.value.Thi) - (this.s.QShellSide / (this.s.SFR * this.s.SFCp));
-    this.s.Tco = Number(this.ip.value.Tci) + (this.s.QShellSide / (this.s.TFR * this.s.TFCp));
+    this.s.Tho = Number(this.ip.value.Thi) - (this.s.QFound / (this.s.SFR * this.s.SFCp));
+    this.s.Tco = Number(this.ip.value.Tci) + (this.s.QFound / (this.s.TFR * this.s.TFCp));
 
     this.log['Mh'] = this.ip.value.OilFlowRate;
     this.log['Mc'] = this.ip.value.Waterflowrate;
