@@ -31,51 +31,7 @@ export class ShellAndTubeComponent {
     this.ResultObt = false;
     this.isTheoryOn = true;
   }
-  // isFormulaOn: boolean = false;
-  // isSimulationOn: boolean = false;
-  // isCalculated: boolean = false;
-  // SFR!: number;
-  // TFR!: number;
-  // SFDensity: number = 750 //kg/m3
-  // TFDensity: number = 995 //kg/m3
-  // SFVisc: number = 0.00034 //N/sm2
-  // TFVisc: number = 0.0008 //N/sm2
-  // SFCond: number = 0.19 // W/moC
-  // TFCond: number = 0.59 // W/moC
-  // isResultOn: boolean = false;
-  // isValid: boolean = false;
-  // lmtd !: number;
-  // HtArea!: number;
-  // QShellSide!: number;
-  // TFCp: number = 4200;
-  // SFCp: number = 2480;
-  // TubeSheetThick: number = 0.025;
-  // BundleDia !: number;
-  // ShellDia!: number;
-  // FlowAreaOfTubes!: number;
-  // TubesPerPass!: number;
-  // VelocityTubeSide!: number;
-  // VelocityShellSide!: number;
-  // Jh: number = 0.0035;
-  // Jf: number = 0.004;
-  // NReTs!: number;
-  // NReSs!: number;
-  // HtubeSide!: number;
-  // isFeasible!: boolean;
 
-
-  // HShellSide!: number;
-  // NPrTs!: number;
-  // NPrSs!: number;
-  // BaffleSpace!: number;
-  // pitch!: number;
-  // AreaShell!: number;
-  // OverallHTCoeff!: number;
-  // PDropTs!: number;
-  // PDropSs!: number;
-
-
-  // Tubes!: number;
   ip = new FormGroup({
     HeatTransferCoeffAssumed: new FormControl(500, Validators.required),
     OilFlowRate: new FormControl(27.7, Validators.required),
@@ -93,21 +49,24 @@ export class ShellAndTubeComponent {
 
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
-
-  initialization() {
+  methanol: Methanol = new Methanol();
+  water: Water = new Water();
+  initialization(th :number , tc :number) {
     debugger;
     this.s.isFeasible=false;
-    var methanol: Methanol = new Methanol(Number(this.ip.value.Thi));
-    var water: Water = new Water(Number(this.ip.value.Tci));
+    // var methanol: Methanol = new Methanol();
+    this.methanol.getProperties(th);
+    // var water: Water = new Water();
+    this.water.getProperties(tc);
     if (this.ip.value.ShellFluid == "Methanol") {
-      this.s.SFDensity = methanol.density;
-      this.s.TFDensity = water.density;
-      this.s.SFCond = methanol.k;
-      this.s.TFCond = water.k;
-      this.s.TFCp = water.cp;
-      this.s.SFCp = methanol.cp;
-      this.s.SFVisc = methanol.viscosity;
-      this.s.TFVisc = water.viscosity;
+      this.s.SFDensity = this.methanol.density;
+      this.s.TFDensity = this.water.density;
+      this.s.SFCond = this.methanol.k;
+      this.s.TFCond = this.water.k;
+      this.s.TFCp = this.water.cp;
+      this.s.SFCp = this.methanol.cp;
+      this.s.SFVisc = this.methanol.viscosity;
+      this.s.TFVisc = this.water.viscosity;
       if (this.ip.value.OilFRUnit == "Kg/sec") {
         this.s.SFR = Number(this.ip.value.OilFlowRate);
         // this.TFR=Number(this.inputValues.value.Waterflowrate);
@@ -161,7 +120,7 @@ export class ShellAndTubeComponent {
   }
   ShellSideCalc(): void {
     console.log("calculating");
-    this.initialization();
+    this.initialization(Number(this.ip.value.Thi),Number(this.ip.value.Tci));
     const Di = Number(this.ip.value.TubeDiaI);
     const Do = Number(this.ip.value.TubeDiaO);
     const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
@@ -178,6 +137,11 @@ export class ShellAndTubeComponent {
       var n1 = 2.207;
       this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
 
+    }
+    else if (this.ip.value.Passes =='4'){
+      var k1 = 0.158;
+      var n1 = 2.263;
+      this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
     }
     debugger;
     this.s.ShellDia = this.s.BundleDia + 0.068;
@@ -212,11 +176,12 @@ export class ShellAndTubeComponent {
       debugger;
       var ActualArea=Math.PI*5 *this.s.ShellDia/2;
       this.s.QFound= this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
+      this.initialization(this.s.lmtd,this.s.lmtd);
       this.s.Tho =Number(this.ip.value.Thi) -  (this.s.QShellSide/ (this.s.SFR*this.s.SFCp) );
-      this.s.Tco =Number(this.ip.value.Tci) - ( this.s.QShellSide/ (this.s.TFR*this.s.TFCp) );
+      this.s.Tco =Number(this.ip.value.Tci) + ( this.s.QShellSide/ (this.s.TFR*this.s.TFCp) );
 
       this.roundOff();
-      this.s.isCalculated = true;
+     
       if (this.s.PDropTs > 10 || this.s.PDropSs > 10) {
         this.s.isFeasible = false;
         rectifier += 0.2;
@@ -227,6 +192,7 @@ export class ShellAndTubeComponent {
       }
 
     }
+    this.s.isCalculated = true;
     console.log(this.s);
   }
 

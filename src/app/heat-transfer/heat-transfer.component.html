@@ -16,26 +16,29 @@
     
     </div>
     <mat-toolbar  color="primary" style="position:sticky;top: 0;">
-        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
+        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
         <span class="example-spacer" style=" flex: 1 1 auto;"></span>
-        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>
+        <button  mat-flat-button  color="primary"  (click)="isTreeOn=true" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>
           
     </mat-toolbar>
     <!-- <app-side-nav [List]="equipments" [parent]="parent"></app-side-nav> -->
     <div class="row" style="z-index: -1;">
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="Equip" aria-labelledby="offcanvasWithBackdropLabel">
             <div class="offcanvas-header">
                 <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <div *ngIf="isTreeOn"> <app-home-tree></app-home-tree></div>
+                <!-- <div *ngIf="isTreeOn===true"> 
+                    <li *ngFor="let sub of subjects"><a><button mat-raised-button class="btn btn-lab" (click)="selectedLab(sub)"
+                        style="padding:10px">{{sub}}</button></a></li>
+                </div> -->
                 <div *ngIf="ismenuOn"><ul class="labs">
                     <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq"
-                                [class.selected]="eq==this.selected" style="padding:10px">{{eq}}</button></a></li>
+                                style="padding:10px">{{eq}}</button></a></li>
                 </ul>
                 </div>
             </div>
@@ -48,14 +51,19 @@
                     <app-shell-and-tube [selected]="selected"
                         [selectedOperation]="selectedOperation"></app-shell-and-tube>
                 </div>
-                <div *ngIf="selected=='Helical  Coil Heat Exchanger'">
+                <div *ngIf="selected=='Helical Coil Heat Exchanger'">
                     <app-helical-coil-hex [selected]="selected"
                         [selectedOperation]="selectedOperation"></app-helical-coil-hex>
                 </div>
                 <div *ngIf="selected=='Open Pan Evaporator'">
                     <app-open-pan-evaporator [selected]="selected"
-                    [selectedOperation]="selectedOperation"></app-open-pan-evaporator>
+                        [selectedOperation]="selectedOperation"></app-open-pan-evaporator>
                 </div>
+                <div *ngIf="selected=='Batch'">
+                    <app-batch-kinetics [selected]="selected"
+                        [selectedOperation]="selectedOperation"></app-batch-kinetics>
+                </div>
+                
                 <div class="position-fixed bottom-0 end-0">
 
                     <a id="GoTO" href="#Fm-page"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"

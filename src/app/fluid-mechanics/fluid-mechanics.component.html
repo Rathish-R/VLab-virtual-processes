@@ -1,136 +1,61 @@
-<div class="Fm-page">
-    <div class="row">
-        <div class="col-2">
 
-            <div class="sidebar overflow-scroll"
-                style="min-width: 10%; height: 100%;z-index:1;background-color: rgb(237, 237, 237);">
-
-                <button class="btn btn-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#Labs"
-                    aria-expanded="false" (click)="this.isClickLabOn=onClickLabs(isClickLabOn)"
-                    [class.selected]="isClickLabOn">
-                    <h5><span *ngIf="!isClickLabOn">{{selected}} <i class="bi bi-chevron-down"></i></span>
-                        <span *ngIf="isClickLabOn">Hide Laboratory <i class="bi bi-chevron-up"></i></span>
-                    </h5>
-                </button>
-                <div *ngIf="isClickLabOn " id="Labs">
-
-                    <div class="heading">Equipments</div>
-                    <ul class="labs">
-                        <li *ngFor="let eq of equipments"><a><button class="btn btn-lab" (click)="this.selected=eq"
-                                    [class.selected]="eq==this.selected">{{eq}}</button></a></li>
-                    </ul>
+<div class="fm-page">
+    <div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 2;">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" (click)="isTreeOn=true;ismenuOn=false" aria-label="Example icon-button with menu icon" data-bs-toggle="offcanvas"
+            data-bs-target="#Labs" >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Virtual Process Equipments</span>
+            <span class="example-spacer" style=" flex: 1 1 auto;"></span>
+            <button mat-button  routerLink="/Home">
+                Home
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            </button>
+        </mat-toolbar>
+    
+    </div>
+    <mat-toolbar  color="primary" style="position:sticky;top: 0;">
+        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
+        <span class="example-spacer" style=" flex: 1 1 auto;"></span>
+        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true;isTreeOn=false" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">Fluid Mechanics</button>
+          
+    </mat-toolbar>
+    <!-- <app-side-nav [List]="equipments" [parent]="parent"></app-side-nav> -->
+    <div class="row" style="z-index: -1;">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Equipments</h2>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div *ngIf="isTreeOn"> 
+                    <li *ngFor="let sub of subjects"><a><button mat-raised-button class="btn btn-lab" (click)="selectedLab(sub)"
+                        style="padding:10px">{{sub}}</button></a></li>
                 </div>
-
-            </div>
-        </div>
-
-        <div class="col-8 overflow-auto" style="background-color:white;z-index: 2;">
-            <div *ngIf="selected=='Straight Pipes'" style="background-color:white">
-                <div id="Straight Pipes" style="margin: 30px;">
-
-                    <div>
-                        <p class="Theory">
-
-                            <br>
-                            <br>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <h1 style="font-weight:600;padding:30px" id="Theory">Theory</h1>
-            <div *ngIf="selected=='Helical Coil'">
-                <div id="Helical Coil" style="margin: 30px;padding:10px">
-
-
-                    <div>
-                        <h4>Objectives</h4>
-                        <p> To determine the coefficient of Friction factor over range of reynolds Number</p><br>
-                        <br>
-                        <p class="Theory">
-
-                            When pipeline resistance. it liquid flows through a subjected to frictional frictional
-                            resistance depends on the roughness of the inner surface of the pipes The love of energy
-                            between
-                            specified meanin of pipe the is observed. wefficient for of friction discharge is calculated
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div *ngIf="selected=='Anulus Concentric Pipes'" style="background-color:white">
-                <div id="Anulus Concentric Pipes" style="margin: 30px;">
-
-                    <div>
-                        <p class="Theory">
-                            The <b>semi- batch reactor</b> is often referred to as unsteady state flow reactor and
-                            much more difficult to analyze than the batch reactor.
-                            It offers good control of reaction speed because reaction proceeds as reactants are
-                            added. Such reactors are used in a variety of applications such as colorimetric
-                            titration
-                            in the laboratory to large openhearth furnace for steel production The composition
-                            ofvolume within the reactor is not uniform; it must be made over a differential element
-                            ofvolume
-                            and integrated across the whole reactor. For a semi batch reactor all four, i.e. rate of
-                            reactant, flow out of element, rate ofreactant lost due to chemical reaction and rate of
-                            accumulation of reactant in the element must be taken into account. Semi-batch
-                            operations involves continuous addition of one ofthe reactants (A) to a tank containing
-                            the other reactant
-                            (E) initially and withdrawing the product continuously. The operation may be involved if
-                            no product is withdrawn and the volume ofthe tank is continuously changing with respect
-                            to time.<br>
-                            <br>
-                            <br>
-                        </p>
-                    </div>
-                    <img src="https://www.researchgate.net/publication/324275622/figure/fig7/AS:668330184679427@1536353741284/Schematic-description-of-annular-space-in-axial-direction.jpg"
-                        style="height :fit-content;width: fit-content;">
-                </div>
-            </div>
-            <h1 style="font-weight:600;padding:30px" id="Formulae"> Energy Balance</h1>
-            <h1 style="font-weight:600;padding:30px" id="Simulation"> Simulation </h1>
-            <div *ngIf="selected=='Helical Coil'" class="container-fluid">
-
-            </div>
-        </div>
-
-        <div class="col-2">
-            <div class="parts" style="padding:5% 0;background-color: rgb(237, 237, 237);height:100%;">
-               <ul>
-                    <li>
-                        <a href="#Theory">
-                            <button class="part" (click)="this.selectedOperation='theory'"
-                                [class.selected]="selectedOperation=='Theory'">Theory</button></a>
-
-                    </li>
-                    <li>
-                        <a href="#Formulae">
-                            <button class="part" (click)="this.selectedOperation='formulae'"
-                                [class.selected]="selectedOperation=='Formulae'">Formulae </button> </a>
-                    </li>
-                    <li>
-                        <a href="#Simulation">
-                            <button class="part" (click)="this.selectedOperation='simulation'"
-                                [class.selected]="selectedOperation=='Simulation'"> Simulation </button></a>
-                    </li>
-                    <li>
-                        <a href="#Result">
-                            <button class="part" (click)="this.selectedOperation='Result'"
-                                [class.selected]="selectedOperation=='Result'">Result </button> </a>
-                    </li>
+                <div *ngIf="ismenuOn"><ul class="labs">
+                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq"
+                                style="padding:10px">{{eq}}</button></a></li>
                 </ul>
+                </div>
+            </div>
+        </div>
+      
+          
+         <div class="col" style="padding:2%;">
+            <div class="container-fluid">
+             
                 <div class="position-fixed bottom-0 end-0">
 
-                    <a id="GoTO" href="#Theory"><button class="btn btn-goto" style="border-radius:100%;"><i
-                                class="bi bi-chevron-up"
+                    <a id="GoTO" href="#Fm-page"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"
                                 style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
                 </div>
+                
             </div>
 
-        </div>
+        </div> 
     </div>
-
-</div>
+</div> 

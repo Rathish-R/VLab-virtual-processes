@@ -25,8 +25,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import{MaterialModule} from './material/material.module';
-import { HomeTreeComponent } from './home-tree/home-tree.component';
-import { MatTreeModule } from '@angular/material/tree'
+import { MatTreeModule } from '@angular/material/tree';
+import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { MatTreeModule } from '@angular/material/tree'
     HelicalCoilHExComponent,
     OpenPanEvaporatorComponent,
     SideNavComponent,
-    HomeTreeComponent
+    BatchKineticsComponent,
   ],
   imports: [
     BrowserModule,

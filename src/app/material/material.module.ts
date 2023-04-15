@@ -4,7 +4,8 @@ import { MatToolbar } from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
-const MaterialComponents :any = [ MatButtonModule ,MatCardModule,MatTabsModule,MatRippleModule];
+import {MatDialogModule} from '@angular/material/dialog';
+const MaterialComponents :any = [ MatButtonModule,MatDialogModule ,MatCardModule,MatTabsModule,MatRippleModule];
 @NgModule({
   imports: [
     MaterialComponents

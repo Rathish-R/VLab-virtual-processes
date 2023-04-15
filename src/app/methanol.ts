@@ -5,7 +5,8 @@ export class Methanol
     viscosity!:number;
     cp!:number;//specific  heat
     k!:number;//conductivity
-   constructor(temp : number){
+    getProperties(temp  : number){
+        this.temp=temp;
         if(temp>=0 && temp<10){
             this.density=800;
             this.viscosity=0.00070;
@@ -44,5 +45,8 @@ export class Methanol
             this.cp=1920;
             this.k=0.197;
         }
+    }
+   constructor(){
+       
     }
 }

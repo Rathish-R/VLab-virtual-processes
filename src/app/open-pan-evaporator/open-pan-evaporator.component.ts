@@ -96,8 +96,8 @@ export class OpenPanEvaporatorComponent {
     this.o.HDutySugar =Solventamount * 1.5 *EvapTemp
     this.o.HeatDuty =this.o.HDutySugar +  this.o.HDutyWater;
     //req  heat  duty
-    var methanol: Methanol = new Methanol(Number(this.ip.value.Thi));
-    var water: Water = new Water(Number(this.ip.value.Tci));
+    var methanol: Methanol = new Methanol();
+    var water: Water = new Water();
     // flowrates
 
 

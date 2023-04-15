@@ -153,24 +153,7 @@
                                     <option value="l/sec" disabled>l/hr</option>
                                 </select></td>
                         </tr>
-                        <tr>
-    
-                            <td>HotFluid Inlet temperature</td>
-                            <td><input type="number" formControlName="Thi"></td>
-                            <td>&deg;C</td>
-                        </tr>
-                        <!-- <tr>
-                            <td>HotFluid Outlet temperature</td>
-    
-                            <td><input type="number" formControlName="Tho"></td>
-                            <td>&deg;C</td>
-                        </tr> -->
-                        <tr>
-                            <td>Cold fluid inlet temperature</td>
-    
-                            <td><input type="number" formControlName="Tci"></td>
-                            <td>&deg;C</td>
-                        </tr>
+                       
                         <!-- <tr>
     
                             <td>Cold fluid Outlet temperature</td>
@@ -337,11 +320,30 @@
             </thead>
             <tbody>
                 <tr>
+    
+                    <td>HotFluid Inlet temperature</td>
+                    <td><input type="number" formControlName="Thi"></td>
+                    <td>&deg;C</td>
+                </tr>
+                <!-- <tr>
+                    <td>HotFluid Outlet temperature</td>
+
+                    <td><input type="number" formControlName="Tho"></td>
+                    <td>&deg;C</td>
+                </tr> -->
+                <tr>
+                    <td>Cold fluid inlet temperature</td>
+
+                    <td><input type="number" formControlName="Tci"></td>
+                    <td>&deg;C</td>
+                </tr>
+                <tr>
                     <td> Obtained Overall Heat Temperature Coefficient - U</td>
     
                     <td>{{this.s.OverallHTCoeff}}</td>
                     <td>W/m<sup>2</sup> &deg;C</td>
                 </tr>
+
                 <tr>
                     <td> Obtained Heat Duty - Q</td>
     

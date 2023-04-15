@@ -67,8 +67,8 @@ export class HelicalCoilHExComponent {
   initialization() {
     debugger;
     this.h.isFeasible=false;
-    var methanol: Methanol = new Methanol(Number(this.ip.value.Thi));
-    var water: Water = new Water(Number(this.ip.value.Tci));
+    var methanol: Methanol = new Methanol();
+    var water: Water = new Water();
     if (this.ip.value.ShellFluid == "Methanol") {
       this.h.SFDensity = methanol.density;
       this.h.TFDensity = water.density;
