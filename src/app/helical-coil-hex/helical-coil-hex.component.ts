@@ -48,9 +48,9 @@ export class HelicalCoilHExComponent {
 
   ip = new FormGroup({
     HeatTransferCoeffAssumed: new FormControl(500, Validators.required),
-    OilFlowRate: new FormControl(27.7, Validators.required),
+    OilFlowRate: new FormControl(0.5, Validators.required),
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
-    Waterflowrate: new FormControl(69, Validators.required),
+    Waterflowrate: new FormControl(1, Validators.required),
     WaterFRUnit: new FormControl('Kg/sec', Validators.required),
     Thi: new FormControl(95, Validators.required),
     Tho: new FormControl(40, Validators.required),
@@ -58,8 +58,8 @@ export class HelicalCoilHExComponent {
     Tco: new FormControl(40, Validators.required),
     Passes: new FormControl('2', Validators.required),
     // TubeLength: new FormControl('', Validators.required),
-    TubeDiaO: new FormControl(0.0127, Validators.required), //m
-    TubeDiaI: new FormControl(0.0102, Validators.required), //m
+    TubeDiaO: new FormControl(0.0125, Validators.required), //m
+    TubeDiaI: new FormControl(0.0100, Validators.required), //m
 
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
@@ -129,23 +129,59 @@ export class HelicalCoilHExComponent {
     this.h.Tho= Number(this.h.Tho.toFixed(1));
 
   }
+  HelicalCalc() : void{
+    
+    console.log("calculating");
+    this.initialization();
+    this.h.do=Number(this.ip.value.TubeDiaO);
+    this.h.di=Number(this.ip.value.TubeDiaI);
+    var rectifier = 1;
+    this.h.dh=this.h.do * 12;
+    this.h.B= this.h.dh - this.h.do;
+    this.h.C= this.h.dh + this.h.do;
+    this.h.pitch=1.5 *this.h.do;
+    this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
+    this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
+    this.h.Va= Math.PI * (Math.pow(this.h.C,2) - Math.pow(this.h.B,2)) * this.h.pitch/4;
+    this.h.Vf= this.h.Va- this.h.Vc;
+    this.h.de= 4 * this.h.Vf/(Math.PI * this.h.Lc*this.h.dh);
+    this.h.c= (this.h.C - this.h.B)/2 - (this.h.do)/2;
+    this.h.Ac=Math.PI* Math.pow(this.h.di,2)/4 ;
+    this.h.Vcoil = Number(this.ip.value.OilFlowRate)/(this.ODensity * this.h.Ac);
+    this.h.NreC =(this.ODensity * this.h.Vcoil * this.h.de) /this.OVisc;
+    this.h.NprC = (this.OCp * this.OVisc)/this.Ok;
+    this.h.Aa=Math.PI*(this.h.C - this.h.B)/4 ;
+    this.h.Van = Number(this.ip.value.Waterflowrate)/(this.WDensity * this.h.Aa);
+    this.h.NreC =(this.WDensity * this.h.Van * this.h.de) /this.WVisc;
+    this.h.NprC = (this.WCp * this.WVisc)/this.Ok;
+    this.h.Hcoil = 0.023 * Math.pow(this.h.NreC,0.8) *Math.pow(this.h.NprC,0.4);
+    this.h.HAnn = 0.023 * Math.pow(this.h.NreA,0.8) *Math.pow(this.h.NprA,0.4)
+
+
+    this.h.isCalculated = true;
+    // coil side calc
+
+    
+
+    console.log(this.h);
+  }
   ShellSideCalc(): void {
     console.log("calculating");
     this.initialization();
-    this.h.doTube=Number(this.ip.value.TubeDiaO);
-    this.h.diTube=Number(this.ip.value.TubeDiaI);
+    this.h.do=Number(this.ip.value.TubeDiaO);
+    this.h.di=Number(this.ip.value.TubeDiaI);
     
   
     var rectifier = 1;
-    this.h.HelixD=this.h.doTube * 15;
-    var r=this.h.HelixD/2;  //Helix rasiius
-    this.h.HelixDi= this.h.HelixD - this.h.doTube;
-    this.h.HelixDo= this.h.HelixD + this.h.doTube;
-    this.h.pitch=1.5 * this.h.HelixD + this.h.doTube;
-    this.h.CoilLengthPerTurn=this.h.pitch + (2*Math.PI* r);
-    this.h.VolumePerTurn=Math.PI * Math.pow(this.h.doTube,2) * this.h.CoilLengthPerTurn/4;
+    this.h.dh=this.h.do * 15;
+    var r=this.h.dh/2;  //Helix rasiius
+    this.h.B= this.h.dh - this.h.do;
+    this.h.C= this.h.dh + this.h.do;
+    this.h.pitch=1.5 * this.h.dh + this.h.do;
+    this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
+    this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
     this.h.Va= Math.PI * (Math.pow(this.h.DoCylinder,2) - Math.pow(this.h.DiCylinder,2)) * this.h.pitch/4;
-    this.h.Vf= this.h.Va- this.h.VolumePerTurn;
+    this.h.Vf= this.h.Va- this.h.Vc;
     while (!this.h.isFeasible) {
       console.log("rectifier" + rectifier);
 
@@ -235,7 +271,7 @@ export class HelicalCoilHExComponent {
     else {
 
       this.h.isValid = true;
-      this.ShellSideCalc();
+      this.HelicalCalc();
     }
 
   }

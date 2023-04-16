@@ -22,7 +22,7 @@ export class HeatTransferComponent {
   ngOnInit() {
     this.selected = "Shell and Tube Heat Exchanger";
     this.equipments = [
-      "Shell and Tube Heat Exchanger", "Helical  Coil Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
+      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
     ,"Open Pan Evaporator","Batch"];
     this.selectedOperation = "Theory";
   }

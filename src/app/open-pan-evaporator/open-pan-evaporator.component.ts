@@ -125,20 +125,20 @@ export class OpenPanEvaporatorComponent {
   ShellSideCalc(): void {
     console.log("calculating");
     this.initialization();
-    this.h.doTube=Number(this.ip.value.TubeDiaO);
-    this.h.diTube=Number(this.ip.value.TubeDiaI);
+    this.h.do=Number(this.ip.value.TubeDiaO);
+    this.h.di=Number(this.ip.value.TubeDiaI);
     
   
     var rectifier = 1;
-    this.h.HelixD=this.h.doTube * 15;
-    var r=this.h.HelixD/2;  //Helix rasiius
-    this.h.HelixDi= this.h.HelixD - this.h.doTube;
-    this.h.HelixDo= this.h.HelixD + this.h.doTube;
-    this.h.pitch=1.5 * this.h.HelixD + this.h.doTube;
-    this.h.CoilLengthPerTurn=this.h.pitch + (2*Math.PI* r);
-    this.h.VolumePerTurn=Math.PI * Math.pow(this.h.doTube,2) * this.h.CoilLengthPerTurn/4;
+    this.h.dh=this.h.do * 15;
+    var r=this.h.dh/2;  //Helix rasiius
+    this.h.B= this.h.dh - this.h.do;
+    this.h.C= this.h.dh + this.h.do;
+    this.h.pitch=1.5 * this.h.dh + this.h.do;
+    this.h.Lc=this.h.pitch + (2*Math.PI* r);
+    this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
     this.h.Va= Math.PI * (Math.pow(this.h.DoCylinder,2) - Math.pow(this.h.DiCylinder,2)) * this.h.pitch/4;
-    this.h.Vf= this.h.Va- this.h.VolumePerTurn;
+    this.h.Vf= this.h.Va- this.h.Vc;
     while (!this.h.isFeasible) {
       console.log("rectifier" + rectifier);
 
