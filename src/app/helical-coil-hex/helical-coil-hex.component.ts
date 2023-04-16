@@ -165,89 +165,89 @@ export class HelicalCoilHExComponent {
 
     console.log(this.h);
   }
-  ShellSideCalc(): void {
-    console.log("calculating");
-    this.initialization();
-    this.h.do=Number(this.ip.value.TubeDiaO);
-    this.h.di=Number(this.ip.value.TubeDiaI);
+  // ShellSideCalc(): void {
+  //   console.log("calculating");
+  //   this.initialization();
+  //   this.h.do=Number(this.ip.value.TubeDiaO);
+  //   this.h.di=Number(this.ip.value.TubeDiaI);
     
   
-    var rectifier = 1;
-    this.h.dh=this.h.do * 15;
-    var r=this.h.dh/2;  //Helix rasiius
-    this.h.B= this.h.dh - this.h.do;
-    this.h.C= this.h.dh + this.h.do;
-    this.h.pitch=1.5 * this.h.dh + this.h.do;
-    this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
-    this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
-    this.h.Va= Math.PI * (Math.pow(this.h.DoCylinder,2) - Math.pow(this.h.DiCylinder,2)) * this.h.pitch/4;
-    this.h.Vf= this.h.Va- this.h.Vc;
-    while (!this.h.isFeasible) {
-      console.log("rectifier" + rectifier);
+  //   var rectifier = 1;
+  //   this.h.dh=this.h.do * 15;
+  //   var r=this.h.dh/2;  //Helix rasiius
+  //   this.h.B= this.h.dh - this.h.do;
+  //   this.h.C= this.h.dh + this.h.do;
+  //   this.h.pitch=1.5 * this.h.dh + this.h.do;
+  //   this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
+  //   this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
+  //   this.h.Va= Math.PI * (Math.pow(this.h.DoCylinder,2) - Math.pow(this.h.DiCylinder,2)) * this.h.pitch/4;
+  //   this.h.Vf= this.h.Va- this.h.Vc;
+  //   while (!this.h.isFeasible) {
+  //     console.log("rectifier" + rectifier);
 
-      const Di = Number(this.ip.value.TubeDiaI);
-      const Do = Number(this.ip.value.TubeDiaO);
-      const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
-      var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
-      delT = Number(delT.toFixed(3))//oC
-      this.h.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.h.SFCp; // W
-      this.h.HtArea = (this.h.QShellSide) / (U * this.getLmtd()); //m2 
+  //     const Di = Number(this.ip.value.TubeDiaI);
+  //     const Do = Number(this.ip.value.TubeDiaO);
+  //     const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
+  //     var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
+  //     delT = Number(delT.toFixed(3))//oC
+  //     this.h.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.h.SFCp; // W
+  //     this.h.HtArea = (this.h.QShellSide) / (U * this.getLmtd()); //m2 
 
-      //surface Area of one tube
-      var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
-      this.h.Tubes = Math.round(this.h.HtArea / sATUbe);
+  //     //surface Area of one tube
+  //     var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
+  //     this.h.Tubes = Math.round(this.h.HtArea / sATUbe);
 
-      if (this.ip.value.Passes == '2') {
-        var k1 = 0.249;
-        var n1 = 2.207;
-        this.h.BundleDia = Do * Math.pow((this.h.Tubes / k1), (1 / n1));
+  //     if (this.ip.value.Passes == '2') {
+  //       var k1 = 0.249;
+  //       var n1 = 2.207;
+  //       this.h.BundleDia = Do * Math.pow((this.h.Tubes / k1), (1 / n1));
 
-      }
-      debugger;
-      this.h.ShellDia = this.h.BundleDia + 0.068;
-      this.h.TubesPerPass = ((this.h.Tubes) / Number(this.ip.value.Passes));
-      this.h.FlowAreaOfTubes = this.h.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
-      this.h.VelocityTubeSide = this.h.TFR / (this.h.FlowAreaOfTubes * this.h.TFDensity);
-      this.h.NReTs = (this.h.TFDensity * this.h.VelocityTubeSide * Di) / this.h.TFVisc;
+  //     }
+  //     debugger;
+  //     this.h.ShellDia = this.h.BundleDia + 0.068;
+  //     this.h.TubesPerPass = ((this.h.Tubes) / Number(this.ip.value.Passes));
+  //     this.h.FlowAreaOfTubes = this.h.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
+  //     this.h.VelocityTubeSide = this.h.TFR / (this.h.FlowAreaOfTubes * this.h.TFDensity);
+  //     this.h.NReTs = (this.h.TFDensity * this.h.VelocityTubeSide * Di) / this.h.TFVisc;
 
-      this.h.NPrTs = Number(this.h.TFCp * this.h.TFVisc) / this.h.TFCond;
-      this.h.HtubeSide = this.h.Jh * this.h.NReTs * Math.pow(this.h.NPrTs, 0.33) * (this.h.TFCond / Di);
-      this.h.BaffleSpace = (this.h.ShellDia / 5) * rectifier;
-      this.h.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
-      this.h.AreaShell = this.h.ShellDia * this.h.BaffleSpace * ((this.h.pitch) - Do) / this.h.pitch
-      this.h.VelocityShellSide = this.h.SFR / (this.h.AreaShell * Number(this.h.SFDensity));
-      const De = (Math.pow(this.h.pitch, 2) - (0.917 * Math.pow(Do, 2))) / Do;
+  //     this.h.NPrTs = Number(this.h.TFCp * this.h.TFVisc) / this.h.TFCond;
+  //     this.h.HtubeSide = this.h.Jh * this.h.NReTs * Math.pow(this.h.NPrTs, 0.33) * (this.h.TFCond / Di);
+  //     this.h.BaffleSpace = (this.h.ShellDia / 5) * rectifier;
+  //     this.h.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
+  //     this.h.AreaShell = this.h.ShellDia * this.h.BaffleSpace * ((this.h.pitch) - Do) / this.h.pitch
+  //     this.h.VelocityShellSide = this.h.SFR / (this.h.AreaShell * Number(this.h.SFDensity));
+  //     const De = (Math.pow(this.h.pitch, 2) - (0.917 * Math.pow(Do, 2))) / Do;
 
-      this.h.NReSs = (this.h.SFDensity * this.h.VelocityShellSide * De) / this.h.TFVisc;
-      this.h.NPrSs = Number(this.h.SFCp * this.h.SFVisc) / this.h.SFCond;
-      this.h.HShellSide = this.h.Jf * this.h.NReSs * Math.pow(this.h.NPrSs, 0.33) * (this.h.SFCond / Number(De));
+  //     this.h.NReSs = (this.h.SFDensity * this.h.VelocityShellSide * De) / this.h.TFVisc;
+  //     this.h.NPrSs = Number(this.h.SFCp * this.h.SFVisc) / this.h.SFCond;
+  //     this.h.HShellSide = this.h.Jf * this.h.NReSs * Math.pow(this.h.NPrSs, 0.33) * (this.h.SFCond / Number(De));
 
-      this.h.OverallHTCoeff = (1 / this.h.HShellSide) + (1 / 5000) + (Do / (Di * 5000)) + (Do / (Di * this.h.HtubeSide)) + (Do * Math.log(Do / Di) / (2 * 50));
-      this.h.OverallHTCoeff=1/this.h.OverallHTCoeff;
-      this.h.PDropTs = (this.h.TFDensity * Math.pow(this.h.VelocityTubeSide, 2) * Number(this.ip.value.Passes) / 2) * (8 * this.h.Jf * (5 - 2 * (0.025) / Di) + 2.5);
-      this.h.PDropSs = (8 * this.h.Jh * this.h.ShellDia * (5 - 2 * (0.025)) * this.h.TFDensity * Math.pow(this.h.VelocityShellSide, 2)) / (2 * De * this.h.BaffleSpace);
-      this.h.PDropTs = (this.h.PDropTs * 14.69) / 101325;
-      this.h.PDropSs = (this.h.PDropSs * 14.69) / 101325;
-      debugger;
-      var ActualArea=Math.PI*Math.pow(this.h.ShellDia/2 , 2);
-      this.h.QFound= this.h.OverallHTCoeff * this.h.HtArea * this.h.lmtd;
-      this.h.Tho =Number(this.ip.value.Thi) -  (this.h.QFound/ (this.h.SFR*this.h.SFCp) );
-      this.h.Tco =Number(this.ip.value.Tci) - ( this.h.QFound/ (this.h.TFR*this.h.TFCp) );
+  //     this.h.OverallHTCoeff = (1 / this.h.HShellSide) + (1 / 5000) + (Do / (Di * 5000)) + (Do / (Di * this.h.HtubeSide)) + (Do * Math.log(Do / Di) / (2 * 50));
+  //     this.h.OverallHTCoeff=1/this.h.OverallHTCoeff;
+  //     this.h.PDropTs = (this.h.TFDensity * Math.pow(this.h.VelocityTubeSide, 2) * Number(this.ip.value.Passes) / 2) * (8 * this.h.Jf * (5 - 2 * (0.025) / Di) + 2.5);
+  //     this.h.PDropSs = (8 * this.h.Jh * this.h.ShellDia * (5 - 2 * (0.025)) * this.h.TFDensity * Math.pow(this.h.VelocityShellSide, 2)) / (2 * De * this.h.BaffleSpace);
+  //     this.h.PDropTs = (this.h.PDropTs * 14.69) / 101325;
+  //     this.h.PDropSs = (this.h.PDropSs * 14.69) / 101325;
+  //     debugger;
+  //     var ActualArea=Math.PI*Math.pow(this.h.ShellDia/2 , 2);
+  //     this.h.QFound= this.h.OverallHTCoeff * this.h.HtArea * this.h.lmtd;
+  //     this.h.Tho =Number(this.ip.value.Thi) -  (this.h.QFound/ (this.h.SFR*this.h.SFCp) );
+  //     this.h.Tco =Number(this.ip.value.Tci) - ( this.h.QFound/ (this.h.TFR*this.h.TFCp) );
 
-      this.roundOff();
-      this.h.isCalculated = true;
-      if (this.h.PDropTs > 10 || this.h.PDropSs > 10) {
-        this.h.isFeasible = false;
-        rectifier += 0.2;
-      }
-      else {
-        this.h.isFeasible = true;
-        this.selectedOperation = "Result";
-      }
+  //     this.roundOff();
+  //     this.h.isCalculated = true;
+  //     if (this.h.PDropTs > 10 || this.h.PDropSs > 10) {
+  //       this.h.isFeasible = false;
+  //       rectifier += 0.2;
+  //     }
+  //     else {
+  //       this.h.isFeasible = true;
+  //       this.selectedOperation = "Result";
+  //     }
 
-    }
-    console.log(this.h);
-  }
+  //   }
+  //   console.log(this.h);
+  // }
 
   getLmtd(): number {
     debugger;

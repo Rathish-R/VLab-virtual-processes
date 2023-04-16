@@ -3,7 +3,7 @@ import { ShellAndTube } from './ShellAndTube';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Water } from '../water';
 import { Methanol } from '../methanol';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shell-and-tube',
@@ -19,7 +19,11 @@ export class ShellAndTubeComponent {
   }]
   logs: any[] = [
   ];
+  constructor(private _snackBar: MatSnackBar) {}
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   s: ShellAndTube = new ShellAndTube();
   @Input() selected!: string;
   @Input() selectedOperation!: string;
@@ -42,6 +46,7 @@ export class ShellAndTubeComponent {
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
     Waterflowrate: new FormControl(69, Validators.required),
     WaterFRUnit: new FormControl('Kg/sec', Validators.required),
+    L: new FormControl(5, Validators.required),
     Thi: new FormControl(95, Validators.required),
     Tho: new FormControl(40, Validators.required),
     Tci: new FormControl(25, Validators.required),
@@ -208,7 +213,7 @@ export class ShellAndTubeComponent {
     console.log(this.logs);
     console.log(this.s);
 
-   
+   this.openSnackBar("Results have been calculated !! You can navigate to Results " , "Ok")
     this.s.isCalculated = true;
   }
 
@@ -238,4 +243,5 @@ export class ShellAndTubeComponent {
     }
 
   }
+
 }

@@ -19,7 +19,9 @@ const routes: Routes = [
   {path:"FluidMechanics" , component:FluidMechanicsComponent},
   {path:"HelicalCoilHEx" , component:HelicalCoilHEx},
   {path:"ShellAndTube" , component:ShellAndTubeComponent},
-  {path:"" , redirectTo : '/Home' ,pathMatch:'full'}
+  {path:"" , redirectTo : '/Home' ,pathMatch:'full'},
+  {path:"**" , redirectTo : '/Home' ,pathMatch:'full'}
+
 ];
 
 @NgModule({

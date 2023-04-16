@@ -27,7 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import{MaterialModule} from './material/material.module';
 import { MatTreeModule } from '@angular/material/tree';
 import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.component'
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +58,8 @@ import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.componen
     MatIconModule,
     MatListModule,
     MaterialModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

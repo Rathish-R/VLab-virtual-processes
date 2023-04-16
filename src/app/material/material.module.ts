@@ -5,7 +5,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
-const MaterialComponents :any = [ MatButtonModule,MatDialogModule ,MatCardModule,MatTabsModule,MatRippleModule];
+import {MatSnackBar} from '@angular/material/snack-bar';
+const MaterialComponents :any = [ MatButtonModule,MatDialogModule ,MatCardModule,MatTabsModule,MatRippleModule,
+  ];
 @NgModule({
   imports: [
     MaterialComponents
