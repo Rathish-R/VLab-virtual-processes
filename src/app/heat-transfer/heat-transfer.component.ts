@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-heat-transfer',
@@ -26,16 +27,27 @@ export class HeatTransferComponent {
     ,"Open Pan Evaporator","Batch"];
     this.selectedOperation = "Theory";
   }
+  ngOnChanges(){
+    this.selectedExp(this.selected)
+  }
 selectedLab(option: string) {
     option = option.replace(" ","");
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    option = option.replace(" ","");
-    this.navigateTo("/HeatTransfer");
+    if(option=='Shell and Tube Heat Exchanger'){
+      option="ShellAndTubeHeatExchanger"
+    }
+    else if(option=='Helical Coil Heat Exchanger'){
+      option="HelicalCoilHeatExchanger"
+    }
+    else if(option=='Double Pipe Heat Exchanger'){
+      option="ShellAndTubeHeatExchanger"
+    }
+    this.navigateTo(option);
   }
   navigateTo(url: string): void {
-    this.router.navigateByUrl(url);
+    this.router.navigate(['/HeatTransfer',url]);
   }
 }
 

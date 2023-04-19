@@ -13,8 +13,7 @@ import { SemiBatchComponent } from './semi-batch/semi-batch.component';
 import { MechanicalOperationsComponent } from './mechanical-operations/mechanical-operations.component';
 import { HeatTransferComponent } from './heat-transfer/heat-transfer.component';
 import { ShellAndTubeComponent } from './shell-and-tube/shell-and-tube.component';
-import { SimpleDistillationComponent } from './simple-distillation/simple-distillation.component';
-import { HelicalCoilHExComponent } from './helical-coil-hex/helical-coil-hex.component';
+
 import { OpenPanEvaporatorComponent } from './open-pan-evaporator/open-pan-evaporator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -28,6 +27,8 @@ import{MaterialModule} from './material/material.module';
 import { MatTreeModule } from '@angular/material/tree';
 import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +38,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MassTransferComponent,
     ChemicalRectionEngineeringComponent,
     MechanicalOperationsComponent,
-    HeatTransferComponent,
-    ShellAndTubeComponent,
-    SimpleDistillationComponent,
-    HelicalCoilHExComponent,
-    OpenPanEvaporatorComponent,
+
     SideNavComponent,
-    BatchKineticsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -52,14 +49,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     LayoutModule,
+    MaterialModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MaterialModule,
     MatTreeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HeatTransferModule
   ],
   providers: [],
   bootstrap: [AppComponent]

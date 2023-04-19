@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mass-transfer',
@@ -13,6 +14,11 @@ export class MassTransferComponent {
   isTheoryOn!: boolean;
   ismenuOn:boolean=false;
   isTreeOn:boolean=false;
+  subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering",
+];
+ constructor(private router: Router){
+
+ }
   ngOnInit() {
     this.selected = "Simple Distillation";
     this.equipments = [
@@ -20,18 +26,18 @@ export class MassTransferComponent {
       "Tray dryer","Leaching Studies","Solid-Air Diffusivity measurement","Liquid-Liquid Extraction","Cooling Tower"
     ];
     this.selectedOperation = "Theory";
+    
   }
   
-  onClickTheory() {
-    this.selectedOperation="Theory";
+  selectedLab(option: string) {
+    option = option.replace(" ","");
+    this.navigateTo(option);
   }
-  onClickFormula() {
-    this.selectedOperation="Formulae";
+  selectedExp(option: string) {
+    option = option.replace(" ","");
+    this.navigateTo("/HeatTransfer");
   }
-  onClickSimulation() {
-    this.selectedOperation="Simulation";
-  }
-  onClickResult() {
- this.selectedOperation="Result";
+  navigateTo(url: string): void {
+    this.router.navigateByUrl(url);
   }
 }

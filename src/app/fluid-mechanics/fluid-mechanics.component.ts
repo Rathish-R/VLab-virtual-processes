@@ -27,14 +27,15 @@ export class FluidMechanicsComponent {
       "Shell and Tube Heat Exchanger", "Helical  Coil Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
     ,"Open Pan Evaporator"];
     this.selectedOperation = "Theory";
+    this.selectedExp(this.selected);
   }
 selectedLab(option: string) {
     option = option.replace(" ","");
-    this.navigateTo(option+"/FlowThroughHelicalCoil");
+    this.navigateTo(option);
   }
   selectedExp(option: string) {
     option = option.replace(" ","");
-    this.navigateTo("/FluidMechanics/"+option);
+    this.navigateTo(option);
   }
   navigateTo(url: string): void {
     this.router.navigateByUrl(url);

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mechanical-operations',
@@ -11,28 +12,29 @@ export class MechanicalOperationsComponent {
   equipments:string[]=[
     "Semi Batch Reactor","CSTR-Kinetics","CSTR-in series"
   ];
-  selectedOperation :string="Theory";
 
-  isTheoryOn: boolean = false;
-  isFormulaOn: boolean = false;
-  isSimulationOn: boolean = false;
+  selectedOperation!: string;
+  ResultObt!: boolean;
+  isTheoryOn!: boolean;
+  ismenuOn:boolean=false;
+  isTreeOn:boolean=false;
+  subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering",
+];
+ constructor(private router: Router){
+
+ }
   
-  onClickLabs(isLab : boolean){
-  return (isLab)? false:true;
+
+  selectedLab(option: string) {
+    option = option.replace(" ","");
+    this.navigateTo(option);
   }
-  onClickTheory() {
-    this.isTheoryOn = true;
-    this.isFormulaOn = false;
-    this.isSimulationOn = false;
+  selectedExp(option: string) {
+    option = option.replace(" ","");
+    this.navigateTo(option);
   }
-  onClickFormula() {
-    this.isFormulaOn = true;
-    this.isTheoryOn = false;
-  }
-  onClickSimulation() {
-    this.isTheoryOn = false;
-    this.isFormulaOn = false;
-    this.isSimulationOn = true;
+  navigateTo(url: string): void {
+    this.router.navigateByUrl(url);
   }
 }
 

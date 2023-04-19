@@ -1,4 +1,4 @@
-<div class="Top" style="position:sticky;top:  0;z-index: 1;">
+<div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 2;">
     <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
             data-bs-toggle="offcanvas" data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">
@@ -6,7 +6,7 @@
         </button>
         <span> Virtual Process Equipments</span>
         <span class="example-spacer" style=" flex: 1 1 auto;"></span>
-        <button mat-button (click)="initialize()" routerLink="/Home">
+        <button mat-button  routerLink="/Home">
             Home
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         </button>
@@ -16,78 +16,69 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
     <div class="offcanvas-header">
         <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Menu</h2>
+
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <li *ngFor="let sub of subjects"><a><button mat-raised-button class="btn btn-lab" (click)="selected(sub)"
-            style="padding:10px">{{sub}}</button></a></li>
-        <!-- <ul>
+        
+        <button mat-button  color="primary" (click)="accordion.openAll()">Expand All</button>
+        <button mat-button  color="primary" (click)="accordion.closeAll()">Collapse All</button>
+        <!-- <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Self aware panel
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+        </mat-accordion> -->
+        <li *ngFor="let sub of subjects">
+            <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{sub}}
+                        </mat-panel-title>
 
-            <li *ngFor="let Sub of subjects" dropdown>
-                <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
-                    (click)="_selected=Sub.name" aria-expanded="false">
-                    <button>{{Sub.name}}</button>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="labs">
-                    <li *ngFor="let lab of Sub.labs" dropdown>
-                        <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{lab}}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-        </ul> -->
-        <!-- <app-home-tree ></app-home-tree> -->
+                    </mat-expansion-panel-header>
+                    <div *ngIf="'Heat Transfer'">
+        <li *ngFor="let s of Ht">
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+        </li>
     </div>
+    <div *ngIf="'Mass Transfer'">
+        <li *ngFor="let s of Mt">
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+        </li>
+    </div>
+    <div *ngIf="'Mechanical operation'">
+        <li *ngFor="let s of Mo">
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+        </li>
+    </div>
+    <div *ngIf="'Chemical Reaction Engineering'">
+        <li *ngFor="let s of Cre">
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+        </li>
+    </div>
+    <div *ngIf="'Fluid Mechanics'">
+        <li *ngFor="let s of Fm">
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+        </li>
+    </div>
+    </mat-expansion-panel>
+    </mat-accordion>
+    <!-- <a>
+            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)"
+                    style="padding:10px">{{sub}}</button></a> -->
+    </li>
+
 </div>
-
-<!-- <nav class="navbar navbar-expand-lg nav-fill navbar-dark bg-dark text-white">
-    <div>
-
-        <ul class="navbar-nav " style="float:left">
-
-            <li class="nav-item">
-                <a class="nav-link active" href="#" (click)="initialize()">
-                    <i class="bi bi-house-door"></i> Home</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="labs" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Laboratories
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="labs">
-                    <li>
-                        <button class="btn" (click)="onClickFm()">Fluid
-                            Mechanics</button>
-                    </li>
-                    <li>
-                        <button class="btn" (click)="onClickHt()">Heat
-                            Transfer</button>
-
-                    </li>
-                    <li>
-                        <button class="btn" (click)="onClickMo()">Mechanical Operations</button>
-
-                    </li>
-                    <li>
-                        <button class="btn" (click)="onClickMt()">Mass Transfer</button>
-
-                    </li>
-                    <li>
-                        <button class="btn" (click)="onClickCre()">Chemical Reaction Engineering</button>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-
-
-    </div>
-</nav> -->
+</div>
 <div *ngIf="isFmOn">
     <app-fluid-mechanics></app-fluid-mechanics>
 </div>
@@ -104,22 +95,24 @@
     style="margin:2% 5%;width: 90%;">
     <div class="row">
 
-        <div class="col-4"><button mat-raised-button
-           class="btn btn-FM" (click)="isFmOn=true" routerLink="/FluidMechanics">Fluid
+        <div class="col-4"><button mat-raised-button class="btn btn-FM" (click)="isFmOn=true"
+                routerLink="FluidMechanics">Fluid
                 Mechanics</button></div>
-        <div class="col-4"><button mat-raised-button  class="btn btn-HT" (click)="isHtOn=true" routerLink="/HeatTransfer">Heat Transfer</button></div>
-        <div class="col-4"><button mat-raised-button  class="btn btn-MT" (click)="isMtOn=true" routerLink="/MassTransfer">Mass
+        <div class="col-4"><button mat-raised-button class="btn btn-HT" (click)="isHtOn=true"
+                [routerLink]="['/HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
+        <div class="col-4"><button mat-raised-button class="btn btn-MT" (click)="isMtOn=true"
+                routerLink="MassTransfer">Mass
                 Transfer</button></div>
     </div>
     <div class="row">
         <div class="col-4"><button mat-raised-button class="btn btn-MO" (click)="isMoOn=true"
-                routerLink="/MechanicalOperations">Mechanical Operations </button>
+                routerLink="MechanicalOperations">Mechanical Operations </button>
         </div>
         <div class="col-4"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
         <div class="col-4"><button mat-raised-button class="btn btn-CRE" (click)="isCREOn=true"
-                routerLink="/ChemicalReactionEngineering">Chemical Reaction
+                routerLink="ChemicalReactionEngineering">Chemical Reaction
                 Engineering</button></div>
 
     </div>
@@ -157,39 +150,6 @@
         </mat-card-content>
 
     </mat-card>
-    <!-- <div style="margin: 5% 10% ; text-align: center;height:100%;
-background-color: rgb(244, 249, 253); padding: 50px; border-radius: 20px;box-shadow: 10px 10px 20px;font-size: large;">
-        <span style=" font-size: xx-large;font-weight: 600;">About the Page </span>
-        <hr>
-        <div class="row">
-            <p>
-                Virtual processes in chemical engineering can be used to perform a variety of calculations and
-                simulations
-                to
-                model the behaviour of chemical processes and systems.
-                For example, users can perform calculations related to reaction kinetics,
-                thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
-                and
-                processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
-                to
-                understand the movement of materials and heat in a system.
-                Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
-                different conditions, such as variations in temperature, pressure, and composition, allowing users to
-                gain a
-                deeper understanding of how these factors affect the performance
-                of a chemical system. By providing a flexible and interactive platform for these types of calculations
-                and
-                simulations, virtual process equipments can help to advance the field of chemical engineering and
-                provide
-                valuable insights into the behaviour of chemical systems.
-            </p>
-        </div>
-        <hr>
-
-    </div> -->
-
-
-
 </div>
 <!-- <div *ngIf="isHtOn">
     <app-heat-transfer></app-heat-transfer>

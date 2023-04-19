@@ -1,20 +1,5 @@
 
 <div class="ht-page">
-    <div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 2;">
-        <mat-toolbar color="primary">
-            <button mat-icon-button class="example-icon" (click)="isTreeOn=true;ismenuOn=false" aria-label="Example icon-button with menu icon" data-bs-toggle="offcanvas"
-            data-bs-target="#Labs" >
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>Virtual Process Equipments</span>
-            <span class="spacer" style=" flex: 1 1 auto;"></span>
-            <button mat-button  routerLink="/Home">
-                Home
-                <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="home"></mat-icon>
-            </button>
-        </mat-toolbar>
-    
-    </div>
     <mat-toolbar  color="primary" style="position:sticky;top: 0;">
         <button  mat-flat-button  color="primary"  (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
@@ -22,7 +7,6 @@
         <button  mat-flat-button  color="primary"  (click)="isTreeOn=true" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>    
     </mat-toolbar>
-    <!-- <app-side-nav [List]="equipments" [parent]="parent"></app-side-nav> -->
     <div class="row" style="z-index: -1;">
         <div class="offcanvas offcanvas-start" tabindex="-1" id="Equip" aria-labelledby="offcanvasWithBackdropLabel">
             <div class="offcanvas-header">
@@ -31,15 +15,12 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <!-- <div *ngIf="isTreeOn===true"> 
-                    <li *ngFor="let sub of subjects"><a><button mat-raised-button class="btn btn-lab" (click)="selectedLab(sub)"
-                        style="padding:10px">{{sub}}</button></a></li>
-                </div> -->
-                <div *ngIf="ismenuOn"><ul class="labs">
-                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq"
+               
+                <ul class="labs">
+                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq;selectedExp(this.selected);"
                                 style="padding:10px">{{eq}}</button></a></li>
                 </ul>
-                </div>
+                
             </div>
         </div>
       
@@ -50,21 +31,18 @@
                     <app-shell-and-tube ></app-shell-and-tube>
                 </div>
                 <div *ngIf="selected=='Helical Coil Heat Exchanger'">
-                    <app-helical-coil-hex [selected]="selected"
-                       ></app-helical-coil-hex>
+                    <app-helical-coil-hex ></app-helical-coil-hex>
                 </div>
-                <div *ngIf="selected=='Open Pan Evaporator'">
-                    <app-open-pan-evaporator [selected]="selected"
-                       ></app-open-pan-evaporator>
-                </div>
-                <div *ngIf="selected=='Batch'">
-                    <app-batch-kinetics [selected]="selected"
-                       ></app-batch-kinetics>
-                </div>
+                <!-- <div *ngIf="selected=='Open Pan Evaporator'">
+                    <app-open-pan-evaporator ></app-open-pan-evaporator>
+                </div> -->
+                <!-- <div *ngIf="selected=='Batch'">
+                    <app-batch-kinetics></app-batch-kinetics>
+                </div> -->
                 
                 <div class="position-fixed bottom-0 end-0">
                   
-                    <a id="GoTO" routerLink="/HeatTransfer">  <button   mat-fab color="primary" aria-label="Example icon button with a bookmark icon"><i class="bi bi-chevron-up"
+                    <a id="GoTO" routerLink="/HeatTransfer">  <button   mat-fab color="primary"><i class="bi bi-chevron-up"
                                 style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
                 </div>
                 
@@ -72,4 +50,11 @@
 
         </div> 
     </div>
-</div> 
+</div> <div *ngIf="selected==null || selected.length==0">
+<div style="margin: 30%;width: 40%;">
+    <button mat-flat-button  (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> 
+<h1>Select Process</h1>
+    </button>
+</div>
+</div>
