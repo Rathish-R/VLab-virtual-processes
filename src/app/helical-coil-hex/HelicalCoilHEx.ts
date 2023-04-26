@@ -22,28 +22,33 @@ export class HelicalCoilHEx {
   Va!: number;// volume of Annulus
   Vf!: number;// volume of full Annulus
   dh!: number; // Helix avg  Dia
+  t!:number;
   B!: number;// Helix inner dia
   C!: number;
   Ac!:number;//coil flow area 
   Vcoil!:number;
-  NreC !:number;
-  NreA !:number;
-  NprC!:number;
-  NprA!:number;
+  NReC !:number;
+  NReA !:number;
+  NPrC!:number;
+  NPrA!:number;
   Hcoil!:number;
   HAnn !:number;
+  Hio !:number; //corrected HT coeff coilside
 Aa!:number;// Area of Annullus;
   Van!:number;
-  Jh: number = 0.0035;
-  Jf: number = 0.004;
-  TubeSheetThick: number = 0.025;
-
+  Rf: number = 0.00082;
+Ra: number = 0.00082;
+TubeSheetThick: number = 0.025;
+Gs  !: number;
   lmtd !: number;
   HtArea!: number;
   QShellSide!: number;
   TFCp!: number;
   SFCp!: number;
 
+NDe!:number; // deans nummber
+PDropTs!: number;
+PDropSs!: number;
 
   BundleDia !: number;
   ShellDia!: number;
@@ -63,8 +68,7 @@ Aa!:number;// Area of Annullus;
   pitch!: number;
   AreaShell!: number;
   OverallHTCoeff!: number;
-  PDropTs!: number;
-  PDropSs!: number;
+
   Tubes!: number;
   isValid!: boolean;
 

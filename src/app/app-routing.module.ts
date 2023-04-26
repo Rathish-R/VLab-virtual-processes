@@ -12,20 +12,15 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: 'Home', component: HomeComponent, children: [
-      { path: 'HeatTransfer/:selected', component: HeatTransferComponent},
-  { path: "MechanicalOperations", component: MechanicalOperationsComponent },
+      { path: 'HeatTransfer', loadChildren: () => import('./heat-transfer/heat-transfer/heat-transfer.module').then(m => m.HeatTransferModule) },
+      { path: "MechanicalOperations", component: MechanicalOperationsComponent },
       { path: "FluidMechanics", component: FluidMechanicsComponent },
       { path: "MassTransfer", component: MassTransferComponent },
       { path: "ChemicalReactionEngineering", component: ChemicalRectionEngineeringComponent },
     ]
   },
   { path: "RotaryDryer", component: RotaryDryerComponent },
-
- 
-
-
-  { path: "", redirectTo: '/Home', pathMatch: 'full' },
-  { path: 'HeatTransfer', loadChildren: () => import('./heat-transfer/heat-transfer/heat-transfer.module').then(m => m.HeatTransferModule) },
+  { path: "", redirectTo:'/Home', pathMatch:'full' },
   { path: "**", component: HomeComponent }
 
 ];

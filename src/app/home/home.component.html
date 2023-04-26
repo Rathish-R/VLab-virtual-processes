@@ -1,4 +1,4 @@
-<div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 2;">
+<div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 10;">
     <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
             data-bs-toggle="offcanvas" data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">
@@ -6,7 +6,7 @@
         </button>
         <span> Virtual Process Equipments</span>
         <span class="example-spacer" style=" flex: 1 1 auto;"></span>
-        <button mat-button  routerLink="/Home">
+        <button mat-button  [routerLink]="['/Home']" (click)="isHomeOn=true">
             Home
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         </button>
@@ -15,7 +15,7 @@
 </div>
 <div class="offcanvas offcanvas-start" tabindex="-1" id="Labs" aria-labelledby="offcanvasWithBackdropLabel">
     <div class="offcanvas-header">
-        <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel">Menu</h2>
+        <h2 class="offcanvas-title" id="offcanvasWithBackdropLabel" style="font-weight: 400;letter-spacing: 2;">Menu</h2>
 
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -23,19 +23,6 @@
         
         <button mat-button  color="primary" (click)="accordion.openAll()">Expand All</button>
         <button mat-button  color="primary" (click)="accordion.closeAll()">Collapse All</button>
-        <!-- <mat-accordion class="example-headers-align" multi>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Self aware panel
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>I'm visible because I am open</p>
-            </mat-expansion-panel>
-        </mat-accordion> -->
         <li *ngFor="let sub of subjects">
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
@@ -45,41 +32,39 @@
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
-                    <div *ngIf="'Heat Transfer'">
+                    <div *ngIf="sub=='Heat Transfer'">
         <li *ngFor="let s of Ht">
-            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
+            <button mat-raised-button class="btn btn-lab" (click)="selectedP(sub,s)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="'Mass Transfer'">
+    <div *ngIf="sub=='Mass Transfer'">
         <li *ngFor="let s of Mt">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="'Mechanical operation'">
+    <div *ngIf="sub=='Mechanical operation'">
         <li *ngFor="let s of Mo">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="'Chemical Reaction Engineering'">
+    <div *ngIf="sub=='Chemical Reaction Engineering'">
         <li *ngFor="let s of Cre">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="'Fluid Mechanics'">
+    <div *ngIf="sub=='Fluid Mechanics'">
         <li *ngFor="let s of Fm">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
     </mat-expansion-panel>
     </mat-accordion>
-    <!-- <a>
-            <button mat-raised-button class="btn btn-lab" (click)="selected(sub)"
-                    style="padding:10px">{{sub}}</button></a> -->
     </li>
 
 </div>
 </div>
-<div *ngIf="isFmOn">
+<router-outlet></router-outlet>
+  <div *ngIf="isFmOn">
     <app-fluid-mechanics></app-fluid-mechanics>
 </div>
 <div *ngIf="isCREOn">
@@ -88,19 +73,17 @@
 <div *ngIf="isMtOn">
     <app-mass-transfer></app-mass-transfer>
 </div>
-<div *ngIf="isHtOn">
-    <app-heat-transfer></app-heat-transfer>
-</div>
-<div class="container" *ngIf="isHomeOn && !isFmOn&& !isHtOn && !isMtOn &&!isMoOn && !isCREOn "
-    style="margin:2% 5%;width: 90%;">
+
+<div class="container" *ngIf="isHomeOn"
+    style="margin:5% 10%;padding: 2%;width: 90%;  display: table;">
     <div class="row">
 
-        <div class="col-4"><button mat-raised-button class="btn btn-FM" (click)="isFmOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-FM" (click)="isFmOn=true"
                 routerLink="FluidMechanics">Fluid
                 Mechanics</button></div>
-        <div class="col-4"><button mat-raised-button class="btn btn-HT" (click)="isHtOn=true"
-                [routerLink]="['/HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
-        <div class="col-4"><button mat-raised-button class="btn btn-MT" (click)="isMtOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-HT" (click)="isHtOn=true"
+                [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
+        <div class="col"><button mat-raised-button class="btn btn-MT" (click)="isMtOn=true"
                 routerLink="MassTransfer">Mass
                 Transfer</button></div>
     </div>
@@ -116,41 +99,31 @@
                 Engineering</button></div>
 
     </div>
-    <mat-card
-        style="margin: 2% 5% ; text-align: center;height:100%;
-    background-color: rgb(250, 250, 250); padding: 50px; border-radius: 20px;box-shadow: 1px 1px 20px;font-size: large;">
-        <mat-card-header>
-            <mat-card-title>
-                <h2>About the Page</h2>
-            </mat-card-title>
-        </mat-card-header>
-        <hr>
-        <mat-card-content>
-            <p>
-                Virtual processes in chemical engineering can be used to perform a variety of calculations and
-                simulations
-                to
-                model the behaviour of chemical processes and systems.
-                For example, users can perform calculations related to reaction kinetics,
-                thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
-                and
-                processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
-                to
-                understand the movement of materials and heat in a system.
-                Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
-                different conditions, such as variations in temperature, pressure, and composition, allowing users to
-                gain a
-                deeper understanding of how these factors affect the performance
-                of a chemical system. By providing a flexible and interactive platform for these types of calculations
-                and
-                simulations, virtual process equipments can help to advance the field of chemical engineering and
-                provide
-                valuable insights into the behaviour of chemical systems.
-            </p>
-        </mat-card-content>
+    <div class="container-fluid" style="margin:50px 0">
+        <h1>About the Page</h1>
+       <div style="line-height: 2"> <p>  
 
-    </mat-card>
+            Virtual processes in chemical engineering can be used to perform a variety of calculations and
+            simulations
+            to
+            model the behaviour of chemical processes and systems.
+            For example, users can perform calculations related to reaction kinetics,
+            thermodynamics, and mass and energy balances to gain insights into the behaviour of chemical reactions
+            and
+            processes. They can also simulate transport phenomena such as diffusion, convection, and heat transfer
+            to
+            understand the movement of materials and heat in a system.
+            Additionally, virtual process equipments can be used to model the behaviour of chemical processes under
+            different conditions, such as variations in temperature, pressure, and composition, allowing users to
+            gain a
+            deeper understanding of how these factors affect the performance
+            of a chemical system. By providing a flexible and interactive platform for these types of calculations
+            and
+            simulations, virtual process equipments can help to advance the field of chemical engineering and
+            provide
+            valuable insights into the behaviour of chemical systems.
+        </p>
+    </div>
+    </div>
+   
 </div>
-<!-- <div *ngIf="isHtOn">
-    <app-heat-transfer></app-heat-transfer>
-</div> -->

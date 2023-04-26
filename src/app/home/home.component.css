@@ -32,21 +32,3 @@ li{
     height: 100px;
     margin-bottom:10px;
  }
- a .btn-FM:hover{
-    background-image: linear-gradient(120deg, rgb(44, 44, 44),rgb(116, 116, 116));
-   
-transform: scale(1.1,1.1);
- }
- a .btn-HT:hover{
-    background-image: linear-gradient(180deg, rgb(44, 44, 44),rgb(116, 116, 116));
-transform: scale(1.1,1.1);
- } a .btn-MT:hover{
-    background-image: linear-gradient(45deg,rgb(116, 116, 116), rgb(44, 44, 44));
-transform: scale(1.1,1.1);
- } a .btn-MO:hover{
-    background-image: linear-gradient(To right, rgb(44, 44, 44),rgb(116, 116, 116));
-transform: scale(1.1,1.1);
- } a .btn-CRE:hover{
-    background-image: linear-gradient(To left, rgb(44, 44, 44),rgb(116, 116, 116));
-transform: scale(1.1,1.1);
- }

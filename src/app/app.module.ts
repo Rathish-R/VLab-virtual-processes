@@ -28,6 +28,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.module';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { VerticalCondenserComponent } from './vertical-condenser/vertical-condenser.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,9 @@ import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.
     MassTransferComponent,
     ChemicalRectionEngineeringComponent,
     MechanicalOperationsComponent,
-
+    
     SideNavComponent,
+          VerticalCondenserComponent,
 
   ],
   imports: [
@@ -57,7 +60,8 @@ import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.
     MatListModule,
     MatTreeModule,
     MatSnackBarModule,
-    HeatTransferModule
+    HeatTransferModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Methanol } from '../methanol';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Water } from '../water';
+import { VOil } from '../VegeOil';
 import { HelicalCoilHEx } from './HelicalCoilHEx';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-helical-coil-hex',
@@ -15,7 +17,11 @@ export class HelicalCoilHExComponent {
   equipments!: string[];
   ResultObt!: boolean;
   isTheoryOn!: boolean;
+  constructor(private _snackBar: MatSnackBar) {}
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   // s: ShellAndTube = new ShellAndTube();
   h:HelicalCoilHEx=new HelicalCoilHEx();
   @Input() selected!: string;
@@ -23,18 +29,20 @@ export class HelicalCoilHExComponent {
 
 
   //Properties of water at 28.7°C: [Shell side]
-  WVisc:number= 0.000891 ;//Pa·s
-  Wk:number= 0.606; //W/(m·K)
- WNpr:number= 6.65;
-  WDensity:number= 995.7 //kg/m³
-  WCp:number= 4182; //J/(kg·K)
+//   WVisc:number= 0.0016 ;//Pa·s
+//   Wk:number= 0.4739225; //W/(m·K)
+//  WNpr:number= 6.65;
+//   WDensity:number= 995.7 //kg/m³
+//   WCp:number= 4186.8; //J/(kg·K)
   
-  OVisc:number= 0.037 ;//Pa·s
-  Ok:number= 0.135 ; //W/(m·K)
- ONpr:number= 5.35;
-  ODensity:number=918 ;//kg/m³
-  OCp:number=  2040 ; //J/(kg·K)
-
+//   OVisc:number= 0.000527 ;//Pa·s
+//   Ok:number= 0.4873; //W/(m·K)
+//  ONpr:number= 5.76;
+//   ODensity:number=935 ;//kg/m³
+//   OCp:number= 4186.8; //J/(kg·K)
+Rf:number =0.00082;
+Ra:number =0.00082;
+absRoughness =0.0005 //m
   ngOnInit() {
     this.selected = "Shell and Tube Heat Exchanger";
     this.equipments = [
@@ -48,18 +56,21 @@ export class HelicalCoilHExComponent {
 
   ip = new FormGroup({
     HeatTransferCoeffAssumed: new FormControl(500, Validators.required),
-    OilFlowRate: new FormControl(0.5, Validators.required),
+    OilFlowRate: new FormControl(0.377, Validators.required),
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
-    Waterflowrate: new FormControl(1, Validators.required),
+    Waterflowrate: new FormControl(0.595, Validators.required),
     WaterFRUnit: new FormControl('Kg/sec', Validators.required),
-    Thi: new FormControl(95, Validators.required),
-    Tho: new FormControl(40, Validators.required),
-    Tci: new FormControl(25, Validators.required),
-    Tco: new FormControl(40, Validators.required),
+    Thi: new FormControl(127, Validators.required),
+    Tho: new FormControl(100, Validators.required),
+    Tci: new FormControl(30, Validators.required),
+    Tco: new FormControl(47, Validators.required),
     Passes: new FormControl('2', Validators.required),
     // TubeLength: new FormControl('', Validators.required),
-    TubeDiaO: new FormControl(0.0125, Validators.required), //m
-    TubeDiaI: new FormControl(0.0100, Validators.required), //m
+    TubeDiaO: new FormControl(0.03, Validators.required), //m
+    TubeDiaI: new FormControl(0.025, Validators.required), //m
+    B: new FormControl(0.340, Validators.required), //m
+    C: new FormControl(0.460, Validators.required), //m
+    
 
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
@@ -67,44 +78,21 @@ export class HelicalCoilHExComponent {
   initialization() {
     debugger;
     this.h.isFeasible=false;
-    var methanol: Methanol = new Methanol();
+    var VegeOil: VOil = new VOil();
     var water: Water = new Water();
-    if (this.ip.value.ShellFluid == "Methanol") {
-      this.h.SFDensity = methanol.density;
-      this.h.TFDensity = water.density;
-      this.h.SFCond = methanol.k;
-      this.h.TFCond = water.k;
-      this.h.TFCp = water.cp;
-      this.h.SFCp = methanol.cp;
-      this.h.SFVisc = methanol.viscosity;
-      this.h.TFVisc = water.viscosity;
-      if (this.ip.value.OilFRUnit == "Kg/sec") {
-        this.h.SFR = Number(this.ip.value.OilFlowRate);
-        // this.TFR=Number(this.inputValues.value.Waterflowrate);
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/min") {
-        this.h.SFR = Number(this.ip.value.OilFlowRate) / 60;
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        this.h.SFR = Number(this.ip.value.OilFlowRate) / (60 * 60);
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) /( 60 * 60);
-      }
-      if (this.ip.value.WaterFRUnit == "Kg/sec") {
-        this.h.TFR = Number(this.ip.value.Waterflowrate);
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/min") {
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) / 60;
-        this.h.TFR = Number(this.ip.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) /(60 * 60) ;
-        this.h.TFR = Number(this.ip.value.Waterflowrate) / (60 * 60);
-      }
+    water.getProperties(Number(this.ip.value.Tci));
+    VegeOil.getProperties(Number(this.ip.value.Thi));
+    this.h.SFDensity = water.density;
+      this.h.TFDensity =VegeOil.density; 
+      this.h.SFCond = water.k;
+      this.h.TFCond = VegeOil.k;
+      this.h.TFCp = VegeOil.cp;
+      this.h.SFCp = water.cp;
+      this.h.SFVisc =water.viscosity;
+      this.h.TFVisc =  VegeOil.viscosity;
+      this.h.SFR = Number(this.ip.value.Waterflowrate);
+      this.h.TFR = Number(this.ip.value.OilFlowRate);
 
-    }
     // flowrates
 
 
@@ -135,120 +123,56 @@ export class HelicalCoilHExComponent {
     this.initialization();
     this.h.do=Number(this.ip.value.TubeDiaO);
     this.h.di=Number(this.ip.value.TubeDiaI);
+
+    this.h.t=this.h.do -this.h.di;
     var rectifier = 1;
-    this.h.dh=this.h.do * 12;
-    this.h.B= this.h.dh - this.h.do;
-    this.h.C= this.h.dh + this.h.do;
+
+    this.h.B= Number(this.ip.value.B);
+    this.h.C= Number(this.ip.value.C);
+    this.h.dh=(this.h.B + this.h.C)/2 ;
     this.h.pitch=1.5 *this.h.do;
-    this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
+    this.h.Lc= Math.sqrt(Math.pow(this.h.pitch,2)+ Math.pow((Math.PI* this.h.dh),2));
     this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
-    this.h.Va= Math.PI * (Math.pow(this.h.C,2) - Math.pow(this.h.B,2)) * this.h.pitch/4;
+    this.h.Va=  (Math.pow(this.h.C,2) - Math.pow(this.h.B,2)) *Math.PI* this.h.pitch/4;
     this.h.Vf= this.h.Va- this.h.Vc;
-    this.h.de= 4 * this.h.Vf/(Math.PI * this.h.Lc*this.h.dh);
+    this.h.de= 4 * this.h.Vf/(Math.PI * this.h.Lc *this.h.do);
+    var A = ((Math.pow(this.h.C,2)- Math.pow(this.h.B,2)) - (Math.pow(this.h.C - this.h.do , 2) -Math.pow(this.h.B + this.h.do , 2))) *  Math.PI/4;
+    this.h.Gs = this.h.SFR/A;
+    this.h.NReSs =this.h.Gs*this.h.de/ this.h.SFVisc;
+    this.h.NPrSs = this.h.SFCp * this.h.SFVisc / this.h.SFCond;
     this.h.c= (this.h.C - this.h.B)/2 - (this.h.do)/2;
-    this.h.Ac=Math.PI* Math.pow(this.h.di,2)/4 ;
-    this.h.Vcoil = Number(this.ip.value.OilFlowRate)/(this.ODensity * this.h.Ac);
-    this.h.NreC =(this.ODensity * this.h.Vcoil * this.h.de) /this.OVisc;
-    this.h.NprC = (this.OCp * this.OVisc)/this.Ok;
+    if(this.h.NReSs < 10000){
+      this.h.HAnn = (0.6 * Math.pow(this.h.NReSs,0.5) *  Math.pow(this.h.NPrSs,0.31) * this.h.SFCond)/(this.h.de);
+    }
+    this.h.Ac=Math.PI* Math.pow(this.h.di,2)/4;
+    this.h.Vcoil = Number(this.ip.value.OilFlowRate)/(this.h.TFDensity * this.h.Ac);
+    this.h.NReC =(this.h.TFDensity * this.h.Vcoil * this.h.di) /this.h.TFVisc;
+    this.h.NPrC = (this.h.TFCp * this.h.TFVisc)/this.h.TFCond;
     this.h.Aa=Math.PI*(this.h.C - this.h.B)/4 ;
-    this.h.Van = Number(this.ip.value.Waterflowrate)/(this.WDensity * this.h.Aa);
-    this.h.NreC =(this.WDensity * this.h.Van * this.h.de) /this.WVisc;
-    this.h.NprC = (this.WCp * this.WVisc)/this.Ok;
-    this.h.Hcoil = 0.023 * Math.pow(this.h.NreC,0.8) *Math.pow(this.h.NprC,0.4);
-    this.h.HAnn = 0.023 * Math.pow(this.h.NreA,0.8) *Math.pow(this.h.NprA,0.4)
+    this.h.Van = Number(this.ip.value.Waterflowrate)/(this.h.SFDensity * this.h.Aa);
+    this.h.Hcoil = 110 * (this.h.SFCond/this.h.di) * Math.pow(this.h.NPrC,0.333);
+    // this.h.Hcoil = 0.023 * Math.pow(this.h.NReC,0.8) *Math.pow(this.h.NPrC,0.4);
+    var hic = (1 + 3.5*(this.h.di/this.h.dh))*this.h.Hcoil;
+   this.h.Hio =hic *(this.h.di/this.h.do);
+   this.h.OverallHTCoeff = (1/this.h.HAnn) + (1/this.h.Hio) + (this.h.t/14)+this.h.Rf+this.h.Ra;
+   this.h.OverallHTCoeff = 1/this.h.OverallHTCoeff;
 
-
+    this.openSnackBar("Results have been calculated !! You can navigate to Results " , "Ok")
     this.h.isCalculated = true;
     // coil side calc
+this.h.NDe = this.h.NReC * Math.pow((this.h.di/this.h.do),0.5);
+var Relroughness = this.absRoughness/this.h.di
+var fs=this.moodys(Relroughness,this.h.NReSs);
+var fc =fs/(1-Math.pow(1- Math.pow(11.6/this.h.NDe,0.45),0.2));
+this.h.PDropSs = (8 * 0.0035 * this.h.c * 5 * this.h.SFDensity * Math.pow(this.h.Van, 2)) / (2 * this.h.de);
+this.h.PDropTs= 2*fc *this.h.Lc*Math.pow(this.h.Vcoil,2)*this.h.TFDensity/this.h.di;
+this.h.PDropTs=(this.h.PDropTs * 14.69) / 101325;
 
     
 
     console.log(this.h);
   }
-  // ShellSideCalc(): void {
-  //   console.log("calculating");
-  //   this.initialization();
-  //   this.h.do=Number(this.ip.value.TubeDiaO);
-  //   this.h.di=Number(this.ip.value.TubeDiaI);
-    
   
-  //   var rectifier = 1;
-  //   this.h.dh=this.h.do * 15;
-  //   var r=this.h.dh/2;  //Helix rasiius
-  //   this.h.B= this.h.dh - this.h.do;
-  //   this.h.C= this.h.dh + this.h.do;
-  //   this.h.pitch=1.5 * this.h.dh + this.h.do;
-  //   this.h.Lc=this.h.pitch + (Math.PI* this.h.do);
-  //   this.h.Vc=Math.PI * Math.pow(this.h.do,2) * this.h.Lc/4;
-  //   this.h.Va= Math.PI * (Math.pow(this.h.DoCylinder,2) - Math.pow(this.h.DiCylinder,2)) * this.h.pitch/4;
-  //   this.h.Vf= this.h.Va- this.h.Vc;
-  //   while (!this.h.isFeasible) {
-  //     console.log("rectifier" + rectifier);
-
-  //     const Di = Number(this.ip.value.TubeDiaI);
-  //     const Do = Number(this.ip.value.TubeDiaO);
-  //     const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
-  //     var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
-  //     delT = Number(delT.toFixed(3))//oC
-  //     this.h.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.h.SFCp; // W
-  //     this.h.HtArea = (this.h.QShellSide) / (U * this.getLmtd()); //m2 
-
-  //     //surface Area of one tube
-  //     var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
-  //     this.h.Tubes = Math.round(this.h.HtArea / sATUbe);
-
-  //     if (this.ip.value.Passes == '2') {
-  //       var k1 = 0.249;
-  //       var n1 = 2.207;
-  //       this.h.BundleDia = Do * Math.pow((this.h.Tubes / k1), (1 / n1));
-
-  //     }
-  //     debugger;
-  //     this.h.ShellDia = this.h.BundleDia + 0.068;
-  //     this.h.TubesPerPass = ((this.h.Tubes) / Number(this.ip.value.Passes));
-  //     this.h.FlowAreaOfTubes = this.h.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
-  //     this.h.VelocityTubeSide = this.h.TFR / (this.h.FlowAreaOfTubes * this.h.TFDensity);
-  //     this.h.NReTs = (this.h.TFDensity * this.h.VelocityTubeSide * Di) / this.h.TFVisc;
-
-  //     this.h.NPrTs = Number(this.h.TFCp * this.h.TFVisc) / this.h.TFCond;
-  //     this.h.HtubeSide = this.h.Jh * this.h.NReTs * Math.pow(this.h.NPrTs, 0.33) * (this.h.TFCond / Di);
-  //     this.h.BaffleSpace = (this.h.ShellDia / 5) * rectifier;
-  //     this.h.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
-  //     this.h.AreaShell = this.h.ShellDia * this.h.BaffleSpace * ((this.h.pitch) - Do) / this.h.pitch
-  //     this.h.VelocityShellSide = this.h.SFR / (this.h.AreaShell * Number(this.h.SFDensity));
-  //     const De = (Math.pow(this.h.pitch, 2) - (0.917 * Math.pow(Do, 2))) / Do;
-
-  //     this.h.NReSs = (this.h.SFDensity * this.h.VelocityShellSide * De) / this.h.TFVisc;
-  //     this.h.NPrSs = Number(this.h.SFCp * this.h.SFVisc) / this.h.SFCond;
-  //     this.h.HShellSide = this.h.Jf * this.h.NReSs * Math.pow(this.h.NPrSs, 0.33) * (this.h.SFCond / Number(De));
-
-  //     this.h.OverallHTCoeff = (1 / this.h.HShellSide) + (1 / 5000) + (Do / (Di * 5000)) + (Do / (Di * this.h.HtubeSide)) + (Do * Math.log(Do / Di) / (2 * 50));
-  //     this.h.OverallHTCoeff=1/this.h.OverallHTCoeff;
-  //     this.h.PDropTs = (this.h.TFDensity * Math.pow(this.h.VelocityTubeSide, 2) * Number(this.ip.value.Passes) / 2) * (8 * this.h.Jf * (5 - 2 * (0.025) / Di) + 2.5);
-  //     this.h.PDropSs = (8 * this.h.Jh * this.h.ShellDia * (5 - 2 * (0.025)) * this.h.TFDensity * Math.pow(this.h.VelocityShellSide, 2)) / (2 * De * this.h.BaffleSpace);
-  //     this.h.PDropTs = (this.h.PDropTs * 14.69) / 101325;
-  //     this.h.PDropSs = (this.h.PDropSs * 14.69) / 101325;
-  //     debugger;
-  //     var ActualArea=Math.PI*Math.pow(this.h.ShellDia/2 , 2);
-  //     this.h.QFound= this.h.OverallHTCoeff * this.h.HtArea * this.h.lmtd;
-  //     this.h.Tho =Number(this.ip.value.Thi) -  (this.h.QFound/ (this.h.SFR*this.h.SFCp) );
-  //     this.h.Tco =Number(this.ip.value.Tci) - ( this.h.QFound/ (this.h.TFR*this.h.TFCp) );
-
-  //     this.roundOff();
-  //     this.h.isCalculated = true;
-  //     if (this.h.PDropTs > 10 || this.h.PDropSs > 10) {
-  //       this.h.isFeasible = false;
-  //       rectifier += 0.2;
-  //     }
-  //     else {
-  //       this.h.isFeasible = true;
-  //       this.selectedOperation = "Result";
-  //     }
-
-  //   }
-  //   console.log(this.h);
-  // }
-
   getLmtd(): number {
     debugger;
     const delT2 = Number(this.ip.value.Tho) - Number(this.ip.value.Tci);
@@ -274,5 +198,79 @@ export class HelicalCoilHExComponent {
       this.HelicalCalc();
     }
 
+  }
+
+  moodys(r : number , Re : number):number{
+    if(r<=0.0001){
+      if(Re<=1000){
+        return 0.065
+      }
+      else if(Re<=10000){
+        return 0.025
+      }
+      else if(Re<=100000){
+        return 0.0175
+      }
+      else {
+        return 0.01
+      }
+    }
+    else if(r<=0.001){
+      if(Re<=1000){
+        return 0.065
+      }
+      else if(Re<=10000){
+        return 0.029
+      }
+      else if(Re<=100000){
+        return 0.02
+      }
+      else {
+        return 0.013
+      }
+    }
+    else if(r<=0.005){
+      if(Re<=1000){
+        return 0.065
+      }
+      else if(Re<=10000){
+        return 0.0465
+      }
+     
+      else {
+        return 0.03
+      }
+    }
+    else if(r<=0.001){
+      if(Re<=1000){
+        return 0.065
+      }
+      else if(Re<=10000){
+        return 0.0389
+      }
+    
+      else {
+        return 0.039
+      }
+    }
+    else if(r<=0.02){
+      if(Re<=1000){
+        return 0.065
+      }
+     
+      else {
+        return 0.06
+      }
+    }
+    else if(r<=0.05){
+      if(Re<=1000){
+        return 0.085
+      }
+     
+      else {
+        return 0.07
+      }
+    }
+return 0;
   }
 }

@@ -1,14 +1,16 @@
 import { Component, OnInit ,OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { EMap } from '../home/Equipments';
 @Component({
   selector: 'app-heat-transfer',
   templateUrl: './heat-transfer.component.html',
   styleUrls: ['./heat-transfer.component.css']
 })
 export class HeatTransferComponent {
-  
+  m:any = EMap;
   selected: string = "Shell and Tube Heat Exchanger";
   isTreeOn :boolean =false;
   ismenuOn : boolean=false;
@@ -17,13 +19,23 @@ export class HeatTransferComponent {
 
   subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering",
 ];
- constructor(private router: Router){
+ constructor(
+  private router: Router,
+  private snackBar: MatSnackBar
+  ){
 
  }
   ngOnInit() {
+
+      setTimeout(() => {
+        this.snackBar.open('Currently in Heat Transfer Stream , Use the menu bar to Navigate to other processes', 'Ok', {
+          duration: 5000,
+        });
+      }, 2000);
+
     this.selected = "Shell and Tube Heat Exchanger";
     this.equipments = [
-      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
+      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
     ,"Open Pan Evaporator","Batch"];
     this.selectedOperation = "Theory";
   }
@@ -44,10 +56,13 @@ selectedLab(option: string) {
     else if(option=='Double Pipe Heat Exchanger'){
       option="ShellAndTubeHeatExchanger"
     }
+    else if(option=='Vertical Condenser'){
+      option="VerticalCondenser"
+    }
     this.navigateTo(option);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/HeatTransfer',url]);
+    this.router.navigate(['/Home','HeatTransfer',url]);
   }
 }
 

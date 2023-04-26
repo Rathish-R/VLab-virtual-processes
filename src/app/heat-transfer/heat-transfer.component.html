@@ -1,11 +1,10 @@
-
 <div class="ht-page">
-    <mat-toolbar  color="primary" style="position:sticky;top: 0;">
-        <button  mat-flat-button  color="primary"  (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
+    <mat-toolbar color="primary" style="position:sticky;top: 0;">
+        <button mat-flat-button color="primary" (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop">{{selected}}</button>
         <span class="example-spacer" style=" flex: 1 1 auto;"></span>
-        <button  mat-flat-button  color="primary"  (click)="isTreeOn=true" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>    
+        <button mat-flat-button color="primary" (click)="isTreeOn=true" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> Heat Transfer</button>
     </mat-toolbar>
     <div class="row" style="z-index: -1;">
         <div class="offcanvas offcanvas-start" tabindex="-1" id="Equip" aria-labelledby="offcanvasWithBackdropLabel">
@@ -15,46 +14,38 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-               
+
                 <ul class="labs">
-                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab" (click)="this.selected=eq;selectedExp(this.selected);"
+                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab"
+                                (click)="this.selected=eq;selectedExp(this.selected);"
                                 style="padding:10px">{{eq}}</button></a></li>
                 </ul>
-                
+
             </div>
         </div>
-      
-          
-         <div class="col" style="padding:2%;">
+        <div class="container-fluid" style="width:90% ; margin:0 5%">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col" style="padding:2%;">
             <div class="container-fluid">
-                <div *ngIf="selected=='Shell and Tube Heat Exchanger'">
-                    <app-shell-and-tube ></app-shell-and-tube>
-                </div>
-                <div *ngIf="selected=='Helical Coil Heat Exchanger'">
-                    <app-helical-coil-hex ></app-helical-coil-hex>
-                </div>
-                <!-- <div *ngIf="selected=='Open Pan Evaporator'">
-                    <app-open-pan-evaporator ></app-open-pan-evaporator>
-                </div> -->
-                <!-- <div *ngIf="selected=='Batch'">
-                    <app-batch-kinetics></app-batch-kinetics>
-                </div> -->
-                
+
+
                 <div class="position-fixed bottom-0 end-0">
-                  
-                    <a id="GoTO" routerLink="/HeatTransfer">  <button   mat-fab color="primary"><i class="bi bi-chevron-up"
+
+                    <a id="GoTO" routerLink="/HeatTransfer"> <button mat-fab color="primary"><i class="bi bi-chevron-up"
                                 style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
                 </div>
-                
+
             </div>
 
-        </div> 
+        </div>
     </div>
-</div> <div *ngIf="selected==null || selected.length==0">
-<div style="margin: 30%;width: 40%;">
-    <button mat-flat-button  (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#Equip" aria-controls="offcanvasWithBackdrop"> 
-<h1>Select Process</h1>
-    </button>
 </div>
+<div *ngIf="selected==null || selected.length==0">
+    <div style="margin: 30%;width: 40%;">
+        <button mat-flat-button (click)="ismenuOn=true" type="button" data-bs-toggle="offcanvas" data-bs-target="#Equip"
+            aria-controls="offcanvasWithBackdrop">
+            <h1>Select Process</h1>
+        </button>
+    </div>
 </div>

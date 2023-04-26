@@ -2,19 +2,11 @@
     <mat-tab label="Theory">
         <br>
         <h2>Objective</h2>
-        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
-            Exchanger </p><br>
+        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Condenser </p><br>
         <h2>Theory </h2>
         <p class="Theory">
 
-            A shell and tube heat exchanger is a type of heat exchanging device constructed using a
-            large cylindrical enclosure, or shell,
-            that has bundles of perfectly spaced tubing compacted in its interior.
-            Heat exchanging is the transfer of heat from one substance or medium to a similar
-            substance
-            or medium. Shell and tube heat exchangers
-            are the most common form of heat exchanger design.
-            It is used in desulphurisation process in petroleum industry
+            a condenser is a heat exchanger used to condense a gaseous substance into a liquid state through cooling. In so doing, the latent heat is released by the substance and transferred to the surrounding environment. Condensers are used for efficient heat rejection in many industrial systems. Condensers can be made according to numerous designs, and come in many sizes ranging from rather small (hand-held) to very large (industrial-scale units used in plant processes). 
             <br>
             <br>
             <br>
@@ -100,15 +92,16 @@
                             <td>Assumed HT Coefficient U</td>
                             <td>
                                 <select formControlName="HeatTransferCoeffAssumed">
-                                    <option value="300">300</option>
-                                    <option value="400">400</option>
-                                    <option value="500">500</option>
-                                    <option value="600">600</option>
+                                    <option value="800">800</option>
+                                    <option value="900">900</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1100">1200</option>
+                                    <option value="1200">1200</option>
                                 </select>
                             </td>
                             <td> W/m<sup>2</sup>&deg;C </td>
                         </tr>
-                        
+                       
 
                         <tr>
                             <td>Tube's Outside diameter</td>
@@ -131,20 +124,10 @@
                             </td>
                             <td> m </td>
                         </tr>
+                  
                         <tr>
-
-                            <td>Shell side Fluid</td>
-                            <td>
-                                <select formControlName="ShellFluid">
-                                    <option value="Methanol">Methanol</option>
-                                    <option value="Water">Water</option>
-                                </select>
-                            </td>
-                            <td> NA </td>
-                        </tr>
-                        <tr>
-                            <td> Mass Flowrate (Methanol)</td>
-                            <td><input type="number" formControlName="OilFlowRate"></td>
+                            <td> Mass Flowrate (Vapour)</td>
+                            <td><input type="number" formControlName="VapFlowRate"></td>
                             <td>
                                 <select formControlName="OilFRUnit">
                                     <option value="Kg/sec">Kg/sec</option>
@@ -194,23 +177,19 @@
                             <td><input type="number" formControlName="Tho"></td>
                             <td>&deg;C</td>
                         </tr>
-                       <tr>
-                            <td>Number of Passes</td>
-                            <td><input type="number" formControlName="Passes"></td>
-                            <td> NA </td>
-                        </tr>
+                      
                     </tbody>
                 </table>
                 <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
                 <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                     required.</div>
-                <div *ngIf="ip.valid && !this.s.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+                <div *ngIf="ip.valid && !this.v.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
             </form>
         </div>
     </mat-tab>
 
     <mat-tab label="Result">
-        <div *ngIf="s.isCalculated">
+        <div *ngIf="v.isCalculated">
             <table class="table table-hover table-striped table-striped mat-elevation-z8">
                 <thead>
                     <tr>
@@ -223,103 +202,92 @@
                     <tr>
                         <td> LMTD </td>
 
-                        <td>{{this.s.lmtd}}</td>
+                        <td>{{this.v.lmtd}}</td>
                         <td>&deg;C </td>
                     </tr>
                     <tr>
                         <td> Heat Duty Q (shell) </td>
 
-                        <td>{{this.s.QShellSide}}</td>
+                        <td>{{this.v.QShellSide}}</td>
                         <td>W</td>
                     </tr>
                     <tr>
                         <td> Heat Transfer Area (Shell)</td>
 
-                        <td>{{this.s.HtArea}}</td>
+                        <td>{{this.v.HtArea}}</td>
                         <td>m<sup>2</sup></td>
                     </tr>
                     <tr>
                         <td> Number of Tubes </td>
 
-                        <td>{{this.s.Tubes}}</td>
+                        <td>{{this.v.Tubes}}</td>
                         <td> NA </td>
                     </tr>
                     <tr>
                         <td> Bundle Diameter </td>
 
-                        <td>{{this.s.BundleDia}}</td>
+                        <td>{{this.v.BundleDia}}</td>
                         <td> m </td>
                     </tr>
                     <tr>
                         <td> Shell Diameter </td>
 
-                        <td>{{this.s.ShellDia}}</td>
+                        <td>{{this.v.ShellDia}}</td>
                         <td> m </td>
                     </tr>
                     <tr>
                         <td> Tubes Per Pass </td>
 
-                        <td>{{this.s.TubesPerPass}}</td>
+                        <td>{{this.v.TubesPerPass}}</td>
                         <td> m </td>
                     </tr>
                     <tr>
                         <td>Total Flow area(Tubes)</td>
 
-                        <td>{{this.s.FlowAreaOfTubes}}</td>
+                        <td>{{this.v.FlowAreaOfTubes}}</td>
                         <td> m<sup>2</sup> </td>
                     </tr>
                     <tr>
                         <td>Velocity(Tube side fluid)</td>
 
-                        <td>{{this.s.VelocityTubeSide}}</td>
+                        <td>{{this.v.VelocityTubeSide}}</td>
                         <td> m/s </td>
                     </tr>
-                    <tr>
-                        <td>Baffle Spacing</td>
-
-                        <td>{{this.s.BaffleSpace}}</td>
-                        <td> m </td>
-                    </tr>
-                    <tr>
-                        <td>Velocity(Shell side fluid)</td>
-
-                        <td>{{this.s.VelocityShellSide}}</td>
-                        <td> m/s </td>
-                    </tr>
-                    <tr>
-                        <td>Shell Side HeatTransfer Coefficient</td>
-
-                        <td>{{this.s.HtubeSide}}</td>
-                        <td>W/m<sup>2</sup>&deg;C </td>
-                    </tr>
+                  
                     <tr>
                         <td>Tube Side HeatTransfer Coefficient</td>
 
-                        <td>{{this.s.HShellSide}}</td>
+                        <td>{{this.v.HtubeSide}}</td>
+                        <td>W/m<sup>2</sup>&deg;C </td>
+                    </tr>
+                    <tr>
+                        <td>Tube Bundle HeatTransfer Coefficient</td>
+
+                        <td>{{this.v.HTubeBundle}}</td>
                         <td> W/m<sup>2</sup>&deg;C </td>
                     </tr>
                     <tr>
                         <td>Overall HeatTransfer Coefficient</td>
 
-                        <td>{{this.s.OverallHTCoeff}}</td>
+                        <td>{{this.v.OverallHTCoeff}}</td>
                         <td> W/m<sup>2</sup>&deg;C </td>
                     </tr>
                     <tr>
                         <td>Tube side Pressure Drop</td>
 
-                        <td>{{this.s.PDropTs}}</td>
+                        <td>{{this.v.PDropTs}}</td>
                         <td>Psi</td>
                     </tr>
                     <tr>
                         <td>Shell side Pressure Drop</td>
 
-                        <td>{{this.s.PDropSs}}</td>
+                        <td>{{this.v.PDropSs}}</td>
                         <td>Psi</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div *ngIf="!this.s.isCalculated">
+        <div *ngIf="!this.v.isCalculated">
             <div class="alert-warning" style="padding:20px">
                 <h3>Cannot generate results</h3>
                 <h6>Simulate to get results</h6>
@@ -377,41 +345,41 @@
                         <td><input type="number" formControlName="Tci"></td>
                         <td>&deg;C</td>
                     </tr>
+                     <tr>
+    
+                            <td>Cold fluid Outlet temperature (Desired)</td>
+                            <td><input type="number" formControlName="Tco"></td>
+                            <td>&deg;C</td>
+                        </tr>
+                        <tr>
+    
+                            <td>Hot fluid Outlet temperature (Desired)</td>
+                            <td><input type="number" formControlName="Tho"></td>
+                            <td>&deg;C</td>
+                        </tr>
                     <tr>
                         <td> Obtained Overall Heat Temperature Coefficient - U</td>
 
-                        <td>{{this.s.OverallHTCoeff}}</td>
+                        <td>{{this.v.OverallHTCoeff}}</td>
                         <td>W/m<sup>2</sup> &deg;C</td>
                     </tr>
 
                     <tr>
                         <td> Obtained Heat Duty - Q</td>
 
-                        <td>{{this.s.QFound/1000}}</td>
+                        <td>{{this.v.QFound/1000}}</td>
                         <td>KW</td>
                     </tr>
                     <tr>
-    
-                        <td>Cold fluid Outlet temperature (Desired)</td>
-                        <td><input type="number" formControlName="Tco"></td>
-                        <td>&deg;C</td>
-                    </tr>
-                    <tr>
+                        <td> Hot Fluid Outlet temperature - THo</td>
 
-                        <td>Hot fluid Outlet temperature (Desired)</td>
-                        <td><input type="number" formControlName="Tho"></td>
-                        <td>&deg;C</td>
-                    </tr>
-                    <tr>
-                        <td>Hot Fluid Outlet temperature (Actual)</td>
-
-                        <td>{{this.s.Tho}}</td>
+                        <td>{{this.v.Tho}}</td>
                         <td> &deg;C</td>
                     </tr>
                     <tr>
-                        <td> Cold Fluid Outlet temperature (Actual)</td>
+                        <td> Cold Fluid Outlet temperature - TCo</td>
 
-                        <td>{{this.s.Tco}}</td>
+                        <td>{{this.v.Tco}}</td>
                         <td> &deg;C</td>
                     </tr>
 
@@ -420,11 +388,11 @@
             <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
             <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                 required.</div>
-            <div *ngIf="ip.valid && !this.s.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+            <div *ngIf="ip.valid && !this.v.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
         </form>
         <div class="image">
-            <div class="Tco" style="position:absolute;top:5;left:3">{{this.s.Tco}}</div>
-            <div class="Tho">{{this.s.Tho}}</div>
+            <div class="Tco" style="position:absolute;top:5;left:3">{{this.v.Tco}}</div>
+            <div class="Tho">{{this.v.Tho}}</div>
 
             <img class="rounded mx-auto d-block"
                 src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
