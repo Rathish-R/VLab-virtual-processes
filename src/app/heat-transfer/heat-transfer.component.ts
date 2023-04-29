@@ -33,7 +33,7 @@ export class HeatTransferComponent {
         });
       }, 2000);
 
-    this.selected = "Shell and Tube Heat Exchanger";
+    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
       "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
     ,"Open Pan Evaporator","Batch"];
@@ -54,11 +54,12 @@ selectedLab(option: string) {
       option="HelicalCoilHeatExchanger"
     }
     else if(option=='Double Pipe Heat Exchanger'){
-      option="ShellAndTubeHeatExchanger"
+      option="DoublePipeHeatExchanger"
     }
     else if(option=='Vertical Condenser'){
       option="VerticalCondenser"
     }
+    localStorage.setItem('Current',option);
     this.navigateTo(option);
   }
   navigateTo(url: string): void {

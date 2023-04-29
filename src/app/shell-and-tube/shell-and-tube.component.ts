@@ -13,7 +13,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ShellAndTubeComponent {
   isClickLabOn!: boolean;
   equipments!: string[];
-  ResultObt!: boolean;
   isTheoryOn!: boolean;
   log: any = [{
   }]
@@ -35,9 +34,6 @@ export class ShellAndTubeComponent {
       "Shell and Tube Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
     ];
     this.isClickLabOn = true;
-    this.selectedOperation = "Theory";
-    this.ResultObt = false;
-    this.isTheoryOn = true;
   }
 
   ip = new FormGroup({
@@ -58,14 +54,12 @@ export class ShellAndTubeComponent {
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
   methanol: Methanol = new Methanol();
-  water: Water = new Water();
+  water!: Water;
   initialization(th: number, tc: number) {
     debugger;
     this.s.isFeasible = false;
-    // var methanol: Methanol = new Methanol();
     this.methanol.getProperties(th);
-    // var water: Water = new Water();
-    this.water.getProperties(tc);
+    this.water= new Water(tc);
     if (this.ip.value.ShellFluid == "Methanol") {
       this.s.SFDensity = this.methanol.density;
       this.s.TFDensity = this.water.density;
@@ -75,8 +69,11 @@ export class ShellAndTubeComponent {
       this.s.SFCp = this.methanol.cp;
       this.s.SFVisc = this.methanol.viscosity;
       this.s.TFVisc = this.water.viscosity;
+
+      this.s.SFR = Number(this.ip.value.OilFlowRate);
+      this.s.TFR = Number(this.ip.value.Waterflowrate);
       if (this.ip.value.OilFRUnit == "Kg/sec") {
-        this.s.SFR = Number(this.ip.value.OilFlowRate);
+    
         // this.TFR=Number(this.inputValues.value.Waterflowrate);
       }
       else if (this.ip.value.OilFRUnit == "Kg/min") {
@@ -89,7 +86,7 @@ export class ShellAndTubeComponent {
         // this.TFR=Number(this.inputValues.value.Waterflowrate) /( 60 * 60);
       }
       if (this.ip.value.WaterFRUnit == "Kg/sec") {
-        this.s.TFR = Number(this.ip.value.Waterflowrate);
+   
       }
       else if (this.ip.value.WaterFRUnit == "Kg/min") {
         // this.SFR = Number(this.inputValues.value.OilFlowRate) / 60;

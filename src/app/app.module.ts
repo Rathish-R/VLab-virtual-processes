@@ -30,6 +30,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { VerticalCondenserComponent } from './vertical-condenser/vertical-condenser.component';
+import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { VerticalCondenserComponent } from './vertical-condenser/vertical-conden
     
     SideNavComponent,
           VerticalCondenserComponent,
+          DoublePipeHExComponent,
 
   ],
   imports: [

@@ -5,10 +5,12 @@ import { ShellAndTubeComponent } from 'src/app/shell-and-tube/shell-and-tube.com
 import { HelicalCoilHExComponent } from 'src/app/helical-coil-hex/helical-coil-hex.component';
 
 import { VerticalCondenserComponent } from 'src/app/vertical-condenser/vertical-condenser.component';
+import { DoublePipeHExComponent } from 'src/app/double-pipe-hex/double-pipe-hex.component';
 const routes: Routes = [{ path: '', component: HeatTransferComponent ,children:[
   { path: "ShellAndTubeHeatExchanger", component: ShellAndTubeComponent },
   { path: "HelicalCoilHeatExchanger", component: HelicalCoilHExComponent },
-  {path:'VerticalCondenser' , component:VerticalCondenserComponent}
+  {path:'VerticalCondenser' , component:VerticalCondenserComponent},
+  {path:'DoublePipeHeatExchanger' , component:DoublePipeHExComponent}
 ]}];
 
 @NgModule({

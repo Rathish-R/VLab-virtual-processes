@@ -79,8 +79,8 @@ absRoughness =0.0005 //m
     debugger;
     this.h.isFeasible=false;
     var VegeOil: VOil = new VOil();
-    var water: Water = new Water();
-    water.getProperties(Number(this.ip.value.Tci));
+    var water: Water = new Water(Number(this.ip.value.Tci));
+
     VegeOil.getProperties(Number(this.ip.value.Thi));
     this.h.SFDensity = water.density;
       this.h.TFDensity =VegeOil.density; 
