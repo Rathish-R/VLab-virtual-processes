@@ -67,15 +67,15 @@ export class VerticalCondenserComponent {
 
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
-  methanol: Methanol = new Methanol();
-  water: Water = new Water();
+  methanol!: Methanol;
+  water!: Water;
   initialization(th: number, tc: number) {
     debugger;
     this.v.isFeasible = false;
+    this.water= new Water(tc);
     // var methanol: Methanol = new Methanol();
     this.methanol.getProperties(th);
     // var water: Water = new Water();
-    this.water.getProperties(tc);
     if (this.ip.value.ShellFluid == "Methanol") {
       this.v.Tci = Number(this.ip.value.Tci);
       this.v.Thi = Number(this.ip.value.Thi);
@@ -213,10 +213,10 @@ export class VerticalCondenserComponent {
       console.log(ActualArea);
       this.v.QFound = this.v.OverallHTCoeff * ActualArea * this.v.lmtd;
       if (U > OvU) {
-        this.v.isFeasible = false;
-        U -= (0.1) * U;
-        console.log(U);
-        rectifier += 0.2;
+        // this.v.isFeasible = false;
+        // U -= (0.1) * U;
+        // console.log(U);
+        // rectifier += 0.2;
 
       }
       else {
