@@ -65,6 +65,10 @@ selectedLab(option: string) {
   navigateTo(url: string): void {
     this.router.navigate(['/Home','HeatTransfer',url]);
   }
+  ngOnDestroy() {
+
+    localStorage.removeItem('Current');
+  }
 }
 
 

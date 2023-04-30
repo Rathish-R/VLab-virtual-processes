@@ -1,13 +1,13 @@
-<div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 100;">
+<div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 100;width:100%">
     <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
             data-bs-toggle="offcanvas" data-bs-target="#Labs" aria-controls="offcanvasWithBackdrop">
             <mat-icon>menu</mat-icon>
         </button>
-        <span> Virtual Process Equipments</span>
+        <div class="heading"><span class="heading"> Virtual Process Equipments</span></div>
         <span class="example-spacer" style=" flex: 1 1 auto;"></span>
-        <button mat-button  [routerLink]="['/Home']" (click)="isHomeOn=true">
-            Home
+        <button class="homeBtn" mat-button  [routerLink]="['/Home']" (click)="isHomeOn=true">
+           <span class="homeText">Home</span> 
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         </button>
     </mat-toolbar>
@@ -20,9 +20,6 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        
-        <button mat-button  color="primary" (click)="accordion.openAll()">Expand All</button>
-        <button mat-button  color="primary" (click)="accordion.closeAll()">Collapse All</button>
         <li *ngFor="let sub of subjects">
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
@@ -74,27 +71,28 @@
     <app-mass-transfer></app-mass-transfer>
 </div>
 
-<div class="container" *ngIf="isHomeOn"
-    style="margin:5% 10%;padding: 2%;width: 90%;  display: table;">
+<div class="container-fluid" *ngIf="isHomeOn"
+    style="margin:5%;padding: 2%;width: 90%;  display: grid;align-items: center;
+    justify-content: center;">
     <div class="row">
 
-        <div class="col"><button mat-raised-button class="btn btn-FM" (click)="isFmOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isFmOn=true"
                 routerLink="FluidMechanics">Fluid
                 Mechanics</button></div>
-        <div class="col"><button mat-raised-button class="btn btn-HT" (click)="isHtOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isHtOn=true"
                 [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
-        <div class="col"><button mat-raised-button class="btn btn-MT" (click)="isMtOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMtOn=true"
                 routerLink="MassTransfer">Mass
                 Transfer</button></div>
     </div>
     <div class="row">
-        <div class="col-4"><button mat-raised-button class="btn btn-MO" (click)="isMoOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
                 routerLink="MechanicalOperations">Mechanical Operations </button>
         </div>
-        <div class="col-4"><button mat-flat-button color="primary" class="btn btn-Static"
+        <div class="col"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
-        <div class="col-4"><button mat-raised-button class="btn btn-CRE" (click)="isCREOn=true"
+        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isCREOn=true"
                 routerLink="ChemicalReactionEngineering">Chemical Reaction
                 Engineering</button></div>
 
