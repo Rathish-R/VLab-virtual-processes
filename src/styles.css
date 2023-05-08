@@ -2,6 +2,16 @@
 p{
     line-height: 1.5
 }
+.formulae{
+letter-spacing: 1.5;
+
+}
+.subheading{
+    line-height: 1.5;
+    font-weight: 600;
+    font-size: 22px;
+}
+
 .btn-Static{
 
     font-weight: 400;

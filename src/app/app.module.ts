@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { RotaryDryerComponent } from './mass-transfer/rotary-dryer/rotary-dryer.component';
-import { FluidMechanicsComponent } from './fluid-mechanics/fluid-mechanics.component';
+
 import { MassTransferComponent } from './mass-transfer/mass-transfer.component';
 import { ChemicalRectionEngineeringComponent } from './chemical-rection-engineering/chemical-rection-engineering.component';
 import { SemiBatchComponent } from './semi-batch/semi-batch.component';
@@ -31,13 +31,15 @@ import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.
 import {MatGridListModule} from '@angular/material/grid-list';
 import { VerticalCondenserComponent } from './vertical-condenser/vertical-condenser.component';
 import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.component';
+import { CycloneSeparatorComponent } from './cyclone-separator/cyclone-separator.component';
+import { AnnulusPipeComponent } from './annulus-pipe/annulus-pipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
 
-    FluidMechanicsComponent,
+
     MassTransferComponent,
     ChemicalRectionEngineeringComponent,
     MechanicalOperationsComponent,
@@ -45,6 +47,8 @@ import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.compon
     SideNavComponent,
           VerticalCondenserComponent,
           DoublePipeHExComponent,
+          CycloneSeparatorComponent,
+          AnnulusPipeComponent,
 
   ],
   imports: [
@@ -63,7 +67,7 @@ import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.compon
     MatTreeModule,
     MatSnackBarModule,
     HeatTransferModule,
-    MatGridListModule
+    MatGridListModule,MaterialModule,MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

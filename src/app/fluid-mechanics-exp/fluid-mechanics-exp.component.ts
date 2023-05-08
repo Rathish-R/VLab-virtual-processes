@@ -1,13 +1,14 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EMap } from '../home/Equipments';
+
 @Component({
-  selector: 'app-heat-transfer',
-  templateUrl: './heat-transfer.component.html',
-  styleUrls: ['./heat-transfer.component.css']
+  selector: 'app-fluid-mechanics-exp',
+  templateUrl: './fluid-mechanics-exp.component.html',
+  styleUrls: ['./fluid-mechanics-exp.component.css']
 })
-export class HeatTransferComponent {
+export class FluidMechanicsExpComponent {
   m:any = EMap;
   selected: string = "Shell and Tube Heat Exchanger";
   isTreeOn :boolean =false;
@@ -26,15 +27,14 @@ export class HeatTransferComponent {
   ngOnInit() {
 
       setTimeout(() => {
-        this.snackBar.open('Currently in Heat Transfer Stream , Use the menu bar to Navigate to other processes', 'Ok', {
+        this.snackBar.open('Currently in Fluid mechanics Stream , Use the menu bar to Navigate to other processes', 'Ok', {
           duration: 5000,
         });
       }, 2000);
 
     this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
-      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
-    ,"Open Pan Evaporator","Batch"];
+      "Annulus Pipes" , "Straight pipes"];
     this.selectedOperation = "Theory";
   }
   ngOnChanges(){
@@ -45,28 +45,23 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    if(option=='Shell and Tube Heat Exchanger'){
-      option="ShellAndTubeHeatExchanger"
+    if(option=='Annulus Pipes'){
+      option="AnnulusPipes"
     }
     else if(option=='Helical Coil Heat Exchanger'){
       option="HelicalCoilHeatExchanger"
-    }
-    else if(option=='Double Pipe Heat Exchanger'){
-      option="DoublePipeHeatExchanger"
-    }
-    else if(option=='Vertical Condenser'){
-      option="VerticalCondenser"
     }
     localStorage.setItem('Current',option);
     this.navigateTo(option);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/Home','HeatTransfer',url]);
+    this.router.navigate(['/Home','FluidMechanics',url]);
   }
   ngOnDestroy() {
 
     localStorage.removeItem('Current');
   }
 }
+
 
 

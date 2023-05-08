@@ -1,15 +1,16 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EMap } from '../home/Equipments';
+import { MatToolbar } from '@angular/material/toolbar';
 @Component({
-  selector: 'app-heat-transfer',
-  templateUrl: './heat-transfer.component.html',
-  styleUrls: ['./heat-transfer.component.css']
+  selector: 'app-mechanicaloperations',
+  templateUrl: './mechanicaloperations.component.html',
+  styleUrls: ['./mechanicaloperations.component.css']
 })
-export class HeatTransferComponent {
+export class MechanicaloperationsComponent  {
   m:any = EMap;
-  selected: string = "Shell and Tube Heat Exchanger";
+  selected: string = "Cyclone Separator";
   isTreeOn :boolean =false;
   ismenuOn : boolean=false;
   equipments!: string[];
@@ -33,9 +34,9 @@ export class HeatTransferComponent {
 
     this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
-      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
-    ,"Open Pan Evaporator","Batch"];
-    this.selectedOperation = "Theory";
+      "Cyclone Separator", " ", " "," ", " "
+    ," "," "];
+
   }
   ngOnChanges(){
     this.selectedExp(this.selected)
@@ -45,8 +46,8 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    if(option=='Shell and Tube Heat Exchanger'){
-      option="ShellAndTubeHeatExchanger"
+    if(option=='Cyclone Separator'){
+      option="CycloneSeparator"
     }
     else if(option=='Helical Coil Heat Exchanger'){
       option="HelicalCoilHeatExchanger"
@@ -61,12 +62,13 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/Home','HeatTransfer',url]);
+    this.router.navigate(['/Home','MechanicalOperations',url]);
   }
   ngOnDestroy() {
 
     localStorage.removeItem('Current');
   }
 }
+
 
 

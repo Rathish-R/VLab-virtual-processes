@@ -62,7 +62,7 @@
 </div>
 <router-outlet></router-outlet>
   <div *ngIf="isFmOn">
-    <app-fluid-mechanics></app-fluid-mechanics>
+  
 </div>
 <div *ngIf="isCREOn">
     <app-chemical-rection-engineering></app-chemical-rection-engineering>
@@ -77,7 +77,7 @@
     <div class="row">
 
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isFmOn=true"
-                routerLink="FluidMechanics">Fluid
+            [routerLink]="['/Home','FluidMechanics','AnnulusPipes']">Fluid
                 Mechanics</button></div>
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isHtOn=true"
                 [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
