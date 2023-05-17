@@ -5,16 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
-import { RotaryDryerComponent } from './mass-transfer/rotary-dryer/rotary-dryer.component';
 
 import { MassTransferComponent } from './mass-transfer/mass-transfer.component';
 import { ChemicalRectionEngineeringComponent } from './chemical-rection-engineering/chemical-rection-engineering.component';
-import { SemiBatchComponent } from './semi-batch/semi-batch.component';
-import { MechanicalOperationsComponent } from './mechanical-operations/mechanical-operations.component';
-import { HeatTransferComponent } from './heat-transfer/heat-transfer.component';
-import { ShellAndTubeComponent } from './shell-and-tube/shell-and-tube.component';
 
-import { OpenPanEvaporatorComponent } from './open-pan-evaporator/open-pan-evaporator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -25,7 +19,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import{MaterialModule} from './material/material.module';
 import { MatTreeModule } from '@angular/material/tree';
-import { BatchKineticsComponent } from './batch-kinetics/batch-kinetics.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.module';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -33,6 +26,7 @@ import { VerticalCondenserComponent } from './vertical-condenser/vertical-conden
 import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.component';
 import { CycloneSeparatorComponent } from './cyclone-separator/cyclone-separator.component';
 import { AnnulusPipeComponent } from './annulus-pipe/annulus-pipe.component';
+import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effectiveness.component';
 
 @NgModule({
   declarations: [
@@ -42,13 +36,14 @@ import { AnnulusPipeComponent } from './annulus-pipe/annulus-pipe.component';
 
     MassTransferComponent,
     ChemicalRectionEngineeringComponent,
-    MechanicalOperationsComponent,
+
     
     SideNavComponent,
           VerticalCondenserComponent,
           DoublePipeHExComponent,
           CycloneSeparatorComponent,
           AnnulusPipeComponent,
+          ScreenEffectivenessComponent,
 
   ],
   imports: [

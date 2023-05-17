@@ -81,115 +81,53 @@
 
         <div style="margin:2% 10%;">
 
-            <button mat-flat-button data-bs-toggle="modal" data-bs-target="#Standardise">Standardise</button>
             <form [formGroup]="ip" (ngSubmit)="onSubmit()">
-
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>Property</th>
-                            <th>Value</th>
-                           
-                        </tr>
-                    </thead>
-                    <tbody>
-                      
-                        <tr>
-                            <td> Normality Of HCl Acid </td>
-
-                            <td>{{this.HClNorm}}</td>
-                        </tr>
-                        <tr>
-                            <td> Normality Of NaOH </td>
-                            <td>{{this.NaOHNorm}}</td>
-                            
-                        </tr>
-                        <tr>
-                            <td> Number of rows </td>
-                            <td><input type="number" formControlName="rows"></td>
-                            
-                        </tr>
-                        <hr>
-                       
-                        <!-- <tr>
-
-                    <td>Desired Concentration of sugar by weight</td>
-                    <td><input type="number" formControlName="ConcDs"></td>
-                    <td>%</td>
-                </tr> -->
-                        <!-- <tr>
-                    <td>HotFluid Outlet temperature</td>
-
-                    <td><input type="number" formControlName="Tho"></td>
-                    <td>&deg;C</td>
-                </tr> -->
-                        <!-- <tr>
-                    <td>Cold fluid inlet temperature</td>
-
-                    <td><input type="number" formControlName="Tci"></td>
-                    <td>&deg;C</td>
-                </tr> -->
-                        <!-- <tr>
-
-                    <td>Cold fluid Outlet temperature</td>
-                    <td><input type="number" formControlName="Tco"></td>
-                    <td>&deg;C</td>
-                </tr> -->
-                        <!-- 
-                <tr>
-
-                    <td>Tube's Outside diameter</td>
-                    <td>
-                        <input type="number" formControlName="TubeDiaO">
-                    </td>
-                    <td> NA </td>
-                </tr>
-                <tr>
-
-                    <td>Tube's Inside diameter</td>
-                    <td>
-                        <input type="number" formControlName="TubeDiaI">
-                    </td>
-                    <td> NA </td>
-                </tr> -->
-                        <!-- <tr>
-                    <td>Tube's Inner diameter</td>
-                    <td><input type="number" formControlName="TubeDiaI"></td>
-                    <td> NA </td>
-                </tr>
-                <tr>
-                    <td>Tube's Outer diameter</td>
-                    <td><input type="number" formControlName="TubeDiaO"></td>
-                    <td> NA </td>
-                </tr> -->
-                    </tbody>
-                    <div *ngIf="isStandardised">
-                    <button  class="btn btn-success" type="submit" [disabled]="!ip.valid"
-                    (click)="onSubmit()">submit</button>
-                <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
-                    required.</div>
-                <div *ngIf="ip.valid" style="color: rgb(4, 255, 0)">Ready to calculate</div>
-            </div>
-                </table>
-               
-                <div *ngIf="isStandardised">
+                <div>
+                    <div class="row m-5" style="font-size: 18px;">
+                        <div class="col">
+                            <label for="toCheck">Enter the Screen to be checked </label>
+                        </div>
+                        <div class="col">
+                            <select id="toCheck" formControlName="Screen">
+                                <option *ngFor="let m of mesh" value="{{m}}">{{m}}</option>
+        
+                            </select>
+                        </div>
+                        <div class="col">
+                            <button mat-raised-button class="btn-success" (click)="onSubmit()"> Submit</button>
+                        </div>
+                    </div>
+                    
+                   
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>SI No </th>
-                                <th>Time </th>
-                                <th>Volume of NaOh</th>
-                                <th> Xa </th>
-                                <th></th>
+                                <th>Mesh</th>
+                                <th>Screen Opening - Dpi</th>
+                                <th> Xf </th>
+                                <th>Xf (cumulative)</th>
+                                <th>XD (cumulative)</th>
+                                <th>XB (cumulative)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let row of nums; let i = index">
-                                <td>{{row}}</td>
-                                <td>{{getTime(i)}}</td>
-                                <td><input type="number" [formControl]="ip.controls.volumes.controls[i]"></td>
-                                <td>{{getXa(i)}}</td>
-                                <td>{{getLn(i)}}</td>
+                            <tr *ngFor="let m of mesh; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{m}}</td>
+                                <td>{{Dpi[i]}}</td>
+
+                                <td>
+
+                                    <span
+                                        *ngIf="ip.controls.xf.controls[i].invalid && ip.controls.xf.controls[i].touched">Limit
+                                        has been met!</span>
+                                    <input type="number" min="0" max="1" [formControl]="ip.controls.xf.controls[i]">
+                                </td>
+                                <td>{{getCumXF(i)}} </td>
+                                <td>{{getCumXD(i)}}</td>
+                                <td>{{getCumXB(i)}}</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -209,21 +147,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                <td> Solute Amount: </td>
-
-            <tr>
-                <td>Tube side Pressure Drop</td>
-
-                <td>{{this.h.PDropTs}}</td>
-                <td>Psi</td>
-            </tr>
-            <tr>
-                <td>Shell side Pressure Drop</td>
-
-                <td>{{this.h.PDropSs}}</td>
-                <td>Psi</td>
-            </tr> -->
+                    <tr>
+                        <td>D/f</td>
+            
+                        <td>{{this.df}}</td>
+                        <td>W</td>
+                    </tr> 
+                    <tr>
+                        <td>D/f</td>
+            
+                        <td>{{this.bf}}</td>
+                        <td>W</td>
+                    </tr>
+                    <tr>
+                        <td>D/f</td>
+            
+                        <td>{{this.efficiency}}</td>
+                        <td>W</td>
+                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -270,8 +212,7 @@
             </tbody>
         </table>
         <div class="image">
-            <!-- <div class="Tco">{{this.h.Tco}}</div>
-    <div class="Tho">{{this.h.Tho}}</div> -->
+
 
             <img class="rounded mx-auto d-block"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmtgZ2Yby7Hvb4G4IfsV-iZazNnIBC0F1wOH301Q5jgVXtCWVWP9jBcyc1s8AXt_IbJLojx3e0q-A&usqp=CAU&ec=48600113"
@@ -285,12 +226,12 @@
     </div>
 </mat-tab-group>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="Standardise" aria-labelledby="errorModalLabel"
+<!-- <div *ngIf="ip.controls.xf.controls[i].invalid && ip.controls.xf.controls[i].touched" class="modal fade" tabindex="-1" role="dialog" id="errorModal" aria-labelledby="errorModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" id="standardise">
+    <div class="modal-dialog modal-dialog-centered" role="document" id="errorModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="standardise"></h5>
+                <h5 class="modal-title" id="errorModal"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -335,12 +276,7 @@
                             <td>{{getHClNorm()}}</td>
                         </tr>
                         
-                        <!-- <tr>
-                                <td> Volume of Oxalic acid</td>
-                            </tr>
-                            <tr>
-                                <td> Volume of Oxalic acid</td>
-                            </tr> -->
+                      
 
                     </tbody>
                 </table>
@@ -354,4 +290,4 @@
         </div>
     </div>
 
-</div>
+</div> -->

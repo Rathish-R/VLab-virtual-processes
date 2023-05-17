@@ -32,9 +32,9 @@ export class MechanicaloperationsComponent  {
         });
       }, 2000);
 
-    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
+    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Cyclone Separator';
     this.equipments = [
-      "Cyclone Separator", " ", " "," ", " "
+      "Cyclone Separator", "Screen Effectiveness", " "," ", " "
     ," "," "];
 
   }
@@ -49,8 +49,8 @@ selectedLab(option: string) {
     if(option=='Cyclone Separator'){
       option="CycloneSeparator"
     }
-    else if(option=='Helical Coil Heat Exchanger'){
-      option="HelicalCoilHeatExchanger"
+    else if(option=='Screen Effectiveness'){
+      option="ScreenEffectiveness"
     }
     else if(option=='Double Pipe Heat Exchanger'){
       option="DoublePipeHeatExchanger"

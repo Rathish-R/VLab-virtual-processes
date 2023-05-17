@@ -89,60 +89,28 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Fluid used</td>
+                            <td>gas flowrate used</td>
                             <td>
-                                <select formControlName="Fluid">
-                                    <option value="Water">Water</option>
-                                   
-                                </select>
+                                <input type="number" formControlName="gasflowrate">
                             </td>
                             <td> NA</td>
                         </tr>
-                        
-
+                       
                         <tr>
-                            <td> Outside Pipe's diameter</td>
+                            <td>Diameter of the cyclone separator inlet</td>
                             <td>
-                                <input type="number" formControlName="Do">
+                                <input type="number" formControlName="Dp">
                             </td>
-                            <td> m </td>
+                            <td> NA</td>
                         </tr>
                         <tr>
-                            <td> Inside Pipe's diameter</td>
-                            <td>
-                                <input type="number" formControlName="Di">
-                            </td>
-                            <td> m </td>
-                        </tr>
-                        <tr>
-                            <td>Pipe's Length</td>
+                            <td> Length of the cyclone</td>
                             <td>
                                 <input type="number" formControlName="L">
                             </td>
                             <td> m </td>
                         </tr>
-                   
-                        <tr>
-                            <td>Fluid flowrate</td>
-    
-                            <td><input type="number" formControlName="Waterflowrate"></td>
-                            <td> <select formControlName="WaterFRUnit">
-                                <option value="m3/hr">m<sup>3</sup>/sec</option>
-                                </select></td>
-                        </tr>
-    
-                        <tr>
-                            <td>Inlet Pressure</td>
-                            <td><input type="number" formControlName="Pi"></td>
-                            <td>bar</td>
-                        </tr>
-                        <tr>
-                            <td>Outlet Pressure/td>
-    
-                            <td><input type="number" formControlName="Po"></td>
-                            <td>bar</td>
-                        </tr>
-                      
+                
                     </tbody>
                 </table>
                 <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
@@ -197,7 +165,7 @@
     </mat-tab>
     <mat-tab label="Virtual Experiment">
         <form [formGroup]="ip">
-            <table mat-table class="table table-bordered table-striped mat-elevation-z8">
+            <!-- <table mat-table class="table table-bordered table-striped mat-elevation-z8">
                 <thead>
                     <tr>
                         <th>Property</th>
@@ -280,15 +248,14 @@
                     </tr>
 
                 </tbody>
-            </table>
+            </table> -->
             <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
             <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                 required.</div>
             <div *ngIf="ip.valid && !this.s.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
         </form>
         <div class="image">
-            <div class="Tco" style="position:absolute;top:5;left:3">{{this.s.Tco}}</div>
-            <div class="Tho">{{this.s.Tho}}</div>
+           
 
             <img class="rounded mx-auto d-block"
                 src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"

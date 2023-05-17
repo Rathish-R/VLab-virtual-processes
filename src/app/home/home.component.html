@@ -87,7 +87,7 @@
     </div>
     <div class="row">
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
-                routerLink="MechanicalOperations">Mechanical Operations </button>
+            [routerLink]="['/Home','MechanicalOperations','CycloneSeparator']"  >Mechanical Operations </button>
         </div>
         <div class="col"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process

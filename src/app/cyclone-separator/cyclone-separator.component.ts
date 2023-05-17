@@ -52,9 +52,9 @@ export class CycloneSeparatorComponent {
     this.s.Dp = Number(this.ip.value.Dp);
     this.s.ViscG = 0.023;
 
-    this.s.DensityP = this.water.density;
-    this.s.Cond = this.water.k;
-    this.s.Cp = this.water.cp;
+    this.s.DensityP = 2500;
+    // this.s.Cond = this.water.k;
+    // this.s.Cp = this.water.cp;
 
     this.s.Flowrate = Number(this.ip.value.gasflowrate);
 
@@ -71,7 +71,7 @@ export class CycloneSeparatorComponent {
   Calc(): void {
     console.log("calculating");
     this.initialization();
-    const Di = 0;
+
     this.s.DensityP = 2500; //kg/m3
     this.s.Bc = 25;
 
@@ -129,9 +129,11 @@ export class CycloneSeparatorComponent {
     if (this.ip.invalid) {
       this.ip.markAllAsTouched();
       return;
+    }else{
+      this.Calc();
     }
 
-    this.Calc();
+    
 
   }
 

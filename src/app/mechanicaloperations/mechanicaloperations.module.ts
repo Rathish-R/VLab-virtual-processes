@@ -5,6 +5,8 @@ import { MechanicaloperationsRoutingModule } from './mechanicaloperations-routin
 import { MechanicaloperationsComponent } from './mechanicaloperations.component';
 import { MaterialModule } from '../material/material.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -14,8 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     CommonModule,
     MechanicaloperationsRoutingModule,
-    MaterialModule,
-    MatToolbarModule
+    MaterialModule,MatToolbarModule,FormsModule,
+    ReactiveFormsModule,MatTabsModule,
   ]
 })
 export class MechanicaloperationsModule { }
