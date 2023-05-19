@@ -95,7 +95,11 @@
                         </div>
                         <div class="col">
                             <button mat-raised-button class="btn-success" (click)="onSubmit()"> Submit</button>
-                        </div>
+                       
+                            <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
+                                required.</div>
+                            <div *ngIf="ip.valid && !this.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+                       </div>
                     </div>
                     
                    
@@ -137,7 +141,7 @@
     </mat-tab>
     <mat-tab label="Result">
 
-        <div *ngIf="h.isCalculated">
+        <div *ngIf="isCalculated">
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
@@ -154,13 +158,13 @@
                         <td>W</td>
                     </tr> 
                     <tr>
-                        <td>D/f</td>
+                        <td>B/f</td>
             
                         <td>{{this.bf}}</td>
                         <td>W</td>
                     </tr>
                     <tr>
-                        <td>D/f</td>
+                        <td>efficiency</td>
             
                         <td>{{this.efficiency}}</td>
                         <td>W</td>
@@ -169,7 +173,7 @@
                 </tbody>
             </table>
         </div>
-        <div *ngIf="!this.h.isCalculated">
+        <div *ngIf="!isCalculated">
             <div class="alert-warning" style="padding:20px">
                 <h3>Cannot generate results</h3>
                 <h6>Simulate to get results</h6>

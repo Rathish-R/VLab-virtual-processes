@@ -25,7 +25,8 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
   efficiency:number=0;
   isClickLabOn!: boolean;
   currCumXD!: number;
-  selectedI !:number; //index of the selected mesh
+  selectedI !:number;
+  isCalculated :boolean =false //index of the selected mesh
   ip = new FormGroup({
     Screen: new FormControl('28', Validators.required),
     xf: this.fb.array([Validators.required, Validators.min(0), Validators.max(1)]),
@@ -54,7 +55,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
     });
   }
   ngOnInit() {
-
+    this.isCalculated=false;
     this.isClickLabOn = true;
     this.selectedOperation = "Theory";
     this.addVolumeControls();
@@ -194,7 +195,7 @@ console.log(this.xD)
     this.calculateDbyF();
 var ea = this.df*this.Selected[1]/this.Selected[0];
 var eb = this.df*(1-this.Selected[1])/(1-this.Selected[0]);
-this.efficiency=ea*eb;
+this.efficiency=ea*eb*100;
   }
 
   calculateValue(row: any): number {
@@ -214,7 +215,7 @@ this.efficiency=ea*eb;
   onSubmit() {
     if (this.ip.valid) {
      this.calculateEfficiency();
-
+this.isCalculated=true;
     }
   }
 

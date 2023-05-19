@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { EMap } from '../home/Equipments';
 
 @Component({
-  selector: 'app-fluid-mechanics-exp',
-  templateUrl: './fluid-mechanics-exp.component.html',
-  styleUrls: ['./fluid-mechanics-exp.component.css']
+  selector: 'app-mass-transfer-exp',
+  templateUrl: './mass-transfer-exp.component.html',
+  styleUrls: ['./mass-transfer-exp.component.css']
 })
-export class FluidMechanicsExpComponent {
+export class MassTransferExpComponent {
   m:any = EMap;
-  selected: string = "Shell and Tube Heat Exchanger";
+  selected: string = "Rotary Dryer";
   isTreeOn :boolean =false;
   ismenuOn : boolean=false;
   equipments!: string[];
@@ -26,15 +26,15 @@ export class FluidMechanicsExpComponent {
   ngOnInit() {
 
       setTimeout(() => {
-        this.snackBar.open('Currently in Fluid mechanics Stream , Use the menu bar to Navigate to other processes', 'Ok', {
+        this.snackBar.open('Currently in Mass Transfer Stream , Use the menu bar to Navigate to other processes', 'Ok', {
           duration: 5000,
         });
       }, 2000);
 
     this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
-      "Annulus Pipes" , "Straight pipes"];
-    this.selectedOperation = "Theory";
+      "Rotary Dryer"];
+
   }
   ngOnChanges(){
     this.selectedExp(this.selected)
@@ -44,23 +44,22 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    if(option=='Annulus Pipes'){
-      option="AnnulusPipes"
+    if(option=='Rotary Dryer'){
+      option="RotaryDryer"
     }
-    else if(option=='Helical Coil Heat Exchanger'){
-      option="HelicalCoilHeatExchanger"
-    }
+  
     localStorage.setItem('Current',option);
     this.navigateTo(option);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/Home','FluidMechanics',url]);
+    this.router.navigate(['/Home','MassTransfer',url]);
   }
   ngOnDestroy() {
 
     localStorage.removeItem('Current');
   }
 }
+
 
 
 

@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms'; 
-
-import { MassTransferComponent } from './mass-transfer/mass-transfer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChemicalRectionEngineeringComponent } from './chemical-rection-engineering/chemical-rection-engineering.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,11 +15,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import{MaterialModule} from './material/material.module';
+import { MaterialModule } from './material/material.module';
 import { MatTreeModule } from '@angular/material/tree';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeatTransferModule } from './heat-transfer/heat-transfer/heat-transfer.module';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { VerticalCondenserComponent } from './vertical-condenser/vertical-condenser.component';
 import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.component';
 import { CycloneSeparatorComponent } from './cyclone-separator/cyclone-separator.component';
@@ -32,18 +30,15 @@ import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effe
   declarations: [
     AppComponent,
     HomeComponent,
-
-
-    MassTransferComponent,
     ChemicalRectionEngineeringComponent,
 
-    
+
     SideNavComponent,
-          VerticalCondenserComponent,
-          DoublePipeHExComponent,
-          CycloneSeparatorComponent,
-          AnnulusPipeComponent,
-          ScreenEffectivenessComponent,
+    VerticalCondenserComponent,
+    DoublePipeHExComponent,
+    CycloneSeparatorComponent,
+    AnnulusPipeComponent,
+    ScreenEffectivenessComponent,
 
   ],
   imports: [
@@ -62,7 +57,7 @@ import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effe
     MatTreeModule,
     MatSnackBarModule,
     HeatTransferModule,
-    MatGridListModule,MaterialModule,MatToolbarModule
+    MatGridListModule, MaterialModule, MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

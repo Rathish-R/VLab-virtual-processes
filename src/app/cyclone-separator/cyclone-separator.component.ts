@@ -129,10 +129,11 @@ export class CycloneSeparatorComponent {
     if (this.ip.invalid) {
       this.ip.markAllAsTouched();
       return;
-    }else{
+    }
+    else{
       this.Calc();
     }
-
+    this.Calc();
     
 
   }
