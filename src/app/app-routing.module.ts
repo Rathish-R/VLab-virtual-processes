@@ -11,10 +11,11 @@ const routes: Routes = [
       { path: 'MechanicalOperations', loadChildren: () => import('./mechanicaloperations/mechanicaloperations.module').then(m => m.MechanicaloperationsModule) },
       { path: 'FluidMechanics', loadChildren: () => import('./fluid-mechanics-exp/fluid-mechanics-exp.module').then(m => m.FluidMechanicsExpModule) },
       { path: "ChemicalReactionEngineering", component: ChemicalRectionEngineeringComponent },
+      { path: 'MassTransfer', loadChildren: () => import('./mass-transfer-exp/mass-transfer-exp.module').then(m => m.MassTransferExpModule) },
     ]
   },
   { path: "", redirectTo:'/Home', pathMatch:'full' },
-  { path: 'MassTransferExp', loadChildren: () => import('./mass-transfer-exp/mass-transfer-exp.module').then(m => m.MassTransferExpModule) },
+ 
    { path: "**", component: HomeComponent }
 
 ];

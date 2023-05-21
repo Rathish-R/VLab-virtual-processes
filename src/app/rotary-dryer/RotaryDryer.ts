@@ -2,6 +2,11 @@ export class Rotary {
 FR ! : number; //Feed Flow rate
 Tfi ! : number ; // Feed inlet Temperature 
 Tfo ! : number ; // Feed outlt Temperature 
+ms ! : number ; // weight if bone dried solid  // Kg
+mm ! :number ; // amount of moisture // kg
+w1 !:number ; // initial moisture
+w2 ! : number ;// fianl moisture
+
     isCalculated: boolean = false;
 
     SFR!: number;

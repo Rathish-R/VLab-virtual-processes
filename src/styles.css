@@ -6,6 +6,12 @@ p{
 letter-spacing: 1.5;
 
 }
+.content{
+    font-size: 18px;
+    line-height: 1.5;
+    list-style-type: disc;
+
+}
 .subheading{
     line-height: 1.5;
     font-weight: 600;
@@ -111,9 +117,9 @@ font-weight: 300;
        color: rgba(42, 42, 42, 0.96);
 }
 
-li{
+/* li{
     list-style-type: none;
-}
+} */
 a .btn-lab:hover{
     
     box-shadow: 3px 3px 5px rgb(74, 74, 74);

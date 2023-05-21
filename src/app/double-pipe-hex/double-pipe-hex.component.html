@@ -1,90 +1,166 @@
 <mat-tab-group>
     <mat-tab label="Theory">
         <br>
-        <h2>Objective</h2>
-        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Double pipe Heat
-            Exchanger </p><br>
-        <h2>Theory </h2>
-        <p class="Theory">
-
-            A Double pipe exchanger is a type of heat exchanging device constructed using a
-            large cylindrical enclosure, or Annulus,
-            that has bundles of perfectly spaced tubing compacted in its interior.
-            Heat exchanging is the transfer of heat from one substance or medium to a similar
-            substance
-            or medium. Shell and tube heat exchangers
-            are the most common form of heat exchanger design.
-            It is used in desulphurisation process in petroleum industry
+        <h1>Introduction</h1>
+        <br>
+        <p class="content">
+            A double pipe heat exchanger is a type of heat transfer equipment used to exchange heat between two fluid
+            streams. It consists of two concentric pipes, one within the other, through which the hot and cold fluids
+            flow. This design allows for efficient heat transfer between the fluids.
             <br>
-            <br>
-            <br>
-            <img class="rounded mx-auto d-block"
-                src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
-                style="width:fit-content;height: fit-content; z-index: -1;">
+        <h1>Operation</h1>
+        <p class="content">
+            The double pipe heat exchanger operates based on the principles of conduction and convection. The hot fluid
+            flows through the inner pipe, while the cold fluid flows through the annular space between the inner and
+            outer pipes. Heat is transferred from the hot fluid to the cold fluid through the pipe walls.
         </p>
+        <h1>
+            Heat Transfer Mechanisms
+        </h1>
+        <p class="content">
+            Heat transfer in a double pipe heat exchanger occurs through three mechanisms:
+        </p>
+        <ul class="content">
+            <li>
+                Heat transfer in a double pipe heat exchanger occurs through three mechanisms:
+            </li>
+            <li>
+                Convection: As the fluids flow through their respective pipes, convective heat transfer occurs due to
+                the temperature difference between the fluid and the pipe wall. This heat transfer mechanism enhances
+                the overall heat transfer rate.
 
+            </li>
+            <li>
+                Wall Resistance: The pipe wall itself provides resistance to heat transfer between the two fluids. The
+                thermal conductivity and thickness of the pipe material influence the effectiveness of heat transfer.
+            </li>
+        </ul>
+        <h1>Counterflow and Parallel Flow Arrangements</h1>
+        <p class="content">Double pipe heat exchangers can be arranged in two primary configurations:
+        </p>
+        <ul class="content">
+            <li>
+                Counterflow: In a counterflow arrangement, the hot fluid flows in one direction while the cold fluid
+                flows in the opposite direction. This configuration maximizes the temperature difference between the
+                fluids along the length of the exchanger, resulting in efficient heat transfer.</li>
+            <li>
+                Parallel Flow: In a parallel flow arrangement, both the hot and cold fluids flow in the same direction.
+                This configuration offers a lower temperature difference between the fluids compared to counterflow,
+                resulting in a reduced heat transfer rate.
+
+            </li>
+
+        </ul>
+        <h1>Design Considerations</h1>
+        <p class="content">
+            When designing a double pipe heat exchanger, several factors need to be considered:
+        </p>
+        <ul class="content">
+            <li>
+                Fluid Properties: The thermal conductivity, specific heat capacity, and viscosity of the fluids involved
+                influence the overall heat transfer rate.
+            </li>
+            <li>
+                Flow Rates: The flow rates of the hot and cold fluids impact the residence time and the degree of heat
+                transfer. Proper flow rate selection is essential for achieving optimal performance.
+            </li>
+            <li>
+                Surface Area: The surface area of the inner pipe greatly affects the heat transfer rate. Increasing the
+                surface area can enhance heat transfer, but it also increases the size and cost of the heat exchanger.
+            </li>
+            <li>
+                Pressure Drop: The pressure drop across the heat exchanger should be minimized to avoid excessive
+                pumping costs and maintain efficient operation.
+            </li>
+        </ul>
+        <h1>
+            Applications
+        </h1>
+        <p class="content">
+            Double pipe heat exchangers find applications in various industries, including:
+        </p>
+        <ul class="content">
+            <li>
+                Chemical Industry: They are used for process heating and cooling in chemical manufacturing plants.
+            </li>
+            <li>
+                HVAC Systems: They are employed in heating, ventilation, and air conditioning systems for efficient
+                temperature control.
+            </li>
+            <li>
+                Power Generation: Double pipe heat exchangers are utilized in power plants for heat recovery and
+                improving overall efficiency.
+            </li>
+            <li>
+                Food Processing: They are employed in food processing facilities for pasteurization, sterilization, and
+                cooling processes.
+            </li>
+        </ul>
+        <img class="rounded mx-auto d-block"
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
     </mat-tab>
     <mat-tab label="Formulae" color="Accent">
 
         <div class="formulae" style="margin: 5% 20%;font-size: large;letter-spacing: 2.5;">
             <div class="row">
-                
-                    <h3 style="font-weight: 600;"> Overall energy balance :</h3>
-                    <p>
-                        Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
-                        C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
-                        <br>
 
-                        Q = UA ΔT<sub>LMTD</sub>
-                    </p>
-                    <h3 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h3>
-                    <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
-                        +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
-                        + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
-                    <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient
-                    </h4>
-                    <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
-                        (&mu;/&mu;w)<sup>0.14</sup>
-                        (K<sub> f</sub>d<sub>i</sub>)
+                <h3 style="font-weight: 600;"> Overall energy balance :</h3>
+                <p>
+                    Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
+                    C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                    <br>
 
-                    </p>
-                    <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient
-                    </h4>
-                    <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
-                        (&mu;/&mu;w)<sup>0.14</sup>
-                        (K<sub> f</sub>d<sub>e</sub>)
+                    Q = UA ΔT<sub>LMTD</sub>
+                </p>
+                <h3 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h3>
+                <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
+                    +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
+                    + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+                <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient
+                </h4>
+                <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>i</sub>)
 
-                    </p>
+                </p>
+                <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient
+                </h4>
+                <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                    (&mu;/&mu;w)<sup>0.14</sup>
+                    (K<sub> f</sub>d<sub>e</sub>)
 
-              </div>
-              <div class="row">
-                    <p>
-                        <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
-                        <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
-                        <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
-                        <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
-                        <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
-                        <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
-                        <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
-                        <b>A</b> - Heat Transfer Area <br>
-                        <b>U</b> - Overall Side Heat transfer Coefficient <br>
-                        <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
-                        <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
-                        <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
-                        <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
-                        <b>N<sub>Re</sub></b> - Reynold's Number<br>
-                        <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
-                    </p>
-                </div>
+                </p>
+
             </div>
-        
+            <div class="row">
+                <p>
+                    <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
+                    <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
+                    <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
+                    <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
+                    <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
+                    <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
+                    <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
+                    <b>A</b> - Heat Transfer Area <br>
+                    <b>U</b> - Overall Side Heat transfer Coefficient <br>
+                    <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
+                    <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
+                    <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
+                    <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
+                    <b>N<sub>Re</sub></b> - Reynold's Number<br>
+                    <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
+                </p>
+            </div>
+        </div>
+
 
 
     </mat-tab>
     <mat-tab label="Simulation">
 
 
-        <div style="margin:5% 20%;">
+        <div style="margin:5% ;width:90%;overflow-x: autos;">
             <form [formGroup]="ip">
 
                 <table class="table table-hover table-striped mat-elevation-z8">
@@ -310,7 +386,7 @@
         </div>
         <div *ngIf="!this.s.isCalculated">
             <div class="alert-warning" style="padding:20px;margin: 5% 20%;">
-                <h1><i class="bi bi-exclamation-circle"></i>  Cannot generate results</h1>
+                <h1><i class="bi bi-exclamation-circle"></i> Cannot generate results</h1>
                 <h3>Simulate to get results</h3>
             </div>
         </div>

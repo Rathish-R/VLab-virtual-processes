@@ -1,27 +1,97 @@
 <mat-tab-group>
     <mat-tab label="Theory">
         <br>
-        <h2>Objective</h2>
-        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
-            Exchanger </p><br>
-        <h2>Theory </h2>
-        <p class="Theory">
+        <h1>Introduction</h1>
+        <br>
+        <p class="content">
+            Screen effectiveness refers to the ability of a screen or sieve to accurately separate particles based on
+            their size. In particle size analysis, determining the screen effectiveness is crucial for understanding the
+            efficiency of the screening process. This experiment aims to measure the screen effectiveness by comparing
+            the actual and theoretical separation efficiencies of a given screen
+            <br>
+        <h1>Operation</h1>
+        <p class="content">
+            The operation of the screen effectiveness experiment involves the following steps:
 
-            A Helical coil heat exchanger is a type of heat exchanging device constructed using a
-            large cylindrical enclosure, or shell,
-            that has bundles of perfectly spaced tubing compacted in its interior.
-            Heat exchanging is the transfer of heat from one substance or medium to a similar
-            substance
-            or medium. Shell and tube heat exchangers
-            are the most common form of heat exchanger design.
-            It is used in desulphurisation process in petroleum industry
-            <br>
-            <br>
-            <br>
-            <img class="rounded mx-auto d-block"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7dpcUJeCMN45s-F6gyaJCoilDpAr01gpUgEVMHOSiTA&usqp=CAU&ec=48600113"
-                style="width:fit-content;height: fit-content;">
         </p>
+        <ul class="content">
+            <li>
+                Sample Preparation: A representative sample of the material to be screened is collected and prepared for
+                the experiment. The sample should be properly homogenized and free from any contaminants.
+            </li>
+            <li>
+                Screening Process: The prepared sample is placed on top of the screen or sieve, and mechanical or manual
+                agitation is applied to induce particle movement. The particles smaller than the screen openings pass
+                through, while the larger particles are retained on the screen.
+            </li>
+            <li>
+                Fraction Analysis: The collected fractions of particles passing through the screen and retained on the
+                screen are carefully separated and weighed. The weight of each fraction is used to calculate the actual
+                separation efficiency.
+
+            </li>
+            <li>
+                Theoretical Separation Efficiency: The theoretical separation efficiency is calculated based on the
+                known size distribution of the material and the screen opening size. It represents the expected
+                efficiency of the screen in separating particles of different sizes.
+            </li>
+        </ul>
+
+        <h1>Design Considerations</h1>
+        <p class="content">
+            When designing a screen effectiveness experiment, several factors need to be considered: </p>
+        <ul class="content">
+            <li>
+                Screen Opening Size: The screen or sieve used in the experiment should have openings of a specific size
+                range. The selection of the screen opening size depends on the particle size distribution of the
+                material being screened
+            </li>
+            <li>
+                Agitation Method: The method of agitation should be standardized to ensure consistent and reproducible
+                results. Mechanical agitation using shakers or vibratory equipment is commonly employed, but manual
+                agitation can also be used if done carefully and consistently.
+
+            </li>
+            <li>
+                Sample Size: Sufficient sample size should be used to obtain representative results. The sample size
+                should be selected to ensure an adequate amount of particles passing through the screen for accurate
+                measurement.
+
+            </li>
+            <li>
+                Accuracy of Weighing: Accurate weighing of the fractions is crucial for determining the actual
+                separation efficiency. Precise weighing equipment and proper handling techniques should be employed to
+                minimize measurement errors.
+            </li>
+
+        </ul>
+        <h1>
+            Applications
+        </h1>
+        <p class="content">
+            The screen effectiveness experiment has applications in various industries and research fields, including:
+        </p>
+        <ul class="content">
+            <li>
+                Mining and Mineral Processing: The experiment helps assess the efficiency of screens used in particle
+                size classification and mineral processing operations.
+            </li>
+            <li>
+                Pharmaceutical Industry: It is used to evaluate the effectiveness of screens in pharmaceutical
+                manufacturing processes, such as tablet production and powder granulation.
+            </li>
+            <li>
+                Construction and Aggregate Industries: The experiment aids in determining the efficiency of screens in
+                separating aggregates and other construction materials based on size.
+            </li>
+            <li>
+                Environmental Science: Screen effectiveness experiments are employed in studies related to soil
+                analysis, water filtration, and environmental monitoring.
+            </li>
+        </ul>
+        <img class="rounded mx-auto d-block"
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
     </mat-tab>
     <mat-tab label="Formulae">
         <div class="formulae" style="margin-top: 5%;font-size: large;letter-spacing: 2.5;">
@@ -90,19 +160,20 @@
                         <div class="col">
                             <select id="toCheck" formControlName="Screen">
                                 <option *ngFor="let m of mesh" value="{{m}}">{{m}}</option>
-        
+
                             </select>
                         </div>
                         <div class="col">
                             <button mat-raised-button class="btn-success" (click)="onSubmit()"> Submit</button>
-                       
+
                             <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                                 required.</div>
-                            <div *ngIf="ip.valid && !this.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
-                       </div>
+                            <div *ngIf="ip.valid && !this.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate
+                            </div>
+                        </div>
                     </div>
-                    
-                   
+
+
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -153,23 +224,23 @@
                 <tbody>
                     <tr>
                         <td>D/f</td>
-            
+
                         <td>{{this.df}}</td>
                         <td>W</td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <td>B/f</td>
-            
+
                         <td>{{this.bf}}</td>
                         <td>W</td>
                     </tr>
                     <tr>
                         <td>efficiency</td>
-            
+
                         <td>{{this.efficiency}}</td>
                         <td>W</td>
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -191,36 +262,32 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr>
-            <td> Obtained Overall Heat Temperature Coefficient - U</td>
+                <tr>
+            <td>Assumed Effectiveness </td>
 
-            <td>{{this.h.OverallHTCoeff}}</td>
-            <td>W/m<sup>2</sup> &deg;C</td>
+            <td>80 </td>
+            <td>%</td>
         </tr>
         <tr>
-            <td> Obtained Heat Duty - Q</td>
+            <td> Screen To be checked  </td>
 
-            <td>{{this.h.QFound}}</td>
-            <td>W</td>
-        </tr> <tr>
-            <td> Hot Fluid Outlet temperature - THo</td>
+            <td>{{this.ip.value.Screen}}</td>
+            <td> - </td>
+        </tr> 
+        <tr>
+            <td> Effectiveness of the selected screen </td>
 
-            <td>{{this.h.Tho}}</td>
-            <td> &deg;C</td>
-        </tr> <tr>
-            <td> Cold Fluid Outlet temperature - TCo</td>
-
-            <td>{{this.h.Tco}}</td>
-            <td> &deg;C</td>
-        </tr> -->
+            <td>{{efficiency}}</td>
+            <td> % </td>
+        </tr> 
             </tbody>
         </table>
         <div class="image">
 
 
             <img class="rounded mx-auto d-block"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmtgZ2Yby7Hvb4G4IfsV-iZazNnIBC0F1wOH301Q5jgVXtCWVWP9jBcyc1s8AXt_IbJLojx3e0q-A&usqp=CAU&ec=48600113"
-                alt="Shell And TUbe Heat Exchanger" style="height:70%;width:70%">
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
         </div>
     </mat-tab>
     <div class="position-fixed bottom-0 end-0">
@@ -230,68 +297,3 @@
     </div>
 </mat-tab-group>
 
-<!-- <div *ngIf="ip.controls.xf.controls[i].invalid && ip.controls.xf.controls[i].touched" class="modal fade" tabindex="-1" role="dialog" id="errorModal" aria-labelledby="errorModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" id="errorModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="errorModal"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="ip">
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>Property</th>
-                            <th>Value</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td> Volume of Oxalic acid</td>
-                            <td><input type="number" formControlName="VolOxAcd"></td>
-                        </tr>
-                        <tr>
-                            <td> Normality of Oxalic acid</td>
-                            <td><input type="number" formControlName="OxAcidNorm"></td>
-                        </tr>
-                        <tr>
-                            <td> Volume of NaOH acid Vs Oxalic Acid</td>
-                            <td><input type="number" formControlName="VolNaOh1"></td>
-                        </tr>
-                        <tr>
-                            <td> Volume of HCl acid</td>
-                            <td><input type="number" formControlName="VolHcl"></td>
-                        </tr>
-                        <tr>
-                            <td> Volume of NaOH acid Vs HCl</td>
-                            <td><input type="number" formControlName="VolNaOh2"></td>
-                        </tr>
-                        <tr>
-
-                            <td>Normality of HCl </td>
-                            <td>{{getNaOHNorm()}}</td>
-                        </tr>
-                        <tr>
-                            <td>Normality of NaOh </td>
-                            <td>{{getHClNorm()}}</td>
-                        </tr>
-                        
-                      
-
-                    </tbody>
-                </table>
-                </form>
-                
-            </div>
-
-            <div class="modal-footer">
-                <button mat-button data-bs-dismiss="modal" [disabled]="!ip.valid" (click)="isStandardised=true"> submit </button>
-            </div>
-        </div>
-    </div>
-
-</div> -->

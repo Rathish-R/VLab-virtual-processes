@@ -1,81 +1,157 @@
 <mat-tab-group>
     <mat-tab label="Theory">
         <br>
-        <h2>Objective</h2>
-        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
-            Exchanger </p><br>
-        <h2>Theory </h2>
-        <p class="Theory">
+        <h1>Introduction</h1>
+        <br>
+        <p class="content">
+            A shell and tube heat exchanger is a widely used heat transfer device in various industries. It consists of
+            a shell (outer vessel) and multiple tubes placed within it. This type of heat exchanger facilitates
+            efficient heat transfer between two fluid streams, typically a hot fluid and a cold fluid, through the tube
+            walls.
 
-            A shell and tube heat exchanger is a type of heat exchanging device constructed using a
-            large cylindrical enclosure, or shell,
-            that has bundles of perfectly spaced tubing compacted in its interior.
-            Heat exchanging is the transfer of heat from one substance or medium to a similar
-            substance
-            or medium. Shell and tube heat exchangers
-            are the most common form of heat exchanger design.
-            It is used in desulphurisation process in petroleum industry
             <br>
-            <br>
-            <br>
-            <img class="rounded mx-auto d-block"
-                src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
-                style="width:fit-content;height: fit-content;">
+        <h1>Operation</h1>
+        <p class="content">
+            The operation of a shell and tube heat exchanger involves the following steps:</p>
+        <ul class="content">
+            <li>
+                Fluid Flow: The hot fluid enters the shell side and flows through the space surrounding the tubes, while
+                the cold fluid flows through the tubes. The fluids can either be in a parallel flow arrangement, where
+                they flow in the same direction, or a counterflow arrangement, where they flow in opposite directions.
+            </li>
+            <li>
+                Fluid Flow: The hot fluid enters the shell side and flows through the space surrounding the tubes, while
+                the cold fluid flows through the tubes. The fluids can either be in a parallel flow arrangement, where
+                they flow in the same direction, or a counterflow arrangement, where they flow in opposite directions.
+            </li>
+            <li>
+                Baffles and Passes: Baffles inside the shell direct the fluid flow, promoting turbulence and improving
+                heat transfer efficiency. Multiple passes can be designed to increase the residence time of the fluids
+                and enhance heat transfer.
+            </li>
+            <li>
+                Outlet and Temperature Control: The heated cold fluid exits the heat exchanger, while the cooled hot
+                fluid leaves the shell side. Temperature control can be achieved by adjusting the flow rates of the
+                fluids or by using additional control devices.
+            </li>
+        </ul>
+
+
+        <h1>Design Considerations</h1>
+        <p class="content">
+            When designing a shell and tube heat exchanger, several factors need to be considered:
         </p>
+        <ul class="content">
+            <li>
+                Tube Material and Geometry: The material of the tubes should have good thermal conductivity and
+                corrosion resistance. Tube geometry, such as diameter and length, influences the heat transfer area and
+                pressure drop
+            </li>
+            <li>
+                Shell Diameter and Length: The shell diameter and length are crucial for determining the overall heat
+                transfer area and the number of tubes required. They should be chosen based on the desired heat transfer
+                capacity and pressure drop considerations.
 
+            </li>
+            <li>
+                Tube Layout and Configuration: The tube layout (e.g., inline or staggered) and configuration (e.g.,
+                triangular or square pitch) impact the heat transfer characteristics and pressure drop. Proper selection
+                depends on the specific application and desired performance.
+
+            </li>
+            <li>
+                Flow Rates and Pressure Drop: The flow rates of the fluids should be carefully considered to achieve
+                optimal heat transfer. Additionally, the pressure drop across the heat exchanger should be within
+                acceptable limits to maintain efficient operation.
+
+            </li>
+
+        </ul>
+        <h1>
+            Applications
+        </h1>
+        <p class="content">
+            Shell and tube heat exchangers find applications in various industries, including:
+        </p>
+        <ul class="content">
+            <li>
+                Chemical Processing: They are used for heating or cooling process fluids, condensing vapors, and
+                recovering heat in chemical manufacturing processes.
+
+            </li>
+            <li>
+                Power Generation: Shell and tube heat exchangers are employed in power plants for condensing steam,
+                cooling turbine oil, and heat recovery from flue gases.
+            </li>
+            <li>
+                HVAC Systems: They are utilized in heating, ventilation, and air conditioning systems for transferring
+                heat between refrigerants and air or water.
+
+            </li>
+            <li>
+                Oil and Gas Industry: Shell and tube heat exchangers are used in refineries and petrochemical plants for
+                various heat transfer applications, such as crude oil cooling, gas processing, and heat recovery.
+            </li>
+        </ul>
+        <img class="rounded mx-auto d-block"
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
     </mat-tab>
     <mat-tab label="Formulae" color="Accent">
 
         <div class="formulaeBar" style="margin: 5%;font-size: large;letter-spacing: 2.5;width:90%">
-            
-                    <h4 class="subheading" style="font-weight: 500;font-size: 25px;"> Overall energy balance :</h4>
-                    <p class="formulae">
-                        Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
-                        C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
-                        <br>
 
-                        Q = UA ΔT<sub>LMTD</sub>
-                    </p>s
-                    <h4 style="font-weight: 500;font-size: 22px;"> Overall Heat Transfer Coefficient :</h4>
-                    <p class="formulae"> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
-                        +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
-                        + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
-                    <h4 class="subheading" style="font-weight: 500;color: rgba(52, 52, 52, 0.947);font-size: 18px;">Tube Side Heat Transfer Coefficient
-                    </h4>
-                    <p class="formulae">H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
-                        (&mu;/&mu;w)<sup>0.14</sup>
-                        (K<sub> f</sub>d<sub>i</sub>)
+            <h4 class="subheading" style="font-weight: 500;font-size: 25px;"> Overall energy balance :</h4>
+            <p class="formulae">
+                Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
+                C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                <br>
 
-                    </p>
-                    <h4 class="subheading" style="font-weight: 500;color: rgba(52, 52, 52, 0.972);font-size: 18px;">Shell Side Heat Transfer Coefficient
-                    </h4>
-                    <p class="formulae">H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
-                        (&mu;/&mu;w)<sup>0.14</sup>
-                        (K<sub> f</sub>d<sub>e</sub>)
+                Q = UA ΔT<sub>LMTD</sub>
+            </p>s
+            <h4 style="font-weight: 500;font-size: 22px;"> Overall Heat Transfer Coefficient :</h4>
+            <p class="formulae"> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X
+                1/H<sub>i</sub>)
+                +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
+                + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+            <h4 class="subheading" style="font-weight: 500;color: rgba(52, 52, 52, 0.947);font-size: 18px;">Tube Side
+                Heat Transfer Coefficient
+            </h4>
+            <p class="formulae">H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                (&mu;/&mu;w)<sup>0.14</sup>
+                (K<sub> f</sub>d<sub>i</sub>)
 
-                    </p>
+            </p>
+            <h4 class="subheading" style="font-weight: 500;color: rgba(52, 52, 52, 0.972);font-size: 18px;">Shell Side
+                Heat Transfer Coefficient
+            </h4>
+            <p class="formulae">H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                (&mu;/&mu;w)<sup>0.14</sup>
+                (K<sub> f</sub>d<sub>e</sub>)
 
-    <div style="margin-top:5%">
-        <h4 class="subheading" style="font-weight: 500;font-size: 25px;"> </h4>
-                    <p class="formulae">
-                        <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
-                        <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
-                        <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
-                        <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
-                        <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
-                        <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
-                        <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
-                        <b>A</b> - Heat Transfer Area <br>
-                        <b>U</b> - Overall Side Heat transfer Coefficient <br>
-                        <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
-                        <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
-                        <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
-                        <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
-                        <b>N<sub>Re</sub></b> - Reynold's Number<br>
-                        <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
-                    </p>
-                </div>
-                </div>
+            </p>
+
+            <div style="margin-top:5%">
+                <h4 class="subheading" style="font-weight: 500;font-size: 25px;"> </h4>
+                <p class="formulae">
+                    <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
+                    <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
+                    <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
+                    <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
+                    <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
+                    <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
+                    <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
+                    <b>A</b> - Heat Transfer Area <br>
+                    <b>U</b> - Overall Side Heat transfer Coefficient <br>
+                    <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
+                    <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
+                    <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
+                    <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
+                    <b>N<sub>Re</sub></b> - Reynold's Number<br>
+                    <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
+                </p>
+            </div>
+        </div>
 
     </mat-tab>
     <mat-tab label="Simulation">
@@ -105,7 +181,7 @@
                             </td>
                             <td> W/m<sup>2</sup>&deg;C </td>
                         </tr>
-                        
+
 
                         <tr>
                             <td>Tube's Outside diameter</td>
@@ -153,10 +229,10 @@
                                 </select>
                             </td>
                         </tr>
-    
+
                         <tr>
                             <td>Mass Flowrate (Water)</td>
-    
+
                             <td><input type="number" formControlName="Waterflowrate"></td>
                             <td> <select formControlName="WaterFRUnit">
                                     <option value="Kg/sec">Kg/sec</option>
@@ -167,7 +243,7 @@
                                     <option value="l/sec" disabled>l/hr</option>
                                 </select></td>
                         </tr>
-    
+
                         <tr>
                             <td>HotFluid Inlet temperature</td>
                             <td><input type="number" formControlName="Thi"></td>
@@ -175,30 +251,31 @@
                         </tr>
                         <tr>
                             <td>Cold fluid inlet temperature</td>
-    
+
                             <td><input type="number" formControlName="Tci"></td>
                             <td>&deg;C</td>
                         </tr>
                         <tr>
-    
+
                             <td>Cold fluid Outlet temperature (Desired)</td>
                             <td><input type="number" formControlName="Tco"></td>
                             <td>&deg;C</td>
                         </tr>
                         <tr>
-    
+
                             <td>Hot fluid Outlet temperature (Desired)</td>
                             <td><input type="number" formControlName="Tho"></td>
                             <td>&deg;C</td>
                         </tr>
-                       <tr>
+                        <tr>
                             <td>Number of Passes</td>
                             <td><input type="number" formControlName="Passes"></td>
                             <td> NA </td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
+                <button class="btn btn-success" type="submit" [disabled]="!ip.valid"
+                    (click)="onSubmit()">submit</button>
                 <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                     required.</div>
                 <div *ngIf="ip.valid && !this.s.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
@@ -318,7 +395,7 @@
         </div>
         <div *ngIf="!this.s.isCalculated">
             <div class="alert-warning" style="padding:20px;margin: 5% 20%;">
-                <h1><i class="bi bi-exclamation-circle"></i>  Cannot generate results</h1>
+                <h1><i class="bi bi-exclamation-circle"></i> Cannot generate results</h1>
                 <h3>Simulate to get results</h3>
             </div>
         </div>
@@ -388,7 +465,7 @@
                         <td>KW</td>
                     </tr>
                     <tr>
-    
+
                         <td>Cold fluid Outlet temperature (Desired)</td>
                         <td><input type="number" formControlName="Tco"></td>
                         <td>&deg;C</td>

@@ -58,7 +58,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
     this.isCalculated=false;
     this.isClickLabOn = true;
     this.selectedOperation = "Theory";
-    this.addVolumeControls();
+   
     this.currCumXD = 0;
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -68,7 +68,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
       debugger;
       this.xfTotal = xfArray.value.reduce((acc: number, curr: number) => acc + curr, 0);
 
-      console.log(this.xfTotal);
+      
       if (this.xfTotal > 1) {
 
         alert('fsdf');
@@ -92,7 +92,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
         return;
       }
     }
-    
+   
     this.xfCum[index] = xfc;
     return xfc.toFixed(5);
   }
@@ -122,7 +122,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
       }
       else if (index == this.selectedI) {
         x = 0.2 * Number(this.ip.value.xf!.at(index))
-        this.Selected[0]=Number(this.ip.value.xf!.at(index));
+        this.Selected[0]=this.getCumXF(index);
       }
       else if (index < this.selectedI) {
         x = 0
@@ -160,13 +160,13 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
   }
   getCumXD(index: number): any {
     this.addDetails(index, "xd");
-console.log(this.xD)
+
     return this.getCum(index, "xd");
   }
   getCumXB(index: number): any {
     debugger;
     this.addDetails(index, "xb");
-    console.log(this.xB)
+
     return this.getCum(index, "xb");
 
   }
@@ -179,62 +179,39 @@ console.log(this.xD)
   getDpi(ind: number): any {
     return this.ip.value.Dpi?.at(ind);
   }
-  //   getmesh( ind : number ):any 
-  //   {
-  // return this.ip.value.mesh?.at(ind);
-  //   }
   calculateDbyF(){
     this.df=(this.Selected[0]-this.Selected[2])/(this.Selected[1]-this.Selected[2])
   }
   calculateBbyF(){
-    this.bf=(this.Selected[0]-this.Selected[1])/(this.Selected[2]-this.Selected[1])
+    debugger;
+    this.bf=Math.abs(this.Selected[0]-this.Selected[1])/(this.Selected[2]-this.Selected[1])
   }
   calculateEfficiency(){
     this.calculateDbyF();
 
-    this.calculateDbyF();
-var ea = this.df*this.Selected[1]/this.Selected[0];
-var eb = this.df*(1-this.Selected[1])/(1-this.Selected[0]);
+    this.calculateBbyF();
+var ea = this.df*(this.Selected[1])/(this.Selected[0]);
+var eb = this.bf*(1-this.Selected[2])/(1-this.Selected[0]);
+console.log(this.Selected);
 this.efficiency=ea*eb*100;
+this.df= Number(this.df.toFixed(3));
+this.bf= Number(this.bf.toFixed(3));
+this.efficiency= Number(this.efficiency.toFixed(3));
   }
 
-  calculateValue(row: any): number {
-    const column1Value = row.controls.column1.value;
-    const column2Value = row.controls.column2.value;
-    const column3Value = row.controls.column3.value;
-
-    if (!column3Value) {
-      return 0;
-    }
-
-    return column1Value + column2Value + +column3Value;
-  }
+  // 
 
 
 
   onSubmit() {
+    this.calculateEfficiency();
     if (this.ip.valid) {
-     this.calculateEfficiency();
+
 this.isCalculated=true;
     }
   }
 
-  addVolumeControls() {
-    const xf = this.ip.controls.xf as FormArray;
-    xf.clear();
-    for (let i = 0; i < this.mesh.length; i++) {
-      xf.push(this.fb.control(0));
-    }
-  }
-  getVolume(row: number): number {
-    const volumes = this.ip.controls.xf as FormArray;
-    const index = row - 1;
-    const control = volumes.controls[index];
-    return control.value ? control.value : 0;
-  }
-  getTime(index: number): number {
-    const time = (index + 1) * 60;
-    return time;
-  }
+ 
+  
 }
 
