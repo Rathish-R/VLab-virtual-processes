@@ -20,7 +20,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <li *ngFor="let sub of subjects">
+        <li *ngFor="let sub of subjects" class="sub">
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -30,26 +30,26 @@
 
                     </mat-expansion-panel-header>
                     <div *ngIf="sub=='Heat Transfer'">
-        <li *ngFor="let s of Ht">
+        <li *ngFor="let s of Ht" class="sub">
             <button mat-raised-button class="btn btn-lab" (click)="selectedP(sub,s)" style="padding:10px">{{s}}</button>
         </li>
     </div>
     <div *ngIf="sub=='Mass Transfer'">
-        <li *ngFor="let s of Mt">
+        <li *ngFor="let s of Mt" class="sub">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
     <div *ngIf="sub=='Mechanical operation'">
-        <li *ngFor="let s of Mo">
+        <li *ngFor="let s of Mo" class="sub">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
     <div *ngIf="sub=='Chemical Reaction Engineering'">
-        <li *ngFor="let s of Cre">
+        <li *ngFor="let s of Cre" class="sub">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="sub=='Fluid Mechanics'">
+    <div *ngIf="sub=='Fluid Mechanics'" class="sub">
         <li *ngFor="let s of Fm">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
@@ -84,7 +84,7 @@
     </div>
     <div class="row">
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
-            [routerLink]="['/Home','MechanicalOperations','CycloneSeparator']"  >Mechanical Operations </button>
+            [routerLink]="['/Home','MechanicalOperations','ScreenEffectiveness']"  >Mechanical Operations </button>
         </div>
         <div class="col"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process

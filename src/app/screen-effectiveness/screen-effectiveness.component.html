@@ -192,14 +192,10 @@
                                 <td>{{m}}</td>
                                 <td>{{Dpi[i]}}</td>
 
-                                <td>
-
-                                    <span
-                                        *ngIf="ip.controls.xf.controls[i].invalid && ip.controls.xf.controls[i].touched">Limit
-                                        has been met!</span>
+                                 <td>
                                     <input type="number" min="0" max="1" [formControl]="ip.controls.xf.controls[i]">
                                 </td>
-                                <td>{{getCumXF(i)}} </td>
+                               <td>{{getCumXF(i)}} </td>
                                 <td>{{getCumXD(i)}}</td>
                                 <td>{{getCumXB(i)}}</td>
 

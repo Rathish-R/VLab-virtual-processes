@@ -59,7 +59,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
     this.isClickLabOn = true;
     this.selectedOperation = "Theory";
    
-    this.currCumXD = 0;
+    this.currCumXD = 0;    this.addVolumeControls();
   }
   ngOnChanges(changes: SimpleChanges) {
     debugger;
@@ -89,7 +89,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
         if (confirmed) {
           this.ip.controls.xf.controls[i].reset();
         }
-        return;
+        return ;
       }
     }
    
@@ -184,7 +184,7 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
   }
   calculateBbyF(){
     debugger;
-    this.bf=Math.abs(this.Selected[0]-this.Selected[1])/(this.Selected[2]-this.Selected[1])
+    this.bf=Math.abs((this.Selected[0]-this.Selected[1])/(this.Selected[2]-this.Selected[1]))
   }
   calculateEfficiency(){
     this.calculateDbyF();
@@ -201,14 +201,42 @@ this.efficiency= Number(this.efficiency.toFixed(3));
 
   // 
 
+  calculateValue(row: any): number {
+    const column1Value = row.controls.column1.value;
+    const column2Value = row.controls.column2.value;
+    const column3Value = row.controls.column3.value;
 
+    if (!column3Value) {
+      return 0;
+    }
+
+    return column1Value + column2Value + +column3Value;
+  }
 
   onSubmit() {
     this.calculateEfficiency();
+    
+this.isCalculated=true;
     if (this.ip.valid) {
 
-this.isCalculated=true;
     }
+  }
+  addVolumeControls() {
+    const xf = this.ip.controls.xf as FormArray;
+    xf.clear();
+    for (let i = 0; i < this.mesh.length; i++) {
+      xf.push(this.fb.control(0));
+    }
+  }
+  getVolume(row: number): number {
+    const volumes = this.ip.controls.xf as FormArray;
+    const index = row - 1;
+    const control = volumes.controls[index];
+    return control.value ? control.value : 0;
+  }
+  getTime(index: number): number {
+    const time = (index + 1) * 60;
+    return time;
   }
 
  

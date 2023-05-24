@@ -56,7 +56,6 @@ export class ShellAndTubeComponent {
   methanol: Methanol = new Methanol();
   water!: Water;
   initialization(th: number, tc: number) {
-    debugger;
     this.s.isFeasible = false;
     this.methanol.getProperties(th);
     this.water= new Water(tc);
@@ -118,7 +117,7 @@ export class ShellAndTubeComponent {
     this.s.OverallHTCoeff = Number(this.s.OverallHTCoeff.toFixed(3));
     this.s.PDropSs = Number(this.s.PDropSs.toFixed(3));
     this.s.PDropTs = Number(this.s.PDropTs.toFixed(3));
-    this.s.QFound = Number(this.s.QFound.toFixed(3));
+    this.s.QFound = Number((this.s.QFound/1000).toFixed(3));
     this.s.Tco = Number(this.s.Tco.toFixed(1));
     this.s.Tho = Number(this.s.Tho.toFixed(1));
 
@@ -148,7 +147,6 @@ export class ShellAndTubeComponent {
       var n1 = 2.263;
       this.s.BundleDia = Do * Math.pow((this.s.Tubes / k1), (1 / n1));
     }
-    debugger;
     this.s.ShellDia = this.s.BundleDia + 0.068;
     this.s.TubesPerPass = ((this.s.Tubes) / Number(this.ip.value.Passes));
     this.s.FlowAreaOfTubes = this.s.TubesPerPass * (Math.PI * Math.pow(Di, 2) / 4);
@@ -178,7 +176,6 @@ export class ShellAndTubeComponent {
       this.s.PDropSs = (8 * this.s.Jh * this.s.ShellDia * (5 - 2 * (0.025)) * this.s.TFDensity * Math.pow(this.s.VelocityShellSide, 2)) / (2 * De * this.s.BaffleSpace);
       this.s.PDropTs = (this.s.PDropTs * 14.69) / 101325;
       this.s.PDropSs = (this.s.PDropSs * 14.69) / 101325;
-      debugger;
       var ActualArea = Math.PI * 5 *this.s.TubesPerPass*  Number(this.ip.value.TubeDiaI)/2;
       console.log(ActualArea);
       this.s.QFound = this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
@@ -196,20 +193,18 @@ export class ShellAndTubeComponent {
     debugger;
     this.s.Tho = Number(this.ip.value.Thi) - (this.s.QFound / (this.s.SFR * this.s.SFCp));
     this.s.Tco = Number(this.ip.value.Tci) + (this.s.QFound / (this.s.TFR * this.s.TFCp));
+    this.roundOff();
+    this.log['Mh'] = Number(this.ip.value.OilFlowRate?.toFixed(3));
+    this.log['Mc'] = Number(this.ip.value.Waterflowrate?.toFixed(3));
 
-    this.log['Mh'] = this.ip.value.OilFlowRate;
-    this.log['Mc'] = this.ip.value.Waterflowrate;
-
-    this.log['Thi'] = this.ip.value.Thi;
+    this.log['Thi'] = Number(this.ip.value.Thi?.toFixed(3));
     this.log['Tho'] = this.s.Tho;
-    this.log['Tci'] = this.ip.value.Tci;
+    this.log['Tci'] = Number(this.ip.value.Tci?.toFixed(3));
     this.log['Tco'] = this.s.Tco;
     this.logs.push(this.log);
     this.log = [];
-    this.roundOff();
-    console.log(this.logs);
+    
     console.log(this.s);
-
    this.openSnackBar("Results have been calculated !! You can navigate to Results " , "Ok")
     this.s.isCalculated = true;
   }

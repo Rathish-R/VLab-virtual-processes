@@ -16,7 +16,7 @@
             <div class="offcanvas-body">
 
                 <ul class="labs">
-                    <li *ngFor="let eq of equipments"><a><button mat-raised-button class="btn btn-lab"
+                    <li *ngFor="let eq of equipments" class="sub"><a><button mat-raised-button class="btn btn-lab"
                                 (click)="this.selected=eq;selectedExp(this.selected);"
                                 style="padding:10px">{{eq}}</button></a></li>
                 </ul>

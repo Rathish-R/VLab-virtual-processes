@@ -22,32 +22,16 @@ export class HelicalCoilHExComponent {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-  // s: ShellAndTube = new ShellAndTube();
   h:HelicalCoilHEx=new HelicalCoilHEx();
   @Input() selected!: string;
   @Input() selectedOperation!: string;
 
-
-  //Properties of water at 28.7°C: [Shell side]
-//   WVisc:number= 0.0016 ;//Pa·s
-//   Wk:number= 0.4739225; //W/(m·K)
-//  WNpr:number= 6.65;
-//   WDensity:number= 995.7 //kg/m³
-//   WCp:number= 4186.8; //J/(kg·K)
-  
-//   OVisc:number= 0.000527 ;//Pa·s
-//   Ok:number= 0.4873; //W/(m·K)
-//  ONpr:number= 5.76;
-//   ODensity:number=935 ;//kg/m³
-//   OCp:number= 4186.8; //J/(kg·K)
 Rf:number =0.00082;
 Ra:number =0.00082;
 absRoughness =0.0005 //m
   ngOnInit() {
     this.selected = "Shell and Tube Heat Exchanger";
-    this.equipments = [
-      "Shell and Tube Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
-    ];
+
     this.isClickLabOn = true;
     this.selectedOperation = "Theory";
     this.ResultObt = false;
@@ -65,22 +49,17 @@ absRoughness =0.0005 //m
     Tci: new FormControl(30, Validators.required),
     Tco: new FormControl(47, Validators.required),
     Passes: new FormControl('2', Validators.required),
-    // TubeLength: new FormControl('', Validators.required),
     TubeDiaO: new FormControl(0.03, Validators.required), //m
     TubeDiaI: new FormControl(0.025, Validators.required), //m
     B: new FormControl(0.340, Validators.required), //m
     C: new FormControl(0.460, Validators.required), //m
-    
-
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
 
   initialization() {
-    debugger;
     this.h.isFeasible=false;
     var VegeOil: VOil = new VOil();
     var water: Water = new Water(Number(this.ip.value.Tci));
-
     VegeOil.getProperties(Number(this.ip.value.Thi));
     this.h.SFDensity = water.density;
       this.h.TFDensity =VegeOil.density; 
@@ -92,23 +71,26 @@ absRoughness =0.0005 //m
       this.h.TFVisc =  VegeOil.viscosity;
       this.h.SFR = Number(this.ip.value.Waterflowrate);
       this.h.TFR = Number(this.ip.value.OilFlowRate);
-
-    // flowrates
-
-
   }
   roundOff() {
+    this.h.Lc = Number( this.h.Lc.toFixed(3));
+    this.h.Vc = Number(this.h.Vc.toFixed(3));
+    this.h.Va = Number(this.h.Va.toFixed(3));
+    this.h.Vf = Number(this.h.Vf.toFixed(3));
+    this.h.de = Number(this.h.de.toFixed(3));
+    this.h.Gs = Number(this.h.Gs.toFixed(3));
+    this.h.Vf = Number(this.h.Vf.toFixed(3));
+    this.h.HtArea = Number(this.h.HtArea.toFixed(3));
     this.h.HtArea = Number(this.h.HtArea.toFixed(3));
     this.h.BundleDia = Number(this.h.BundleDia.toFixed(3));
     this.h.TubesPerPass = Number(this.h.TubesPerPass.toFixed(3));
     this.h.HtubeSide = Number(this.h.HtubeSide.toFixed(3));
-    this.h.BaffleSpace = Number(this.h.BaffleSpace.toFixed(3));
     this.h.FlowAreaOfTubes =Number(this.h.FlowAreaOfTubes.toFixed(3));
     this.h.VelocityTubeSide = Number(this.h.VelocityTubeSide.toFixed(3));
     this.h.VelocityShellSide = Number(this.h.VelocityShellSide.toFixed(3));
     this.h.pitch = Number(this.h.pitch.toFixed(3));
-    this.h.ShellDia = Number(this.h.ShellDia.toFixed(3));
-    this.h.HShellSide = Number(this.h.HShellSide.toFixed(3));
+    
+    this.h.HAnn = Number(this.h.HAnn.toFixed(3));
     this.h.OverallHTCoeff = Number(this.h.OverallHTCoeff.toFixed(3));
     this.h.PDropSs = Number(this.h.PDropSs.toFixed(3));
     this.h.PDropTs = Number(this.h.PDropTs.toFixed(3));
@@ -144,6 +126,9 @@ absRoughness =0.0005 //m
     if(this.h.NReSs < 10000){
       this.h.HAnn = (0.6 * Math.pow(this.h.NReSs,0.5) *  Math.pow(this.h.NPrSs,0.31) * this.h.SFCond)/(this.h.de);
     }
+    else{
+      this.h.HAnn = (0.6 * Math.pow(this.h.NReSs,0.5) *  Math.pow(this.h.NPrSs,0.31) * this.h.SFCond)/(this.h.de);
+    }
     this.h.Ac=Math.PI* Math.pow(this.h.di,2)/4;
     this.h.Vcoil = Number(this.ip.value.OilFlowRate)/(this.h.TFDensity * this.h.Ac);
     this.h.NReC =(this.h.TFDensity * this.h.Vcoil * this.h.di) /this.h.TFVisc;
@@ -171,6 +156,7 @@ this.h.PDropTs=(this.h.PDropTs * 14.69) / 101325;
     
 
     console.log(this.h);
+    this.roundOff();
   }
   
   getLmtd(): number {

@@ -116,7 +116,9 @@ font-weight: 300;
     padding: 10px;
        color: rgba(42, 42, 42, 0.96);
 }
-
+.sub{
+    list-style-type: none;
+}
 /* li{
     list-style-type: none;
 } */
