@@ -1,0 +1,350 @@
+<mat-tab-group>
+     <mat-tab label="Theory">
+        <!--
+        <br>
+        <h1>Introduction</h1>
+        <br>
+        <p class="content">
+            Screen effectiveness refers to the ability of a screen or sieve to accurately separate particles based on
+            their size. In particle size analysis, determining the screen effectiveness is crucial for understanding the
+            efficiency of the screening process. This experiment aims to measure the screen effectiveness by comparing
+            the actual and theoretical separation efficiencies of a given screen
+            <br>
+        <h1>Operation</h1>
+        <p class="content">
+            The operation of the screen effectiveness experiment involves the following steps:
+
+        </p>
+        <ul class="content">
+            <li>
+                Sample Preparation: A representative sample of the material to be screened is collected and prepared for
+                the experiment. The sample should be properly homogenized and free from any contaminants.
+            </li>
+            <li>
+                Screening Process: The prepared sample is placed on top of the screen or sieve, and mechanical or manual
+                agitation is applied to induce particle movement. The particles smaller than the screen openings pass
+                through, while the larger particles are retained on the screen.
+            </li>
+            <li>
+                Fraction Analysis: The collected fractions of particles passing through the screen and retained on the
+                screen are carefully separated and weighed. The weight of each fraction is used to calculate the actual
+                separation efficiency.
+
+            </li>
+            <li>
+                Theoretical Separation Efficiency: The theoretical separation efficiency is calculated based on the
+                known size distribution of the material and the screen opening size. It represents the expected
+                efficiency of the screen in separating particles of different sizes.
+            </li>
+        </ul>
+
+        <h1>Design Considerations</h1>
+        <p class="content">
+            When designing a screen effectiveness experiment, several factors need to be considered: </p>
+        <ul class="content">
+            <li>
+                Screen Opening Size: The screen or sieve used in the experiment should have openings of a specific size
+                range. The selection of the screen opening size depends on the particle size distribution of the
+                material being screened
+            </li>
+            <li>
+                Agitation Method: The method of agitation should be standardized to ensure consistent and reproducible
+                results. Mechanical agitation using shakers or vibratory equipment is commonly employed, but manual
+                agitation can also be used if done carefully and consistently.
+
+            </li>
+            <li>
+                Sample Size: Sufficient sample size should be used to obtain representative results. The sample size
+                should be selected to ensure an adequate amount of particles passing through the screen for accurate
+                measurement.
+
+            </li>
+            <li>
+                Accuracy of Weighing: Accurate weighing of the fractions is crucial for determining the actual
+                separation efficiency. Precise weighing equipment and proper handling techniques should be employed to
+                minimize measurement errors.
+            </li>
+
+        </ul>
+        <h1>
+            Applications
+        </h1>
+        <p class="content">
+            The screen effectiveness experiment has applications in various industries and research fields, including:
+        </p>
+        <ul class="content">
+            <li>
+                Mining and Mineral Processing: The experiment helps assess the efficiency of screens used in particle
+                size classification and mineral processing operations.
+            </li>
+            <li>
+                Pharmaceutical Industry: It is used to evaluate the effectiveness of screens in pharmaceutical
+                manufacturing processes, such as tablet production and powder granulation.
+            </li>
+            <li>
+                Construction and Aggregate Industries: The experiment aids in determining the efficiency of screens in
+                separating aggregates and other construction materials based on size.
+            </li>
+            <li>
+                Environmental Science: Screen effectiveness experiments are employed in studies related to soil
+                analysis, water filtration, and environmental monitoring.
+            </li>
+        </ul>
+        <img class="rounded mx-auto d-block"
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
+     -->
+    </mat-tab>
+    <mat-tab label="Formulae">
+        <div class="formulae" style="margin-top: 5%;font-size: large;letter-spacing: 2.5;">
+            <div class="row">
+                <div class="col-8">
+                    <h4 style="font-weight: 600;"> Overall energy balance :</h4>
+                    <p>
+                        Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
+                        C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                        <br>
+
+                        Q = UA ΔT<sub>LMTD</sub>
+                    </p>
+                    <h4 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h4>
+                    <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
+                        +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
+                        + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+                    <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient
+                    </h5>
+                    <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                        (&mu;/&mu;w)<sup>0.14</sup>
+                        (K<sub> f</sub>d<sub>i</sub>)
+
+                    </p>
+                    <h5 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient
+                    </h5>
+                    <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
+                        (&mu;/&mu;w)<sup>0.14</sup>
+                        (K<sub> f</sub>d<sub>e</sub>)
+
+                    </p>
+
+                </div>
+                <div class="col-4">
+                    <p>
+                        <b>Q<sub>h</sub></b> - Amount of Heat Transfer(Hot fluid side)<br>
+                        <b>Q <sub>c</sub></b> - Amount of Heat Transfer(Cold fluid side)<br>
+                        <b>T<sub>hin</sub></b> - Hot Fluid inlet temperature <br>
+                        <b>T<sub>hout</sub></b> - Hot Fluid outlet temperature <br>
+                        <b>T<sub>cin</sub></b> - Cold Fluid inlet temperature <br>
+                        <b>T<sub>cout</sub></b> - Cold Fluid outlet temperature <br>
+                        <b>ΔT<sub>LMTD</sub></b>- Log mean temperature difference<br>
+                        <b>A</b> - Heat Transfer Area <br>
+                        <b>U</b> - Overall Side Heat transfer Coefficient <br>
+                        <b>H<sub>i</sub></b> - Tube Side Heat transfer Coefficient <br>
+                        <b>H<sub>id</sub></b> - Tube side Heat Transfer(fouling)<br>
+                        <b>H<sub>o</sub></b> - Shell Side Heat transfer Coefficient <br>
+                        <b>H<sub>od</sub></b> - Sell side Heat Transfer(fouling)<br>
+                        <b>N<sub>Re</sub></b> - Reynold's Number<br>
+                        <b>N<sub>Pr</sub></b> - Prandtl's Number<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Simulation">
+
+        <div style="margin:2% 10%;">
+
+            <form [formGroup]="ip">
+                <div>
+                    
+
+                        <table class="table table-hover table-striped mat-elevation-z8">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Value</th>
+                                    <th>Units</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Material to be crushed </td>
+                                    <td>
+                                        <select formControlName="Material">
+                                            <option value="LimeStone">LimeStone</option>
+                                        </select>
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td>Angle of Nip</td>
+                                    <td>
+                                        <input type="number" formControlName="NipAngle">
+                                    </td>
+                                    <td> &deg; </td>
+                                </tr>
+                                <tr>
+                                    <td>maximum allowable feed diameter </td>
+                                    <td>
+                                        <input type="number" formControlName="Dfmx">
+                                    </td>
+                                    <td> m </td>
+                                </tr>
+                                <tr>
+                                    <td>Diameter of each roll</td>
+                                    <td>
+                                        <input type="number" formControlName="DR">
+                                    </td>
+                                    <td> m </td>
+                                </tr>
+        
+                              
+                                
+                                <tr>
+                                    <td>Speed of the roll</td>
+                                    <td>
+                                        <input type="number" formControlName="N">
+                                    </td>
+                                    <td> RPM </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount of feed to be loaded</td>
+                                    <td>
+                                        <input type="number" formControlName="Mfeed">
+                                    </td>
+                                    <td> m </td>
+                                </tr>
+                                <tr>
+                                    <td>Crushing time</td>
+                                    <td>
+                                        <input type="number" formControlName="Crushtime">
+                                    </td>
+                                    <td> m </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-success" type="submit" [disabled]="!ip.valid"
+                            (click)="onSubmit()">submit</button>
+                        <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
+                            required.</div>
+                        <div *ngIf="ip.valid && !this.s.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+                  
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>SI No </th>
+                                <th>Mesh</th>
+                                <th>Screen Opening - Dpi</th>
+                                <th> Xf </th>
+                                <th> Xf (cumulative) </th>
+
+                                <th>Product Diameter - Dsb</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let m of mesh; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{m}}</td>
+                                <td>{{Dpi[i]}}</td>
+
+                                 <td>
+                                    <input type="number" min="0" max="1" [formControl]="ip.controls.xf.controls[i]">
+                                </td>
+                                <td>{{getCumXF(i)}} </td>
+                               <td>{{getDsb(i)}} </td>
+                            
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </mat-tab>
+    <mat-tab label="Result">
+
+        <div *ngIf="isCalculated">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>D/f</td>
+
+                        <td>{{this.df}}</td>
+                        <td>W</td>
+                    </tr>
+                    <tr>
+                        <td>B/f</td>
+
+                        <td>{{this.bf}}</td>
+                        <td>W</td>
+                    </tr>
+                    <tr>
+                        <td>efficiency</td>
+
+                        <td>{{this.efficiency}}</td>
+                        <td>W</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!isCalculated">
+            <div class="alert-warning" style="padding:20px">
+                <h3>Cannot generate results</h3>
+                <h6>Simulate to get results</h6>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Virtual Experiment">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+            <td>Assumed Effectiveness </td>
+
+            <td>80 </td>
+            <td>%</td>
+        </tr>
+        <tr>
+            <td> Screen To be checked  </td>
+
+            <td>{{this.ip.value.Screen}}</td>
+            <td> - </td>
+        </tr> 
+        <tr>
+            <td> Effectiveness of the selected screen </td>
+
+            <td>{{efficiency}}</td>
+            <td> % </td>
+        </tr> 
+            </tbody>
+        </table>
+        <div class="image">
+
+
+            <img class="rounded mx-auto d-block"
+            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
+        </div>
+    </mat-tab>
+    <div class="position-fixed bottom-0 end-0">
+
+        <a id="GoTO" href="#Theory"><button class="btn btn-goto" style="border-radius:100%;"><i class="bi bi-chevron-up"
+                    style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
+    </div>
+</mat-tab-group>
+

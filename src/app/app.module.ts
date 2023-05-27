@@ -25,6 +25,7 @@ import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.compon
 import { CycloneSeparatorComponent } from './cyclone-separator/cyclone-separator.component';
 import { AnnulusPipeComponent } from './annulus-pipe/annulus-pipe.component';
 import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effectiveness.component';
+import { RollCrusherComponent } from './roll-crusher/roll-crusher.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effe
     CycloneSeparatorComponent,
     AnnulusPipeComponent,
     ScreenEffectivenessComponent,
+    RollCrusherComponent,
 
   ],
   imports: [

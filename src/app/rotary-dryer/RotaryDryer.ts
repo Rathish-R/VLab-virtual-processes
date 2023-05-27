@@ -6,8 +6,15 @@ ms ! : number ; // weight if bone dried solid  // Kg
 mm ! :number ; // amount of moisture // kg
 w1 !:number ; // initial moisture
 w2 ! : number ;// fianl moisture
+TAo ! : number;// outlet air temperature 
+Cps !: number;// specific heat of solid 
+LVp  !: number ;//  kcal /kg deg c  latent heat of vapourisation
+ qt !:number ; //amount of heat transfrer per kg
+ Ha !:number ; //kg water/kg d air // humidity 
+ Dbt ! :number ;
+ Wbt!:number;
 
-    isCalculated: boolean = false;
+isCalculated: boolean = false;
 
     SFR!: number;
     TFR!: number;

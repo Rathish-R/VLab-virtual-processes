@@ -15,8 +15,7 @@ export class HeatTransferComponent {
   equipments!: string[];
   selectedOperation!: string;
 
-  subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering",
-];
+ 
  constructor(
   private router: Router,
   private snackBar: MatSnackBar
@@ -33,9 +32,8 @@ export class HeatTransferComponent {
 
     this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
-      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
-    ,"Open Pan Evaporator","Batch"];
-    this.selectedOperation = "Theory";
+      "Shell and Tube Heat Exchanger", "Helical Coil Heat Exchanger", "Vertical Condenser","Double Pipe Heat Exchanger",];
+
   }
   ngOnChanges(){
     this.selectedExp(this.selected)

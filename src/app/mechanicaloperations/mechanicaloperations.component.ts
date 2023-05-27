@@ -31,11 +31,10 @@ export class MechanicaloperationsComponent  {
           duration: 5000,
         });
       }, 2000);
-
+      this.equipments = [
+        "Cyclone Separator", "Screen Effectiveness", "Roll Crusher",];
     this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Cyclone Separator';
-    this.equipments = [
-      "Cyclone Separator", "Screen Effectiveness", " "," ", " "
-    ," "," "];
+    
 
   }
   ngOnChanges(){
@@ -52,8 +51,8 @@ selectedLab(option: string) {
     else if(option=='Screen Effectiveness'){
       option="ScreenEffectiveness"
     }
-    else if(option=='Double Pipe Heat Exchanger'){
-      option="DoublePipeHeatExchanger"
+    else if(option=='Roll Crusher'){
+      option="RollCrusher"
     }
     else if(option=='Vertical Condenser'){
       option="VerticalCondenser"
