@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChemicalRectionEngineeringComponent } from './chemical-rection-engineering/chemical-rection-engineering.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,8 +32,6 @@ import { RollCrusherComponent } from './roll-crusher/roll-crusher.component';
     HomeComponent,
     ChemicalRectionEngineeringComponent,
 
-
-    SideNavComponent,
     VerticalCondenserComponent,
     DoublePipeHExComponent,
     CycloneSeparatorComponent,

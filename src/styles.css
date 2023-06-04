@@ -119,6 +119,13 @@ font-weight: 300;
 .sub{
     list-style-type: none;
 }
+.FormulaesubHeading{
+    font-weight: 600;color: rgba(52, 52, 52, 0.856);
+}
+.FormulaeHeading{
+    font-weight: 600;
+}
+
 /* li{
     list-style-type: none;
 } */

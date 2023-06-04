@@ -120,6 +120,7 @@ export class ShellAndTubeComponent {
     this.s.QFound = Number((this.s.QFound/1000).toFixed(3));
     this.s.Tco = Number(this.s.Tco.toFixed(1));
     this.s.Tho = Number(this.s.Tho.toFixed(1));
+    this.s.QShellSide=Number((this.s.QShellSide/1000).toFixed(3));
 
   }
   ShellSideCalc(): void {

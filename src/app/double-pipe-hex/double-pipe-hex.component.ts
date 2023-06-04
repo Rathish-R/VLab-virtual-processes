@@ -40,7 +40,7 @@ export class DoublePipeHExComponent {
   }
 
   ip = new FormGroup({
-    HeatTransferCoeffAssumed: new FormControl(500, Validators.required),
+    
     OilFlowRate: new FormControl(1.36, Validators.required),
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
     Waterflowrate: new FormControl(1.38, Validators.required),
@@ -83,22 +83,35 @@ console.log(this.Cwater);
 
   }
   roundOff() {
-    this.s.HtArea = Number(this.s.HtArea.toFixed(3));
-   
-    this.s.HtubeSide = Number(this.s.HtubeSide.toFixed(3));
-  
+    this.s.da= Number(this.s.da.toFixed(3));
+    this.s.di= Number(this.s.di.toFixed(3));
+    this.s.do= Number( this.s.do.toFixed(3));
+    this.s.NReTs= Number(this.s.NReTs.toFixed(3));
+    this.s.NPrTs= Number( this.s.NPrTs.toFixed(3));
+    this.s.foulingT= Number(this.s.foulingT.toFixed(3));
+    this.s.HtubeSide= Number( this.s.HtubeSide.toFixed(3));
+    this.s.FlowAreaAnnulus= Number( this.s.FlowAreaAnnulus.toFixed(3));
+    this.s.NReSs = Number(this.s.NReSs.toFixed(3));
+    this.s.NPrSs= Number( this.s.NPrSs.toFixed(3));
+    this.s.NNuTs= Number(this.s.NNuTs.toFixed(3))
     this.s.FlowAreaOfTubes = Number(this.s.FlowAreaOfTubes.toFixed(3));
     this.s.VelocityTubeSide = Number(this.s.VelocityTubeSide.toFixed(3));
     this.s.VelocityShellSide = Number(this.s.VelocityShellSide.toFixed(3));
-   
+    this.s.foulingS= Number(this.s.foulingS.toFixed(3))
     this.s.HShellSide = Number(this.s.HShellSide.toFixed(3));
+    this.s.NNuSs= Number( this.s.NNuSs.toFixed(3));
+    this.s.de= Number( this.s.de.toFixed(3));
+    this.s.HeatDuty= Number( this.s.HeatDuty.toFixed(3));
+    this.s.Nhp= Number(this.s.Nhp.toFixed(3));
     this.s.OverallHTCoeff = Number(this.s.OverallHTCoeff.toFixed(3));
     this.s.PDropSs = Number(this.s.PDropSs.toFixed(3));
     this.s.PDropTs = Number(this.s.PDropTs.toFixed(3));
-    this.s.QFound = Number(this.s.QFound.toFixed(3));
-    // this.s.Tco = Number(this.s.Tco.toFixed(1));
-    // this.s.Tho = Number(this.s.Tho.toFixed(1));
+    this.s.QFound = Number((this.s.QFound/1000).toFixed(3));
+    this.s.Tco = Number(this.s.Tco.toFixed(1));
+     this.s.Tho = Number(this.s.Tho.toFixed(1));
+     this.s.Ahp= Number( this.s.Ahp.toFixed(3));
 
+     this.s.HtArea= Number( this.s.HtArea.toFixed(3));
   }
   DblPipeCalc(): void {
     console.log("calculating");
@@ -152,21 +165,12 @@ console.log(this.Cwater);
     this.s.PDropSs = (this.s.PDropSs * 14.69) / 101325;
     //surface Area of one tube
     var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
-    debugger;
     var rectifier = 1;
     while (!this.s.isFeasible) {
       console.log("rectifier" + rectifier);
-
       this.s.BaffleSpace = (this.s.ShellDia / 5) * rectifier;
       this.s.pitch = 1.25 * Number(this.ip.value.TubeDiaO);
-
       const De = (Math.pow(this.s.pitch, 2) - (0.917 * Math.pow(Do, 2))) / Do;
-
-
-
-
-
-      debugger;
       var ActualArea = Math.PI * 5 * this.s.TubesPerPass * Number(this.ip.value.TubeDiaI) / 2;
       console.log(ActualArea);
       // this.s.QFound = this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
@@ -190,9 +194,9 @@ console.log(this.Cwater);
     this.log['Mc'] = this.ip.value.Waterflowrate;
 
     this.log['Thi'] = this.ip.value.Thi;
-    this.log['Tho'] = this.s.Tho;
+    this.log['Tho'] = (this.s.Tho).toFixed(3);
     this.log['Tci'] = this.ip.value.Tci;
-    this.log['Tco'] = this.s.Tco;
+    this.log['Tco'] = (this.s.Tco).toFixed(3);
     this.logs.push(this.log);
     this.log = [];
     this.roundOff();

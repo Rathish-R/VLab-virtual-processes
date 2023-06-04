@@ -38,7 +38,8 @@ export class CycloneSeparatorComponent {
     gasflowrate: new FormControl(50, Validators.required),
     gasFRUnit: new FormControl('m3/hr', Validators.required),
     L: new FormControl(5, Validators.required),//pipe length
-    Dp: new FormControl(0.1, Validators.required), //m
+    Dp: new FormControl(0.001, Validators.required), //m
+    Dc: new FormControl(0.1, Validators.required),
 
   });
 
@@ -50,6 +51,7 @@ export class CycloneSeparatorComponent {
     this.s.k = 0.75;
     this.s.n=0.8;
     this.s.Dp = Number(this.ip.value.Dp);
+    this.s.Dc = Number(this.ip.value.Dc);
     this.s.ViscG = 0.023;
 
     this.s.DensityP = 2500;
@@ -66,7 +68,10 @@ export class CycloneSeparatorComponent {
     // this.s.HShellSide = Number(this.s.HShellSide.toFixed(3));
     // this.s.OverallHTCoeff = Number(this.s.OverallHTCoeff.toFixed(3));
     this.s.PDrop = Number(this.s.PDrop.toFixed(3));
-
+    this.s.Ac- Number( this.s.Ac.toFixed(3));
+    this.s.v = Number(this.s.v .toFixed(3));
+    this.s.Lc = Number( this.s.Lc.toFixed(3));
+    this.s.DelP= Number(this.s.DelP.toFixed(3));
   }
   Calc(): void {
     console.log("calculating");
@@ -74,8 +79,6 @@ export class CycloneSeparatorComponent {
 
     this.s.DensityP = 2500; //kg/m3
     this.s.Bc = 25;
-
-    this.s.Dc = (4 * this.s.Q) / (Math.PI * this.s.v * this.s.DensityP * this.s.n);
     this.s.Ac = Math.PI * (Math.pow(this.s.Dc, 2)) / 4;
     this.s.u = 4 * this.s.Q / (Math.pow(this.s.Dc, 2));
     this.s.v = this.s.u * this.s.k;

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { EMap } from '../home/Equipments';
-import { MatToolbar } from '@angular/material/toolbar';
+import { EMap } from '../EquipmentsMap';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-mechanicaloperations',
   templateUrl: './mechanicaloperations.component.html',
@@ -14,11 +15,10 @@ export class MechanicaloperationsComponent  {
   isTreeOn :boolean =false;
   ismenuOn : boolean=false;
   equipments!: string[];
-  selectedOperation!: string;
+ 
 
-  subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering",
-];
  constructor(
+  private Activatedroute: ActivatedRoute,
   private router: Router,
   private snackBar: MatSnackBar
   ){
@@ -33,8 +33,8 @@ export class MechanicaloperationsComponent  {
       }, 2000);
       this.equipments = [
         "Cyclone Separator", "Screen Effectiveness", "Roll Crusher",];
-    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Cyclone Separator';
-    
+        this.selected = this.Activatedroute.snapshot
+        .queryParams['process'] || 'Cyclone Separator';
 
   }
   ngOnChanges(){
@@ -45,23 +45,12 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    if(option=='Cyclone Separator'){
-      option="CycloneSeparator"
-    }
-    else if(option=='Screen Effectiveness'){
-      option="ScreenEffectiveness"
-    }
-    else if(option=='Roll Crusher'){
-      option="RollCrusher"
-    }
-    else if(option=='Vertical Condenser'){
-      option="VerticalCondenser"
-    }
-    localStorage.setItem('Current',option);
-    this.navigateTo(option);
+    localStorage.setItem('Current', EMap.get(option)!);
+    this.navigateTo(EMap.get(option)!);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/Home','MechanicalOperations',url]);
+    this.router.navigate(['/Home','MechanicalOperations',url] ,
+    { queryParams: { process: this.selected} });
   }
   ngOnDestroy() {
 

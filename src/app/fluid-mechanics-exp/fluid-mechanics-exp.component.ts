@@ -10,7 +10,7 @@ import { EMap } from '../home/Equipments';
 })
 export class FluidMechanicsExpComponent {
   m:any = EMap;
-  selected: string = "Shell and Tube Heat Exchanger";
+  selected: string = "Annulus Pipes";
   isTreeOn :boolean =false;
   ismenuOn : boolean=false;
   equipments!: string[];
@@ -47,9 +47,7 @@ selectedLab(option: string) {
     if(option=='Annulus Pipes'){
       option="AnnulusPipes"
     }
-    else if(option=='Helical Coil Heat Exchanger'){
-      option="HelicalCoilHeatExchanger"
-    }
+  
     localStorage.setItem('Current',option);
     this.navigateTo(option);
   }

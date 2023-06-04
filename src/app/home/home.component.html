@@ -1,3 +1,6 @@
+
+//ng build --output-path docs --base-href /VLab-virtual-processes/
+
 <div class="Top" style="position:sticky;top: 0; box-shadow: 1px 1px 5px;z-index: 100;width:100%">
     <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
@@ -74,23 +77,23 @@
     <div class="row">
 
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isFmOn=true"
-            [routerLink]="['/Home','FluidMechanics','AnnulusPipes']">Fluid
+            [routerLink]="['/Home','FluidMechanics','AnnulusPipes']" [queryParams]="{ process: 'Annulus Pipes'}">Fluid
                 Mechanics</button></div>
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isHtOn=true"
-                [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']">Heat Transfer</button></div>
+                [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']" [queryParams]="{ process: 'Shell and Tube Heat Exchanger'}">Heat Transfer</button></div>
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMtOn=true"
-            [routerLink]="['/Home','MassTransfer','RotaryDryer']">Mass
+            [routerLink]="['/Home','MassTransfer','RotaryDryer']" [queryParams]="{ process: 'Rotary Dryer'}">Mass
                 Transfer</button></div>
     </div>
     <div class="row">
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
-            [routerLink]="['/Home','MechanicalOperations','CycloneSeparator']"  >Mechanical Operations </button>
+            [routerLink]="['/Home','MechanicalOperations','CycloneSeparator']" [queryParams]="{ process: 'Cyclone Separator'}"  >Mechanical Operations </button>
         </div>
         <div class="col"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isCREOn=true"
-                routerLink="ChemicalReactionEngineering">Chemical Reaction
+                routerLink="ChemicalReactionEngineering" >Chemical Reaction
                 Engineering</button></div>
 
     </div>

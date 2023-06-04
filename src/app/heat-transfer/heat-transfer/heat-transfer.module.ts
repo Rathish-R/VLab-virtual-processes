@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HeatTransferRoutingModule } from './heat-transfer-routing.module';
-import { HeatTransferComponent } from '../../heat-transfer/heat-transfer.component';
+import { HeatTransferComponent } from '../heat-transfer.component';
 import { SimpleDistillationComponent } from '../../simple-distillation/simple-distillation.component';
 import { HelicalCoilHExComponent } from '../../helical-coil-hex/helical-coil-hex.component'
 import { ShellAndTubeComponent } from 'src/app/shell-and-tube/shell-and-tube.component';

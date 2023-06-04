@@ -105,27 +105,49 @@
         <div class="formulae" style="margin: 5% 20%;font-size: large;letter-spacing: 2.5;">
             <div class="row">
 
-                <h3 style="font-weight: 600;"> Overall energy balance :</h3>
+                <h2 clas="FormulaeHeading" style="font-weight: 600"> Overall energy balance :</h2>
                 <p>
-                    Q <sub>h</sub>C<sub>p</sub>(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>
-                    C<sub>p</sub>(T<sub>Cin</sub> - T<sub>Cout</sub>)
+                    Q <sub>h</sub>.C<sub>p</sub>.(T<sub>Hin</sub> - T<sub>Hout</sub>) =m<sub>c</sub>.
+                    C<sub>p</sub>.(T<sub>Cin</sub> - T<sub>Cout</sub>)
                     <br>
 
-                    Q = UA ΔT<sub>LMTD</sub>
+                    Q = U.A.ΔT<sub>LMTD</sub>
                 </p>
-                <h3 style="font-weight: 600;"> Overall Heat Transfer Coefficient :</h3>
-                <p> 1/U = (1/H<sub>o</sub>) + (1/H<sub>od</sub>) +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>i</sub>)
-                    +((d<sub>o</sub>/d<sub>i</sub>) X 1/H<sub>id</sub>)
-                    + d<sub>o</sub>(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
-                <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.855);">Tube Side Heat Transfer Coefficient
-                </h4>
-                <p>H<sub>i</sub> = J<sub>h</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
-                    (&mu;/&mu;w)<sup>0.14</sup>
-                    (K<sub> f</sub>d<sub>i</sub>)
+                <h2 clas="FormulaeHeading" style="font-weight: 600"> Overall Heat Transfer Coefficient :</h2>
+                <p> 1/Uf = (1/H<sub>o</sub>) + RF<sub>o</sub> +((d<sub>o</sub>/d<sub>i</sub>) X RF<sub>i</sub>)
+                    +((d<sub>o</sub>/d<sub>i</sub>).1/H<sub>i</sub>)
+                    + d<sub>o</sub>.(ln(d<sub>o</sub>/d<sub>i</sub>))/2K<sub>w</sub>
+                <h2 clas="FormulaeHeading">Tube Side Heat Transfer Coefficient
+                </h2>
+                <h4>Tube Velocity </h4>
+                <p>
+                    Vt = Mt / &rho; At; 
+                </p>
+                <h4 clas="FormulaesubHeading">Cross sectional Area -  Tube side </h4>
+                <p> At = (&pi;(Di)<sup>2</sup>/4)</p>
+                <h4 clas="FormulaesubHeading">Reynolds Number</h4>
+                <p> Nre = (&rho;(Di)Vt)/&mu;</p>
+                <h4 clas="FormulaesubHeading">Fouling Factor </h4>
+                <p> Ft = (1.58 ln Nre - 3.28)<sup>-2</sup></p>
+                <h4 clas="FormulaesubHeading">Nusselt Number </h4>
+                <p> Nu = ((Ft/2).Nre.Npr) / (1+ 8.7.(f/2)<sup>1/2</sup>.(Npr-1))</p>
+                <h4 clas="FormulaesubHeading">HT Coefficient </h4>
+                <p>H<sub>i</sub> = Nu.K/Di
+                </p>
 
+                
+                <h2 clas="FormulaesubHeading" style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Annulus side  Heat Transfer Coefficient
+                </h2>
+                 <h4 clas="FormulaesubHeading">Cross sectional Area -  annulus side </h4>
+                <p> Aa = (&pi;.(Di<sup>2</sup> - Do<sup>2</sup>)/4)</p>
+               
+                <p> Dh = Di - Do <br/>
+                     Nre = &rho;.Dh.Va/&mu;
                 </p>
-                <h4 style="font-weight: 600;color: rgba(52, 52, 52, 0.856);">Shell Side Heat Transfer Coefficient
-                </h4>
+                <h4 clas="FormulaesubHeading">Fouling Factor -Annulus</h4>
+                <p> Fa = (1.58 ln Nre - 3.28)<sup>-2</sup></p>
+               
+               
                 <p>H<sub>o</sub> = J<sub>f</sub> N<sub>RE</sub> N<sub>Pr</sub><sup>0.33</sup>
                     (&mu;/&mu;w)<sup>0.14</sup>
                     (K<sub> f</sub>d<sub>e</sub>)
@@ -172,19 +194,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Assumed HT Coefficient U</td>
-                            <td>
-                                <select formControlName="HeatTransferCoeffAssumed">
-                                    <option value="300">300</option>
-                                    <option value="400">400</option>
-                                    <option value="500">500</option>
-                                    <option value="600">600</option>
-                                </select>
-                            </td>
-                            <td> W/m<sup>2</sup>&deg;C </td>
-                        </tr>
-
+                        
                         <tr>
                             <td>Tube's Outside diameter</td>
                             <td>

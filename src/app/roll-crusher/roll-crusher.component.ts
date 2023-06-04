@@ -279,6 +279,7 @@ export class RollCrusherComponent {
     if (this.ip.valid) {
 
       this.CalculateProductOutlet();
+      console.log(this.s)
     }
     // this.reset() ;
   }

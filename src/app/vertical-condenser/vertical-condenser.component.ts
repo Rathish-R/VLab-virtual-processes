@@ -67,7 +67,7 @@ export class VerticalCondenserComponent {
 
     ShellFluid: new FormControl('Methanol', Validators.required),
   });
-  methanol!: Methanol;
+  methanol: Methanol=new Methanol();
   water!: Water;
   initialization(th: number, tc: number) {
     debugger;
