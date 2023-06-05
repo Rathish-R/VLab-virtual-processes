@@ -53,11 +53,13 @@ export class HelicalCoilHExComponent {
     TubeDiaI: new FormControl(0.025, Validators.required), //m
     B: new FormControl(0.340, Validators.required), //m
     C: new FormControl(0.460, Validators.required), //m
-    ShellFluid: new FormControl('Methanol', Validators.required),
+    ShellFluid: new FormControl('Water', Validators.required),
   });
 
   initialization() {
     this.h.isFeasible = false;
+    if(this.ip.value.ShellFluid=='Vegetable Oil'){
+    
     var VegeOil: VOil = new VOil();
     var water: Water = new Water(Number(this.ip.value.Tci));
     VegeOil.getProperties(Number(this.ip.value.Thi));
@@ -71,6 +73,22 @@ export class HelicalCoilHExComponent {
     this.h.TFVisc = VegeOil.viscosity;
     this.h.SFR = Number(this.ip.value.Waterflowrate);
     this.h.TFR = Number(this.ip.value.OilFlowRate);
+    }
+    else{
+      var VegeOil: VOil = new VOil();
+      var water: Water = new Water(Number(this.ip.value.Thi));
+      VegeOil.getProperties(Number(this.ip.value.Tci));
+      this.h.SFDensity = VegeOil.density;
+      this.h.TFDensity = water.density;
+      this.h.SFCond = VegeOil.k;
+      this.h.TFCond = water.k;
+      this.h.TFCp = water.cp;
+      this.h.SFCp = VegeOil.cp;
+      this.h.SFVisc = VegeOil.viscosity;
+      this.h.TFVisc = water.viscosity;
+      this.h.TFR = Number(this.ip.value.Waterflowrate);
+      this.h.SFR = Number(this.ip.value.OilFlowRate);
+    }
   }
   roundOff() {
     debugger;
@@ -81,9 +99,8 @@ export class HelicalCoilHExComponent {
     this.h.de = Number(this.h.de.toFixed(3));
     this.h.Gs = Number(this.h.Gs.toFixed(3));
     this.h.Vf = Number(this.h.Vf.toFixed(3));
-    
-  
-
+    this.h.pitch= Number(this.h.pitch.toFixed(3));  
+    this.h.dh =Number(this.h.dh .toFixed(3));
     this.h.NReSs = Number(this.h.NReSs.toFixed(3));
     this.h.NPrSs = Number(this.h.NPrSs.toFixed(3));
     this.h.c = Number(this.h.c.toFixed(3));
@@ -157,7 +174,7 @@ export class HelicalCoilHExComponent {
     this.h.PDropTs = 2 * fc * this.h.Lc * Math.pow(this.h.Vcoil, 2) * this.h.TFDensity / this.h.di;
     this.h.PDropTs = (this.h.PDropTs * 14.69) / 101325;
 
-
+this.h.QFound=(this.h.TFR)*this.h.TFCp*(Number(this.ip.value.Tho)-Number(this.ip.value.Thi));
 
     console.log(this.h);
     this.roundOff();
