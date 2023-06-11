@@ -8,6 +8,7 @@ export let EMap = new Map<string, string>(
         ["Screen Effectiveness","ScreenEffectiveness"],
         ["Roll Crusher","RollCrusher"],
         ["Annulus Pipes","AnnulusPipes",],
+        ["Straight Pipes","StraightPipes",],
     ])
 //  Object=[{
 //     Shell and Tube Heat Exchanger :"ShellAndTubeHeatExchanger",

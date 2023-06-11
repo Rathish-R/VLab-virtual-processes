@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { EMap } from '../home/Equipments';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EMap } from '../EquipmentsMap';
 
 @Component({
   selector: 'app-fluid-mechanics-exp',
@@ -18,6 +18,7 @@ export class FluidMechanicsExpComponent {
 
  
  constructor(
+  private Activatedroute: ActivatedRoute,
   private router: Router,
   private snackBar: MatSnackBar
   ){
@@ -31,10 +32,12 @@ export class FluidMechanicsExpComponent {
         });
       }, 2000);
 
-    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
+   // this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
     this.equipments = [
-      "Annulus Pipes" , "Straight pipes"];
-    this.selectedOperation = "Theory";
+      "Annulus Pipes" , "Straight Pipes"];
+
+    this.selected = this.Activatedroute.snapshot
+    .queryParams['process'] || 'Annulus Pipes';
   }
   ngOnChanges(){
     this.selectedExp(this.selected)
@@ -44,15 +47,11 @@ selectedLab(option: string) {
     this.navigateTo(option);
   }
   selectedExp(option: string) {
-    if(option=='Annulus Pipes'){
-      option="AnnulusPipes"
-    }
-  
-    localStorage.setItem('Current',option);
-    this.navigateTo(option);
+    this.navigateTo(EMap.get(option)!);
   }
   navigateTo(url: string): void {
-    this.router.navigate(['/Home','FluidMechanics',url]);
+    this.router.navigate(['/Home','FluidMechanics',url],
+    { queryParams: { process: this.selected} });
   }
   ngOnDestroy() {
 

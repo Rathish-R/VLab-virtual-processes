@@ -30,9 +30,7 @@ export class ShellAndTubeComponent {
 
   ngOnInit() {
     this.selected = "Shell and Tube Heat Exchanger";
-    this.equipments = [
-      "Shell and Tube Heat Exchanger", "Double Pipe Heat Exchanger", "Jacketed Vessel"
-    ];
+
     this.isClickLabOn = true;
   }
 
@@ -71,32 +69,19 @@ export class ShellAndTubeComponent {
 
       this.s.SFR = Number(this.ip.value.OilFlowRate);
       this.s.TFR = Number(this.ip.value.Waterflowrate);
-      if (this.ip.value.OilFRUnit == "Kg/sec") {
-    
-        // this.TFR=Number(this.inputValues.value.Waterflowrate);
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/min") {
-        this.s.SFR = Number(this.ip.value.OilFlowRate) / 60;
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.OilFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        this.s.SFR = Number(this.ip.value.OilFlowRate) / (60 * 60);
-        // this.TFR=Number(this.inputValues.value.Waterflowrate) /( 60 * 60);
-      }
-      if (this.ip.value.WaterFRUnit == "Kg/sec") {
-   
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/min") {
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) / 60;
-        this.s.TFR = Number(this.ip.value.Waterflowrate) / 60;
-      }
-      else if (this.ip.value.WaterFRUnit == "Kg/hr") {
-        console.log(this.ip.value.OilFlowRate);
-        // this.SFR = Number(this.inputValues.value.OilFlowRate) /(60 * 60) ;
-        this.s.TFR = Number(this.ip.value.Waterflowrate) / (60 * 60);
-      }
+    }
+    else  {
+      this.s.SFDensity = this.water.density;
+      this.s.TFDensity = this.methanol.density;
+      this.s.SFCond = this.water.k;
+      this.s.TFCond = this.methanol.k;
+      this.s.TFCp = this.methanol.cp;
+      this.s.SFCp = this.water.cp;
+      this.s.SFVisc = this.water.viscosity;
+      this.s.TFVisc = this.methanol.viscosity;
 
+      this.s.SFR = Number(this.ip.value.Waterflowrate);
+      this.s.TFR = Number(this.ip.value.OilFlowRate);
     }
     // flowrates
 
@@ -124,6 +109,7 @@ export class ShellAndTubeComponent {
 
   }
   ShellSideCalc(): void {
+    debugger;
     console.log("calculating");
     this.initialization(Number(this.ip.value.Thi), Number(this.ip.value.Tci));
     const Di = Number(this.ip.value.TubeDiaI);
@@ -131,8 +117,8 @@ export class ShellAndTubeComponent {
     const U: number = Number(this.ip.value.HeatTransferCoeffAssumed)   // W/m2oC
     var delT = Number(this.ip.value.Thi) - Number(this.ip.value.Tho);
     delT = Number(delT.toFixed(3))//oC
-    this.s.QShellSide = Number(this.ip.value.OilFlowRate) * delT * this.s.SFCp; // W
-    this.s.HtArea = (this.s.QShellSide) / (U * this.getLmtd()); //m2 
+    this.s.QShellSide = (this.ip.value.ShellFluid=='Methanol')?Number(this.ip.value.OilFlowRate) * delT * this.s.SFCp : Number(this.ip.value.OilFlowRate) * delT * this.s.TFCp; // W
+    this.s.HtArea = (this.s.QShellSide) / (U * this.getLmtd()*0.85); //m2 
 
     //surface Area of one tube
     var sATUbe = Math.PI * Do * (5 - 2 * (0.025));
@@ -181,6 +167,18 @@ export class ShellAndTubeComponent {
       console.log(ActualArea);
       this.s.QFound = this.s.OverallHTCoeff * ActualArea * this.s.lmtd;
       if (this.s.PDropTs > 10 || this.s.PDropSs > 10) {
+        if(rectifier>5 ){
+          if(this.s.PDropTs > 10){
+            this.ip.get('TubeDiaI')!.patchValue(Number((Di +(0.1*Di).toFixed(4))));
+            this.ip.get('TubeDiaO')!.patchValue(Number((Do +(0.1*Do).toFixed(4))));
+            this.s.isValid = true;
+            this.ShellSideCalc();
+          }
+          else{
+            alert('The design is not feasible , Kindly Enter valid details');
+            this.s.isValid = false;
+          }
+        }
         this.s.isFeasible = false;
         rectifier += 0.2;
       }

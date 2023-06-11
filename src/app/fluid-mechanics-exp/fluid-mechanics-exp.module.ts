@@ -7,11 +7,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MaterialModule } from '../material/material.module';
+import { StraightPipes } from '../straight-pipes/StraightPipe';
+import { StraightPipesComponent } from '../straight-pipes/straight-pipes.component';
+import { AnnulusPipeComponent } from '../annulus-pipe/annulus-pipe.component';
 
 
 @NgModule({
   declarations: [
-    FluidMechanicsExpComponent
+    FluidMechanicsExpComponent,StraightPipesComponent,AnnulusPipeComponent
   ],
   imports: [
     CommonModule,

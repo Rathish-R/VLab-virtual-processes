@@ -11,8 +11,8 @@ export class ShellAndTube {
     SFCond!: number; // W/moC
     TFCond!: number; // W/moC
 
-    Jh: number = 0.0035;
-    Jf: number = 0.004;
+    Jh: number = 0.004;
+    Jf: number = 0.0043;
     TubeSheetThick: number = 0.025;
     
     lmtd !: number;

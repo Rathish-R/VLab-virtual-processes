@@ -165,10 +165,13 @@
                         </div>
                         <div class="col">
                             <button mat-raised-button class="btn-success" (click)="onSubmit()"> Submit</button>
-
-                            <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
-                                required.</div>
-                            <div *ngIf="ip.valid && !this.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate
+                            <div style="margin-top:5px; font-size:14px">
+                                <div *ngIf="!this.isCalculated" style="color: red">Cumulative mass Fration
+                                    should be 1
+                                </div>
+                                <div *ngIf="ip.valid && this.isCalculated" style="color: rgb(4, 255, 0)">Ready to
+                                    calculate
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,10 +195,10 @@
                                 <td>{{m}}</td>
                                 <td>{{Dpi[i]}}</td>
 
-                                 <td>
+                                <td>
                                     <input type="number" min="0" max="1" [formControl]="ip.controls.xf.controls[i]">
                                 </td>
-                               <td>{{getCumXF(i)}} </td>
+                                <td>{{getCumXF(i)}} </td>
                                 <td>{{getCumXD(i)}}</td>
                                 <td>{{getCumXB(i)}}</td>
 
@@ -259,31 +262,74 @@
             </thead>
             <tbody>
                 <tr>
-            <td>Assumed Effectiveness </td>
+                    <td>Assumed Effectiveness </td>
 
-            <td>80 </td>
-            <td>%</td>
-        </tr>
-        <tr>
-            <td> Screen To be checked  </td>
+                    <td>80 </td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td> Screen To be checked </td>
 
-            <td>{{this.ip.value.Screen}}</td>
-            <td> - </td>
-        </tr> 
-        <tr>
-            <td> Effectiveness of the selected screen </td>
+                    <td>{{this.ip.value.Screen}}</td>
+                    <td> - </td>
+                </tr>
+                <tr>
+                    <td> Effectiveness of the selected screen </td>
 
-            <td>{{efficiency}}</td>
-            <td> % </td>
-        </tr> 
+                    <td>{{efficiency}}</td>
+                    <td> % </td>
+                </tr>
             </tbody>
         </table>
         <div class="image">
 
 
             <img class="rounded mx-auto d-block"
-            src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
-            style="width:fit-content;height: fit-content; z-index: -1;">
+                src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+                style="width:fit-content;height: fit-content; z-index: -1;">
+        </div>
+        <div *ngIf="logs.length==0">
+            <h2>No Data To display !</h2>
+        </div>
+        <div *ngIf="logs.length!=0">
+            <h2 style="text-align:center;"><i class="bi bi-card-list"></i> Logs </h2>
+            <table mat-table class="table table-bordered " style="margin:10px">
+                <thead>
+                    <tr>
+                        <th>Screen Checked</th>
+                        <th>Cumulative Feed Mass Fration </th>
+                        <th>Cumulative Top product Mass Fration </th>
+                        <th>Cumulative Bottom product Mass Fration </th>
+                        <th>Ea </th>
+                        <th>Eb </th>
+                        <th>Efficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of logs">
+                        <td>
+                            {{i['Mh']}}
+                        </td>
+                        <td>
+                            {{i['Mc']}}
+                        </td>
+                        <td>
+                            {{i['Thi']}}
+                        </td>
+                        <td>
+                            {{i['Tci']}}
+                        </td>
+                        <td>
+                            {{i['Tho']}}
+                        </td>
+                        <td>
+                            {{i['Tco']}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
         </div>
     </mat-tab>
     <div class="position-fixed bottom-0 end-0">
@@ -292,4 +338,3 @@
                     style="color: rgba(233, 233, 233, 0.875);font-size: 20px;"></i></button></a>
     </div>
 </mat-tab-group>
-

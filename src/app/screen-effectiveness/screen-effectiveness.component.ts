@@ -22,6 +22,10 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
   xB: number[] = [];
   df :number=0;
   bf :number=0;
+  log: any = [{
+  }]
+  logs: any[] = [
+  ];
   efficiency:number=0;
   isClickLabOn!: boolean;
   currCumXD!: number;
@@ -92,6 +96,9 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
         return ;
       }
     }
+    if(xfc==1){
+      this.isCalculated=true;
+    }
    
     this.xfCum[index] = xfc;
     return xfc.toFixed(5);
@@ -103,19 +110,21 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
     if (type == "xd") {
       var x = 0;
       if (index < this.selectedI) {
-        x = Number(this.ip.value.xf!.at(index))
+        x =  (index!=0)?Number(this.ip.value.xf!.at(index)) +  0.2 * Number(this.ip.value.xf!.at(index-1)):Number(this.ip.value.xf!.at(index))
       }
       else if (index == this.selectedI) {
-        x = 0.8 *Number(this.ip.value.xf!.at(index))
+        debugger;
+        x =  (index!=0)?(Number(this.ip.value.xf!.at(index))*0.8) +  (0.2 * Number(this.ip.value.xf!.at(index-1)))+(0.2 * Number(this.ip.value.xf!.at(index))):0.8 *Number(this.ip.value.xf!.at(index))
       }
       else if (index > this.selectedI) {
         x = 0
       }
       this.xD[index] = Number(x.toFixed(5));
+      if(index == this.xf.length-1){
+        this.log['Cumulative XD'] = this.xD[index];
+      }
     }
     else {
-      // var i = this.mesh.findIndex(item => item == this.getScreen());
-      // console.log(i);
       var x = 0;
       if (index > this.selectedI) {
         x = Number(this.ip.value.xf!.at(index))
@@ -128,6 +137,9 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
         x = 0
       }
       this.xB[index] = Number(x.toFixed(5));
+      if(index == this.xf.length-1){
+        this.log['Cumulative XB'] = this.xB[index];
+      }
     }
 
   }
@@ -187,6 +199,9 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
     this.bf=Math.abs((this.Selected[0]-this.Selected[1])/(this.Selected[2]-this.Selected[1]))
   }
   calculateEfficiency(){
+    if(this.xf[13]!=1){
+      this.isCalculated=false;
+    }
     this.calculateDbyF();
 
     this.calculateBbyF();
@@ -197,6 +212,16 @@ this.efficiency=ea*eb*100;
 this.df= Number(this.df.toFixed(3));
 this.bf= Number(this.bf.toFixed(3));
 this.efficiency= Number(this.efficiency.toFixed(3));
+debugger;
+
+this.log['Screen'] = Number(this.ip.value.Screen);
+this.log['Ea'] =ea;
+this.log['Eb'] =eb;
+this.log['efficiency'] =this.efficiency;
+
+this.logs.push(this.log);
+this.log = [];
+
   }
 
   // 

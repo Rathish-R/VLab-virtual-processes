@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RotaryDryerComponent } from './rotary-dryer.component';
+import { StraightPipesComponent } from './straight-pipes.component';
 
-describe('RotaryDryerComponent', () => {
-  let component: RotaryDryerComponent;
-  let fixture: ComponentFixture<RotaryDryerComponent>;
+describe('StraightPipesComponent', () => {
+  let component: StraightPipesComponent;
+  let fixture: ComponentFixture<StraightPipesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RotaryDryerComponent ]
+      declarations: [ StraightPipesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RotaryDryerComponent);
+    fixture = TestBed.createComponent(StraightPipesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
