@@ -16,5 +16,6 @@ export class RollCruser {
     Feedmass!:number;
     CrushTime!:number;
     kb!:number;
+    redRatio ! : number; // reduction ratio
 
 }

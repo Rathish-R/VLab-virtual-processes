@@ -13,6 +13,7 @@ Td! : number;// dry bulb temperature
 Humidity!: number;// HUmidity
 Cps !: number;// specific heat of solid 
 Cpv!:number;// specific heat of vapour
+Cpl!:number;// specific heat of liquid
 HumidHeatAir!:number;// Humid heat of air
 DryingMedium!:number;// Humid heat of air
 Wia !:number;//inlet wet air

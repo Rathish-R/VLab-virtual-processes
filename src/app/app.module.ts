@@ -22,7 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { VerticalCondenserComponent } from './vertical-condenser/vertical-condenser.component';
 import { DoublePipeHExComponent } from './double-pipe-hex/double-pipe-hex.component';
 import { CycloneSeparatorComponent } from './cyclone-separator/cyclone-separator.component';
-import { AnnulusPipeComponent } from './annulus-pipe/annulus-pipe.component';
+
 import { ScreenEffectivenessComponent } from './screen-effectiveness/screen-effectiveness.component';
 import { RollCrusherComponent } from './roll-crusher/roll-crusher.component';
 import { StraightPipesComponent } from './straight-pipes/straight-pipes.component';

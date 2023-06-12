@@ -84,7 +84,7 @@
 
                 <table class="table table-hover table-striped mat-elevation-z8">
                     <thead>
-                        <tr>From Psychrometric chart </tr>
+                        <tr><div style="margin:5px; font-size:large;"><b>From Psychrometric chart</b></div> </tr>
                         <tr>
                             <th>Property</th>
                             <th>Value</th>
@@ -141,18 +141,18 @@
                                   
                                 </select>
                             </td>
-                            <td> m </td>
+                            <td> % </td>
                         </tr>
                         <tr>
-                            <td>Feed Flowrate</td>
+                            <td>assumed Massflux</td>
                             <td>
-                                <input type="number" formControlName="FR">
+                                <input type="number" formControlName="Massflux">
                             </td>
                             <td> m </td>
                         </tr>
                        
                         <tr>
-                            <td>Feed inlet Temperature/td>
+                            <td>Feed inlet Temperature</td>
                             <td>
                                 <input type="number" formControlName="Tfi">
                             </td>
@@ -195,25 +195,31 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td> weight of bone dried solid</td>
+                        <td> Weight of bone dried solid</td>
 
                         <td>{{this.s.ms}}</td>
-                        <td>W</td>
+                        <td>kg</td>
                     </tr>
                     <tr>
                         <td> initial moisture </td>
 
                         <td>{{this.s.w1}}</td>
-                        <td>&deg;C </td>
+                        <td>kg </td>
                     </tr>
                     <tr>
                         <td> final moisture </td>
 
                         <td>{{this.s.w2}}</td>
-                        <td>&deg;C </td>
+                        <td>kg </td>
                     </tr>
                     <tr>
-                        <td> Amount of water removed by the dryew</td>
+                        <td> Air Outlet Temperature>
+
+                        <td>{{this.s.TAo}}</td>
+                        <td>&deg; C </td>
+                    </tr>
+                    <tr>
+                        <td> Amount of water removed by the dryer</td>
 
                         <td>{{this.s.w1-this.s.w2}}</td>
                         <td>kg</td>
@@ -228,7 +234,7 @@
                         <td>Amount of dry medium </td>
 
                         <td>{{this.s.DryingMedium}}</td>
-                        <td>m<sup>2</sup></td>
+                        <td>kg<sub>dry air</sub>/hr</td>
                     </tr>
                     <tr>
                         <td> Assumed mass flux</td>

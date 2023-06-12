@@ -1,10 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { batchKinetics } from '../batch-kinetics/Batch-Kinetics';
-import { BatchKineticsComponent } from '../batch-kinetics/batch-kinetics.component';
-import { HelicalCoilHEx } from '../helical-coil-hex/HelicalCoilHEx';
-import { OpenPanEv } from '../open-pan-evaporator/OpenPanEvaporator';
 
 @Component({
   selector: 'app-screen-effectiveness',
@@ -41,27 +37,12 @@ Selected : number[]=[]// 0 -xf , 1 - xd ,2 - xb
 
   });
 
-
-
-  // s: ShellAndTube = new ShellAndTube();
-  h: HelicalCoilHEx = new HelicalCoilHEx();
-
   constructor(private fb: FormBuilder,
     private dialog: MatDialog) { }
 
-
-  @Input() selected!: string;
-  @Input() selectedOperation!: string;
-  openDialog() {
-    this.dialog.open(BatchKineticsComponent, {
-      width: '250px',
-
-    });
-  }
   ngOnInit() {
     this.isCalculated=false;
     this.isClickLabOn = true;
-    this.selectedOperation = "Theory";
    
     this.currCumXD = 0;    this.addVolumeControls();
   }

@@ -25,6 +25,10 @@ export class HelicalCoilHEx {
   t!:number;
   B!: number;// Helix inner dia
   C!: number;
+  N!:number; // number of turns
+  Hcyl!:number;//  height of cylinder 
+  LtotalCoil!:number; // total length of the coil
+   
   Ac!:number;//coil flow area 
   Vcoil!:number;
   NReC !:number;
@@ -66,7 +70,7 @@ PDropSs!: number;
 
   BaffleSpace!: number;
   pitch!: number;
-  AreaShell!: number;
+  AreaFound!: number;
   OverallHTCoeff!: number;
 
   Tubes!: number;

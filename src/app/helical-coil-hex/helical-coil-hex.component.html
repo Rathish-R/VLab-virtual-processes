@@ -207,11 +207,22 @@
                             <td><input type="number" formControlName="Thi"></td>
                             <td>&deg;C</td>
                         </tr>
+                        <tr>
+                            <td>HotFluid oultet temperature (desired)</td>
+                            <td><input type="number" formControlName="Tho"></td>
+                            <td>&deg;C</td>
+                        </tr>
                         
                         <tr>
                             <td>Cold fluid inlet temperature</td>
 
                             <td><input type="number" formControlName="Tci"></td>
+                            <td>&deg;C</td>
+                        </tr>
+                        <tr>
+                            <td>Cold fluid outlet temperature (desired)</td>
+
+                            <td><input type="number" formControlName="Tco"></td>
                             <td>&deg;C</td>
                         </tr>
                     
@@ -269,7 +280,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td> Helicx Average dia : </td>
+                        <td> Helix Average dia : </td>
 
                         <td>{{this.h.dh}}</td>
                         <td>m </td>
@@ -305,13 +316,13 @@
                         <td>m<sup>2</sup></td>
                     </tr>
                     <tr>
-                        <td> Volume of Annulus </td>
+                        <td> Volume of Shell </td>
 
                         <td>{{this.h.Va}}</td>
-                        <td> NA </td>
+                        <td> m<sup>3</sup></td>
                     </tr>
                     <tr>
-                        <td> Volume of full Annulus </td>
+                        <td> Volume of  Shell - Excluding coil volume </td>
                         <td>{{this.h.Vf}}</td>
                         <td> m<sup>3</sup> </td>
                     </tr>
@@ -322,9 +333,9 @@
                         <td> m </td>
                     </tr>
                     <tr>
-                        <td> Gs </td>
+                        <td>Mass flux - Gs </td>
                         <td>{{this.h.Gs}}</td>
-                        <td> kg/s</td>
+                        <td> kg/s.m<sup>2</sup></td>
                     </tr>
                     <tr>
                         <td>Clearence </td>
@@ -336,20 +347,15 @@
                         <td>Nre Shell side </td>
 
                         <td>{{this.h.NReSs}}</td>
-                        <td> m </td>
+                        <td> - </td>
                     </tr>
                     <tr>
                         <td>Npr Shell side </td>
 
                         <td>{{this.h.NPrSs}}</td>
-                        <td> m </td>
+                        <td> - </td>
                     </tr>
-                    <tr>
-                        <td>Clearence </td>
-
-                        <td>{{this.h.c}}</td>
-                        <td> m </td>
-                    </tr>
+                    
                     <tr>
                         <td>Velocity at Coil side </td>
 
@@ -359,20 +365,20 @@
                     <tr>
                         <td>Velocity at Annulus Side </td>
 
-                        <td>{{this.h.c}}</td>
+                        <td>{{this.h.Van}}</td>
                         <td> m/s</td>
                     </tr>
                     <tr>
                         <td>Nre Coil side </td>
 
                         <td>{{this.h.NReC}}</td>
-                        <td> </td>
+                        <td>- </td>
                     </tr>
                     <tr>
                         <td>Npr Coil side </td>
 
                         <td>{{this.h.NPrC}}</td>
-                        <td>  </td>
+                        <td> - </td>
                     </tr>
                     <tr>
                         <td> Heat Transfer Coeffiient - Coil side </td>
@@ -381,13 +387,13 @@
                         <td> W/m<sup>2</sup>&deg;c </td>
                     </tr>
                     <tr>
-                        <td> corrected Heat Transfer Coeffiient - Coil side </td>
+                        <td> Corrected Heat Transfer Coeffiient - Coil side </td>
 
                         <td>{{this.h.Hio}}</td>
                         <td> W/m<sup>2</sup>&deg;c </td>
                     </tr>
                     <tr>
-                        <td> Heat Transfer Coeffiient - Annulus side </td>
+                        <td> Heat Transfer Coeffiient - Shell side </td>
 
                         <td>{{this.h.HAnn}}</td>
                         <td> W/m<sup>2</sup>&deg;c </td>
@@ -445,16 +451,29 @@
                     <td>{{this.h.QFound}}</td>
                     <td>W</td>
                 </tr>
-                <tr>
-                    <td> Hot Fluid Outlet temperature - THo</td>
 
-                    <td>{{this.h.Tho}}</td>
+                <tr>
+                    <td> Obtained Area </td>
+
+                    <td>{{this.h.AreaFound}}</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td> Number of turns</td>
+
+                    <td>{{this.h.N}}</td>
                     <td> &deg;C</td>
                 </tr>
                 <tr>
-                    <td> Cold Fluid Outlet temperature - TCo</td>
+                    <td>Length of the coil</td>
 
-                    <td>{{this.h.Tco}}</td>
+                    <td>{{this.h.LtotalCoil}}</td>
+                    <td> &deg;C</td>
+                </tr>
+                <tr>
+                    <td>Height of the cylinder cell </td>
+
+                    <td>{{this.h.Hcyl}}</td>
                     <td> &deg;C</td>
                 </tr>
             </tbody>

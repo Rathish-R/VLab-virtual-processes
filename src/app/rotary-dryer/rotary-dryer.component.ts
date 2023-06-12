@@ -44,23 +44,24 @@ export class RotaryDryerComponent {
     Twb: new FormControl(40, Validators.required),
     Tdb: new FormControl(100, Validators.required),
     Humidity: new FormControl(0.011, Validators.required),
-    FR: new FormControl(27.7, Validators.required),
+    Massflux: new FormControl(5000, Validators.required),
     PercWBasis: new FormControl("3 % to 0.25 %", Validators.required),
 
   });
   methanol: Methanol = new Methanol();
   water!: Water;
-  initialization(th: number, tc: number) {
+  initialization() {
     debugger;
     this.s.xa = 0.0309;
     this.s.xb = 0.0025;
-    var x = 100 / (1 + this.s.xa);
-    this.s.w1 = 100 - this.s.xa;
-    this.s.w2 = this.s.xb * x;
+    this.s.ms = 100 / (1 + this.s.xa);
+    this.s.w1 = 100 - this.s.ms; // initial moisture
+    this.s.w2 = this.s.xb * this.s.ms;
 
-    this.s.Cps = 0.836;
-    this.s.Cpv = 0.45;
-    this.s.LVp = 2382.6;
+    this.s.Cps = 0.2;//kcal/kgoC
+    this.s.Cpv = 0.45;//kcal/kgoC
+    this.s.Cpl = 1;//kcal/kgoC
+    this.s.LVp = 570; //kcal/kgoC
 
 
 
@@ -69,55 +70,50 @@ export class RotaryDryerComponent {
     this.s.TAi = Number(this.ip.value.Tai);
     this.s.Tw = Number(this.ip.value.Twb);
     this.s.Td = Number(this.ip.value.Tdb);
-    this.s.FR = Number(this.ip.value.FR);
+    this.s.Gassumed = Number(this.ip.value.Massflux);
     this.s.Humidity = Number(this.ip.value.Humidity);
     this.s.isFeasible = false;
-    this.methanol.getProperties(th);
-    this.water = new Water(tc);
-   
-     
+
   }
   roundOff() {
-    this.s.HtArea = Number(this.s.HtArea.toFixed(3));
-    this.s.BundleDia = Number(this.s.BundleDia.toFixed(3));
-    this.s.TubesPerPass = Number(this.s.TubesPerPass.toFixed(3));
-    this.s.HtubeSide = Number(this.s.HtubeSide.toFixed(3));
-    this.s.BaffleSpace = Number(this.s.BaffleSpace.toFixed(3));
-    this.s.FlowAreaOfTubes = Number(this.s.FlowAreaOfTubes.toFixed(3));
-    this.s.VelocityTubeSide = Number(this.s.VelocityTubeSide.toFixed(3));
-    this.s.VelocityShellSide = Number(this.s.VelocityShellSide.toFixed(3));
-    this.s.pitch = Number(this.s.pitch.toFixed(3));
-    this.s.ShellDia = Number(this.s.ShellDia.toFixed(3));
-    this.s.HShellSide = Number(this.s.HShellSide.toFixed(3));
-    this.s.OverallHTCoeff = Number(this.s.OverallHTCoeff.toFixed(3));
-    this.s.PDropSs = Number(this.s.PDropSs.toFixed(3));
-    this.s.PDropTs = Number(this.s.PDropTs.toFixed(3));
-    this.s.QFound = Number(this.s.QFound.toFixed(3));
-    this.s.Tco = Number(this.s.Tco.toFixed(1));
-    this.s.Tho = Number(this.s.Tho.toFixed(1));
+
+    this.s.ms = Number(this.s.ms.toFixed(3));
+    this.s.TAo = Number(this.s.TAo.toFixed(3));
+    this.s.w1 = Number(this.s.w1.toFixed(3));
+    this.s.w2 = Number(this.s.w2.toFixed(3));
+    this.s.qt = Number(this.s.qt.toFixed(3));
+    this.s.HumidHeatAir = Number(this.s.HumidHeatAir.toFixed(3));
+    this.s.DryingMedium = Number(this.s.DryingMedium.toFixed(3));
+    this.s.Wia = Number(this.s.Wia.toFixed(3));
+    this.s.Adryer = Number(this.s.Adryer.toFixed(3));
+    this.s.Ddryer = Number(this.s.Ddryer.toFixed(3));
+    this.s.lmtd = Number(this.s.lmtd.toFixed(3));
+    this.s.L = Number(this.s.L.toFixed(3));
+    this.s.LbyDRatio = Number(this.s.LbyDRatio.toFixed(3));
+
 
   }
   RotaryCalc(): void {
     console.log("calculating");
-
-    this.s.TAo = (this.s.TAi - this.s.Tw) / (Math.exp(1.5));
-    this.s.qt = ((this.s.Tfo - this.s.Tfi) * this.s.Cps) + ((this.s.xa - this.s.xb) * this.s.LVp) + (this.s.xb * (this.s.Tfo - this.s.Tw)) + ((this.s.xa - this.s.xb) * (this.s.TAi - this.s.TAo)) * this.s.FR;
+    this.initialization();
+    this.s.TAo = (this.s.TAi - this.s.Tw) / (Math.exp(1.5)) + this.s.Tw;
+    this.s.qt = (((this.s.Tfo - this.s.Tfi) * this.s.Cps) + (this.s.xa * this.s.Cpl * (this.s.Tw - this.s.Tfi)) + ((this.s.xa - this.s.xb) * this.s.LVp) + (this.s.xb * (this.s.Tfo - this.s.Tw)) + ((this.s.xa - this.s.xb) * this.s.Cps * (this.s.TAo - this.s.Tw))) * this.s.ms;
     this.s.HumidHeatAir = this.s.Cps + (this.s.Cpv * this.s.Humidity);
     this.s.DryingMedium = this.s.qt / ((1 + this.s.Humidity) * (this.s.TAi - this.s.TAo) * this.s.HumidHeatAir)
     this.s.Wia = (1 + this.s.Humidity) * this.s.DryingMedium;
     var rectifier = 1;
     while (!this.s.isFeasible) {
       console.log(rectifier);
-      this.s.Gassumed = 5000 * rectifier;
+      this.s.Gassumed *= rectifier;
       this.s.Adryer = this.s.Wia / this.s.Gassumed;
       this.s.Ddryer = Math.sqrt(4 * this.s.Adryer / Math.PI);
-      const delT2 = this.s.TAo - this.s.Wbt;
+      const delT2 = this.s.TAo - this.s.Tw;
 
-      const delT1 = this.s.TAo - this.s.Wbt;
+      const delT1 = this.s.TAi - this.s.Tw;
 
       this.s.lmtd = (delT1 - delT2) / (Math.log(delT1 / delT2));
       this.s.lmtd = Number(this.s.lmtd.toFixed(3));
-      this.s.L = this.s.qt / (0.21 * this.s.Gassumed * this.s.Ddryer * Math.PI * this.s.lmtd);
+      this.s.L = this.s.qt / (0.21 * Math.pow(this.s.Gassumed, 0.67) * this.s.Ddryer * Math.PI * this.s.lmtd);
       this.s.LbyDRatio = this.s.L / this.s.Ddryer;
       if (this.s.LbyDRatio < 4) {
         rectifier -= 0.05;
@@ -125,8 +121,8 @@ export class RotaryDryerComponent {
       else if (this.s.LbyDRatio > 10) {
         rectifier += 0.05;
       }
-      else{
-        this.s.isFeasible=true;
+      else {
+        this.s.isFeasible = true;
       }
     }
 
@@ -148,23 +144,17 @@ export class RotaryDryerComponent {
     this.s.isCalculated = true;
   }
 
-  getLmtd(){
-    // debugger;
-    // const delT2 = Number(this.ip.value.Tho) - Number(this.ip.value.Tci);
-
-    // const delT1 = Number(this.ip.value.Thi) - Number(this.ip.value.Tco);
-
-    // this.s.lmtd = (delT1 - delT2) / (Math.log(delT1 / delT2));
-    // this.s.lmtd = Number(this.s.lmtd.toFixed(3));
-    // return this.s.lmtd;
-  }
   onSubmit() {
     if (this.ip.invalid) {
       this.ip.markAllAsTouched();
       return;
     }
-    if (Number(this.ip.value.Tfo) >= Number(this.ip.value.Tfi)) {
+    if (Number(this.ip.value.Tfi) > Number(this.ip.value.Tfo)) {
       alert('Feed inlet temperature should not be higher than Feed outlet Temperature')
+      this.s.isValid = false;
+    }
+    else if (Number(this.ip.value.Tfi) > Number(this.ip.value.Twb)) {
+      alert('Feed inlet temperature should not be higher than Vapouridation temperature - wet bulb temperature')
       this.s.isValid = false;
     }
     else {
