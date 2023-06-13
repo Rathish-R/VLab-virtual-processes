@@ -44,15 +44,15 @@ export class HelicalCoilHExComponent {
     OilFRUnit: new FormControl('Kg/sec', Validators.required),
     Waterflowrate: new FormControl(0.595, Validators.required),
     WaterFRUnit: new FormControl('Kg/sec', Validators.required),
-    Thi: new FormControl(127, Validators.required),
-    Tho: new FormControl(100, Validators.required),
-    Tci: new FormControl(30, Validators.required),
-    Tco: new FormControl(47, Validators.required),
+    Thi: new FormControl(150, Validators.required),
+    Tho: new FormControl(70, Validators.required),
+    Tci: new FormControl(25, Validators.required),
+    Tco: new FormControl(85, Validators.required),
     Passes: new FormControl('2', Validators.required),
-    TubeDiaO: new FormControl(0.03, Validators.required), //m
-    TubeDiaI: new FormControl(0.025, Validators.required), //m
-    B: new FormControl(0.340, Validators.required), //m
-    C: new FormControl(0.460, Validators.required), //m
+    TubeDiaO: new FormControl(0.0127, Validators.required), //m
+    TubeDiaI: new FormControl(0.0102, Validators.required), //m
+    B: new FormControl(0.254, Validators.required), //m
+    C: new FormControl(0.355, Validators.required), //m
     ShellFluid: new FormControl('Water', Validators.required),
   });
 

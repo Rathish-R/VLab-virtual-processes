@@ -32,9 +32,9 @@ export class MechanicaloperationsComponent  {
         });
       }, 2000);
       this.equipments = [
-        "Cyclone Separator", "Screen Effectiveness", "Roll Crusher",];
+        "Screen Effectiveness", "Roll Crusher",];
         this.selected = this.Activatedroute.snapshot
-        .queryParams['process'] || 'Cyclone Separator';
+        .queryParams['process'] || 'Screen Effectiveness';
 
   }
   ngOnChanges(){

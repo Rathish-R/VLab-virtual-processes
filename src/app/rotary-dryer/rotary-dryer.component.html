@@ -19,7 +19,7 @@
             <br>
             <br>
             <img class="rounded mx-auto d-block"
-                src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
+                src="../../assets/Rotary.png"
                 style="width:fit-content;height: fit-content;">
         </p>
 
@@ -279,7 +279,7 @@
     </mat-tab>
     <mat-tab label="Virtual Experiment">
         <form [formGroup]="ip">
-            <!-- <table mat-table class="table table-bordered table-striped mat-elevation-z8">
+             <table mat-table class="table table-bordered table-striped mat-elevation-z8">
                 <thead>
                     <tr>
                         <th>Property</th>
@@ -289,85 +289,54 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td> Mass Flowrate (Methanol)</td>
-                        <td><input type="number" formControlName="OilFlowRate"></td>
+                        <td>assumed Massflux</td>
                         <td>
-                            <select formControlName="OilFRUnit">
-                                <option value="Kg/sec">Kg/sec</option>
-                                <option value="Kg/hr">Kg/Hrs</option>
-                                <option value="Kg/min">Kg/min</option>
-                                <option value="l/hr" disabled>l/hr</option>
-                                <option value="l/min" disabled>l/hr</option>
-                                <option value="l/sec" disabled>l/hr</option>
-                            </select>
+                            <input type="number" formControlName="Massflux">
                         </td>
+                        <td> m </td>
                     </tr>
-
+                   
                     <tr>
-                        <td>Mass Flowrate (Water)</td>
-
-                        <td><input type="number" formControlName="Waterflowrate"></td>
-                        <td> <select formControlName="WaterFRUnit">
-                                <option value="Kg/sec">Kg/sec</option>
-                                <option value="Kg/hr">Kg/hr</option>
-                                <option value="Kg/min">Kg/min</option>
-                                <option value="l/hr" disabled>l/hr</option>
-                                <option value="l/min" disabled>l/hr</option>
-                                <option value="l/sec" disabled>l/hr</option>
-                            </select></td>
-                    </tr>
-
-                    <tr>
-                        <td>HotFluid Inlet temperature</td>
-                        <td><input type="number" formControlName="Thi"></td>
-                        <td>&deg;C</td>
+                        <td>Feed inlet Temperature</td>
+                        <td>
+                            <input type="number" formControlName="Tfi">
+                        </td>
+                        <td> &deg;C </td>
                     </tr>
                     <tr>
-                        <td>Cold fluid inlet temperature</td>
-
-                        <td><input type="number" formControlName="Tci"></td>
-                        <td>&deg;C</td>
+                        <td>Feed outlet Temperature</td>
+                        <td>
+                            <input type="number" formControlName="Tfo">
+                        </td>
+                        <td> &deg;C </td>
                     </tr>
                     <tr>
-                        <td> Obtained Overall Heat Temperature Coefficient - U</td>
-
-                        <td>{{this.s.OverallHTCoeff}}</td>
-                        <td>W/m<sup>2</sup> &deg;C</td>
-                    </tr>
-
-                    <tr>
-                        <td> Obtained Heat Duty - Q</td>
-
-                        <td>{{this.s.QFound/1000}}</td>
-                        <td>KW</td>
+                        <td>Air inlet Temperature</td>
+                        <td>
+                            <input type="number" formControlName="Tfo">
+                        </td>
+                        <td> &deg;C </td>
                     </tr>
                     <tr>
-    
-                        <td>Cold fluid Outlet temperature (Desired)</td>
-                        <td><input type="number" formControlName="Tco"></td>
-                        <td>&deg;C</td>
+                        <td> Diameter of the Dryer(Pipe) </td>
+
+                        <td>{{this.s.Ddryer}}</td>
+                        <td> m </td>
                     </tr>
                     <tr>
+                        <td> Length of the pipe </td>
 
-                        <td>Hot fluid Outlet temperature (Desired)</td>
-                        <td><input type="number" formControlName="Tho"></td>
-                        <td>&deg;C</td>
+                        <td>{{this.s.L}}</td>
+                        <td> m </td>
                     </tr>
                     <tr>
-                        <td>Hot Fluid Outlet temperature (Actual)</td>
+                        <td>L/D ratio</td>
 
-                        <td>{{this.s.Tho}}</td>
-                        <td> &deg;C</td>
+                        <td>{{this.s.LbyDRatio}}</td>
+                        <td> - </td>
                     </tr>
-                    <tr>
-                        <td> Cold Fluid Outlet temperature (Actual)</td>
-
-                        <td>{{this.s.Tco}}</td>
-                        <td> &deg;C</td>
-                    </tr>
-
                 </tbody>
-            </table> -->
+            </table> 
             <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
             <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
                 required.</div>
@@ -378,8 +347,8 @@
             <div class="Tho">{{this.s.Tho}}</div>
 
             <img class="rounded mx-auto d-block"
-                src="https://www.researchgate.net/publication/50384285/figure/fig1/AS:650799378100225@1532174071339/Experimental-Setup-of-Heat-Exchanger.png"
-                alt="Shell And TUbe Heat Exchanger" style="height:30%;width:30%">
+                src="../../assets/Rotary.png"
+                style="width:fit-content;height: fit-content;">
         </div>
 
         <div *ngIf="logs.length==0">

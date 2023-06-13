@@ -19,21 +19,19 @@ export class HomeComponent {
   selectedLab!:string[];
   m :any=EMap;
   Fm : any[]=[
-    "Helical Coil","Fluidised Bed" ,"Reciprocating Pump", "Straight Pipes","Efflux Studies","Annulus Concentric Pipes", "Venturimeter & Orificemeter",
-    "Packed Bed","Drag Coefficient"
+"Annulus  Pipes"
+
   ];
-  Ht : any[]=["Shell and Tube Heat Exchanger", "Helical  Coil Heat Exchanger", "Verical Condenser","Double Pipe Heat Exchanger", "Jacketed Vessel"
-  ,"Open Pan Evaporator"];
-  Mt : any[]=["Simple Distillation", "Packed Column distillation", "Steam distillation","Rotary dryer",
-    "Tray dryer","Leaching Studies","Solid-Air Diffusivity measurement","Liquid-Liquid Extraction","Cooling Tower"
+  Ht : any[]=["Shell and Tube Heat Exchanger", "Helical  Coil Heat Exchanger", "Condenser","Double Pipe Heat Exchanger"
+  ];
+  Mt : any[]=["Rotary dryer",
+    
   ];
   Mo : any[]=[
     
-    "Ball Mill","Drop Weight Crusher","Roll Crusher","Jaw Crusher","Air Elutriator","Leaf Filter",
-    "Cyclone Separator","Batch Sedimentation","Screen Effectiveness"
+   "Roll Crusher","Screen Effectiveness"
   ];
-  Cre : any[]=["Batch Reactor-Kinetics","Packed Reactor-Kinetics","Sonochemical Reactor-Kinetics","CSTR-Kinetics","PFR-RTD","Temperature Dependant Kinetics",
-    "Combined Reactor in Series ","CSTR-Series","Packed Bed-RTD"]
+  Cre : any[]=[]
   ;
   subjects : any[]=["Fluid Mechanics" ,"Heat Transfer","Mass Transfer","Mechanical operation","Chemical Reaction Engineering"];
   
@@ -62,8 +60,27 @@ export class HomeComponent {
   }
   
   selected(option: string) {
-    this._selected = option.replace(" ","");
-    this.navigateTo(this._selected);
+    if(option=='Rotary Dryer'){
+      this.router.navigate(['Home','MassTransfer',"RotaryDryer"]);
+    }
+    else  if(option=='Shell and Tube Heat Exchanger'){
+      this.router.navigate(['Home','HeatTransfer',"ShellAndTubeHeatExchanger"]);
+    }
+    else  if(option=='Double Pipe Heat Exchanger'){
+      this.router.navigate(['Home','HeatTransfer',"DoublePipeHeatExchanger"]);
+    }
+    else  if(option=='Condenser'){
+      this.router.navigate(['Home','HeatTransfer',"VerticalCondenser"]);
+    }
+    else  if(option=='Screen Effectiveness'){
+      this.router.navigate(['Home','MechanicalOperations',"ScreenEffectiveness"]);
+    }
+    else  if(option=='Roll Crusher'){
+      this.router.navigate(['Home','MechanicalOperations',"RollCrusher"]);
+    }
+    else  if(option=='Helical Coil Heat Exchanger'){
+      this.router.navigate(['Home','HeatTransfer',"HelicalCoilHeatExchanger"]);
+    }
   }
   navigateTo(url: string): void {
     this.router.navigateByUrl(this.m[url]);
