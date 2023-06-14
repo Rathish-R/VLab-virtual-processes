@@ -88,7 +88,7 @@
             </li>
         </ul>
         <img class="rounded mx-auto d-block"
-            src="../../assets/HelicalCoil.png"
+            src="/assets/HelicalCoil.png"
             style="width:fit-content;height: fit-content; z-index: -1;">
     </mat-tab>
     <mat-tab label="Formulae" color="Accent">
@@ -478,11 +478,16 @@
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-success" type="submit" [disabled]="!ip.valid" (click)="onSubmit()">submit</button>
+        <div *ngIf="ip.invalid && ip.dirty" style="color: red">All fields are
+            required.</div>
+        <div *ngIf="ip.valid && !this.h.isCalculated" style="color: rgb(4, 255, 0)">Ready to calculate</div>
+    
         <div class="image">
             
 
             <img class="rounded mx-auto d-block"
-            src="../../assets/HelicalCoil.png"
+            src="/assets/HelicalCoil.png"
             style="width:fit-content;height: fit-content; z-index: -1;">
         </div>
     </mat-tab>

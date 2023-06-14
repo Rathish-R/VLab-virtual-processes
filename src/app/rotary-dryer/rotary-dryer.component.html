@@ -1,28 +1,74 @@
 <mat-tab-group>
     <mat-tab label="Theory">
         <br>
-        <h2>Objective</h2>
-        <p class="Theory"> To determine the overall Heat transfer coefficient of the given Shell and tube Heat
-            Exchanger </p><br>
-        <h2>Theory </h2>
-        <p class="Theory">
+        <h1>Introduction</h1>
+        <br>
+        <p class="content">
+            A rotary dryer is a widely used industrial dryer that utilizes heat and rotational motion to remove moisture from a variety of materials. The dryer consists of a cylindrical drum that rotates while the material is fed into it and exposed to heated air or gas. This experiment aims to study the drying characteristics of a given material using a rotary dryer. <br>
+        <h1>Operation</h1>
+        <p class="content">
+            The operation of a rotary dryer involves the following steps:
 
-            A shell and tube heat exchanger is a type of heat exchanging device constructed using a
-            large cylindrical enclosure, or shell,
-            that has bundles of perfectly spaced tubing compacted in its interior.
-            Heat exchanging is the transfer of heat from one substance or medium to a similar
-            substance
-            or medium. Shell and tube heat exchangers
-            are the most common form of heat exchanger design.
-            It is used in desulphurisation process in petroleum industry
-            <br>
-            <br>
-            <br>
-            <img class="rounded mx-auto d-block"
-                src="../../assets/Rotary.png"
-                style="width:fit-content;height: fit-content;">
         </p>
+        <ul class="content">
+            <li>
+                Material Feeding: The wet material is fed into the rotating drum of the dryer through a feed chute. The material is spread evenly across the drum's surface to maximize exposure to the drying medium.
+            </li>
+            <li>
+                Heat Transfer: As the drum rotates, heated air or gas is introduced into the dryer. The material comes into contact with the hot air, which transfers heat to the moisture within the material.
+ </li>
+            <li>
+                Evaporation: The heat from the drying medium causes the moisture in the material to evaporate. The moisture-laden air or gas is exhausted from the dryer, while the dried material is carried along the drum's rotation.
 
+            </li>
+            <li>
+                Material Discharge: The dried material is discharged from the drum through an outlet chute or conveyor, ready for further processing or use.
+            </li>
+        </ul>
+
+        <h1>Design Considerations</h1>
+        <p class="content">
+            When designing a rotary dryer experiment, several factors need to be considered: <ul class="content">
+            <li>
+                Drum Design: The drum's diameter, length, and inclination angle play a crucial role in determining the drying characteristics. The dimensions should be chosen based on the material properties, desired drying rate, and throughput requirements.
+
+            </li>
+            <li>
+                Drying Medium: The selection of the drying medium, such as hot air or gas, depends on the specific application and material being dried. The temperature and flow rate of the drying medium should be controlled to optimize the drying process.
+            </li>
+            <li>
+                Material Properties: The properties of the material, including moisture content, particle size distribution, and thermal conductivity, affect the drying rate and efficiency. Understanding these properties helps in designing the drying process appropriately.
+
+            </li>
+            <li>
+                Heat Source: The heat source for the rotary dryer can vary, including direct-fired burners, steam, or hot gases. The choice of heat source depends on factors such as energy availability, safety considerations, and the material being dried.
+
+            </li>
+
+        </ul>
+        <h1>
+            Applications
+        </h1>
+        <p class="content">
+            Rotary dryers have a wide range of applications in various industries, including:
+        </p>
+        <ul class="content">
+            <li>
+                Food Processing: They are used for drying agricultural products, such as grains, fruits, and vegetables, to preserve and extend their shelf life.
+            </li>
+            <li>
+                Chemical Industry: Rotary dryers are employed for drying various chemicals, pharmaceuticals, and fertilizers, ensuring proper moisture content for storage and subsequent processing.
+            </li>
+            <li>
+                Mineral Processing: They are used in the drying of minerals, ores, and concentrates to remove moisture and prepare them for further processing or transportation.
+ </li>
+            <li>
+                Biomass and Biofuel Production: Rotary dryers play a vital role in drying biomass materials and converting them into solid biofuels, such as pellets or briquettes.
+
+        </ul>
+        <img class="rounded mx-auto d-block"
+            src="/assets/ScrEff.png"
+            style="width:fit-content;height: fit-content; z-index: -1;">
     </mat-tab>
     <mat-tab label="Formulae" color="Accent">
 
@@ -347,7 +393,7 @@
             <div class="Tho">{{this.s.Tho}}</div>
 
             <img class="rounded mx-auto d-block"
-                src="../../assets/Rotary.png"
+                src="/assets/Rotary.png"
                 style="width:fit-content;height: fit-content;">
         </div>
 

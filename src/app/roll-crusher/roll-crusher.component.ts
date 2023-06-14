@@ -18,6 +18,7 @@ export class RollCrusherComponent {
   xf: number[] = [];
   Dsb: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   Dsa: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  prod: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   xD: number[] = [];
   xB: number[] = [];
   df: number = 0;
@@ -86,12 +87,13 @@ export class RollCrusherComponent {
   }
   reset() {
     this.xfCum = [];
-    this.Dsb = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];;
+    this.Dsb = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    this.Dsa = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    this.prod = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   }
 
   initialization() {
-    debugger;
     this.s.Dpmax = Number(this.ip.value.Dfmx);
     this.s.Lr = Number(this.ip.value.Lr);
     this.s.NipAngle = Number(this.ip.value.NipAngle);
@@ -114,6 +116,10 @@ export class RollCrusherComponent {
   getDsb(index: number): any {
 
     return this.Dsb[index].toFixed(5);
+  }
+  getProd(index: number): any {
+
+    return this.prod[index].toFixed(5);
   }
     getDsa(index: number): any {
 
@@ -209,12 +215,12 @@ export class RollCrusherComponent {
       this.Dsa[i + 1] = this.Dpi[i];
     }
   }
-  assignDsb(value: number, i: number) {
+  assignProd(value: number, i: number) {
     var j = i;
     while (value < this.Dpi[j] && j != this.Dpi.length - 1) {
       j++;
     }
-    this.Dsb[j] = this.Dsb[j] + Number(this.ip.value.xf!.at(i));
+    this.prod[j] = this.prod[j] + Number(this.ip.value.xf!.at(i));
   }
   calculateDsb(i: number) {
 
@@ -223,7 +229,8 @@ export class RollCrusherComponent {
 
     var value = Math.pow((v1 + v2), -2);
     console.log(value);
-    this.assignDsb(value, i);
+this.Dsb[i]=value;
+    this.assignProd(value, i);
 
   }
   CalculateProductOutlet() {

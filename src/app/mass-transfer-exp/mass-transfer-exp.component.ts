@@ -31,7 +31,7 @@ export class MassTransferExpComponent {
         });
       }, 2000);
 
-    this.selected = (localStorage.getItem('Current'))?localStorage.getItem('Current')+'':'Shell and Tube Heat Exchanger';
+    this.selected = "Rotary Dryer";
     this.equipments = [
       "Rotary Dryer"];
 

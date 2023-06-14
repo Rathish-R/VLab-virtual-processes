@@ -61,7 +61,7 @@
             </li>
         </ul>
         <img class="rounded mx-auto d-block"
-            src="../../assets/RollCrusher.png"
+            src="/assets/RollCrusher.png"
             style="width:fit-content;height:fit-content; z-index: -1;">
     
     </mat-tab> 
@@ -134,14 +134,14 @@
                                     <td>
                                         <input type="number" formControlName="Mfeed">
                                     </td>
-                                    <td> m </td>
+                                    <td> Tonnes </td>
                                 </tr>
                                 <tr>
                                     <td>Crushing time</td>
                                     <td>
                                         <input type="number" formControlName="Crushtime">
                                     </td>
-                                    <td> m </td>
+                                    <td> hr </td>
                                 </tr>
                                 <tr>
                                     <td>Maximum allowable diameter of crushed material</td>
@@ -177,13 +177,14 @@
                                 <td>{{i+1}}</td>
                                 <td>{{m}}</td>
                                 <td>{{Dpi[i]}}</td>
-
+                                <td>{{prod[i]}}</td>
                                  <td>
                                     <input type="number" min="0" max="1" [formControl]="ip.controls.xf.controls[i]">
                                 </td>
                                 <td>{{getCumXF(i)}} </td>
                                 <td>{{getDsa(i)}} </td>
                                <td>{{getDsb(i)}} </td>
+                               <td>{{getProd(i)}} </td>
                             
                             </tr>
                         </tbody>
@@ -208,7 +209,7 @@
                         <td>Angle of nip</td>
 
                         <td>{{this.s.NipAngle}}</td>
-                        <td>&deg;C</td>
+                        <td>&Theta;</td>
                     </tr>
                     <tr>
                         <td>Maximum allowable feed diameter</td>
@@ -222,13 +223,13 @@
                         <td>{{this.s.Dr}}</td>
                         <td>m</td>
                     </tr>
-<!--                    
+                   
                     <tr>
                         <td>Roll crusher capacity</td>
 
-                        <td>0.349</td>
-                        <td>tonnes/hr</td>
-                    </tr> -->
+                        <td>{{this.s.Qact}}</td>
+                        <td>t/hr</td>
+                    </tr>
                     <tr>
                         <td>Power required</td>
 
@@ -249,6 +250,7 @@
 
     </mat-tab>
     <mat-tab label="Virtual Experiment">
+        <form [formGroup]="ip">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -272,14 +274,7 @@
                     </td>
                     <td> m </td>
                 </tr>
-                <tr>
-                    <td>Length between each roll</td>
-                    <td>
-                        <input type="number" formControlName="Lr">
-                    </td>
-                    <td> m </td>
-                </tr>
-                
+               
                 <tr>
                     <td>Speed of the roll</td>
                     <td>
@@ -316,14 +311,17 @@
                 </tr>
        
             </tbody>
+        
         </table>
+   
         <div class="image">
 
 
             <img class="rounded mx-auto d-block"
-            src="../../assets/RollCrusher.png"
+            src="/assets/RollCrusher.png"
             style="width:fit-content;height: fit-content; z-index: -1;">
         </div>
+    </form>
     </mat-tab>
     <div class="position-fixed bottom-0 end-0">
 
