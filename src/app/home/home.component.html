@@ -47,11 +47,11 @@
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
     </div>
-    <div *ngIf="sub=='Chemical Reaction Engineering'">
+    <!-- <div *ngIf="sub=='Chemical Reaction Engineering'">
         <li *ngFor="let s of Cre" class="sub">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
         </li>
-    </div>
+    </div> -->
     <div *ngIf="sub=='Fluid Mechanics'" class="sub">
         <li *ngFor="let s of Fm">
             <button mat-raised-button class="btn btn-lab" (click)="selected(sub)" style="padding:10px">{{s}}</button>
@@ -75,26 +75,29 @@
     style="margin:5%;padding: 2%;width: 90%;  display: grid;align-items: center;
     justify-content: center;">
     <div class="row">
-
+<!-- 
         <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isFmOn=true"
             [routerLink]="['/Home','FluidMechanics','AnnulusPipes']" [queryParams]="{ process: 'Annulus Pipes'}">Fluid
-                Mechanics</button></div>
-        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isHtOn=true"
+                Mechanics</button></div> -->
+                <div class="col-4"></div> 
+        <div class="col-4"><button mat-raised-button class="btn btn-Sub" (click)="isHtOn=true"
                 [routerLink]="['/Home','HeatTransfer','ShellAndTubeHeatExchanger']" [queryParams]="{ process: 'Shell and Tube Heat Exchanger'}">Heat Transfer</button></div>
-        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMtOn=true"
-            [routerLink]="['/Home','MassTransfer','RotaryDryer']" [queryParams]="{ process: 'Rotary Dryer'}">Mass
-                Transfer</button></div>
+                <div class="col-4"></div>
+               
     </div>
     <div class="row">
-        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
+        <div class="col-4"><button mat-raised-button class="btn btn-Sub" (click)="isMoOn=true"
             [routerLink]="['/Home','MechanicalOperations','ScreenEffectiveness']" [queryParams]="{ process: 'Screen Effectiveness'}"  >Mechanical Operations </button>
         </div>
-        <div class="col"><button mat-flat-button color="primary" class="btn btn-Static"
+        <div class="col-4"><button mat-flat-button color="primary" class="btn btn-Static"
                 style="text-align: center;font-size: large;">Process
                 Equipments </button></div>
-        <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isCREOn=true"
+        <!-- <div class="col"><button mat-raised-button class="btn btn-Sub" (click)="isCREOn=true"
                 routerLink="ChemicalReactionEngineering" >Chemical Reaction
-                Engineering</button></div>
+                Engineering</button></div> -->
+                <div class="col-4"><button mat-raised-button class="btn btn-Sub" (click)="isMtOn=true"
+                    [routerLink]="['/Home','MassTransfer','RotaryDryer']" [queryParams]="{ process: 'Rotary Dryer'}">Mass
+                        Transfer</button></div>
 
     </div>
     <div class="container-fluid" style="margin:50px 0">
